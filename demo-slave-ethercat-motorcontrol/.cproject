@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?fileVersion 4.0.0?>
-
-<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
 	<storageModule moduleId="org.eclipse.cdt.core.settings">
 		<cconfiguration id="com.xmos.cdt.toolchain.1643040072">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.1643040072" moduleId="org.eclipse.cdt.core.settings" name="Debug">
 				<externalSettings/>
 				<extensions>
-					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="com.xmos.cdt.core.XdeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="scannerConfiguration">
@@ -217,13 +215,189 @@
 									<listOptionValue builtIn="false" value="__EXCEPTIONS=1"/>
 									<listOptionValue builtIn="false" value="__WCHAR_UNSIGNED__=1"/>
 								</option>
-								<option id="com.xmos.c.compiler.option.include.paths.771301388" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
+								<option id="com.xmos.c.compiler.option.include.paths.771301388" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths"/>
+								<option id="com.xmos.xc.compiler.option.include.paths.78601494" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}target/include/c++/4.2.1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}target/include/c++/4.2.1/xcore-xmos-elf&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ctrlproto/module_ctrlproto/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_fwupdate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src/canod}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/commutation}&quot;"/>
 								</option>
-								<inputType id="com.xmos.cdt.xc.compiler.input.1372292261" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input"/>
+								<inputType id="com.xmos.cdt.xc.compiler.input.1372292261" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
+							</tool>
+							<tool id="com.xmos.cdt.c.compiler.892578399" name="com.xmos.cdt.c.compiler" superClass="com.xmos.cdt.c.compiler">
+								<option id="com.xmos.c.compiler.option.include.paths.207430227" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ctrlproto/module_ctrlproto/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_fwupdate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src/canod}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/commutation}&quot;"/>
+								</option>
+								<inputType id="com.xmos.cdt.c.compiler.input.c.216142073" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
+							</tool>
+							<tool id="com.xmos.cdt.cxx.compiler.1519505754" name="com.xmos.cdt.cxx.compiler" superClass="com.xmos.cdt.cxx.compiler">
+								<option id="com.xmos.cxx.compiler.option.include.paths.1733684807" name="com.xmos.cxx.compiler.option.include.paths" superClass="com.xmos.cxx.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ctrlproto/module_ctrlproto/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_fwupdate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src/canod}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/commutation}&quot;"/>
+								</option>
+								<inputType id="com.xmos.cdt.cxx.compiler.input.cpp.1765441602" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
@@ -232,14 +406,15 @@
 					</sourceEntries>
 				</configuration>
 			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 		</cconfiguration>
 		<cconfiguration id="com.xmos.cdt.toolchain.1158128018">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.xmos.cdt.toolchain.1158128018" moduleId="org.eclipse.cdt.core.settings" name="Release">
 				<externalSettings/>
 				<extensions>
-					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 					<extension id="com.xmos.cdt.core.XdeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.xmos.cdt.core.XEBinaryParser" point="org.eclipse.cdt.core.BinaryParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="scannerConfiguration">
@@ -446,13 +621,189 @@
 									<listOptionValue builtIn="false" value="__EXCEPTIONS=1"/>
 									<listOptionValue builtIn="false" value="__WCHAR_UNSIGNED__=1"/>
 								</option>
-								<option id="com.xmos.c.compiler.option.include.paths.310740125" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
+								<option id="com.xmos.c.compiler.option.include.paths.310740125" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths"/>
+								<option id="com.xmos.xc.compiler.option.include.paths.1896818393" name="com.xmos.xc.compiler.option.include.paths" superClass="com.xmos.xc.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}target/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}target/include/gcc&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}target/include/c++/4.2.1&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${XMOS_TOOL_PATH}target/include/c++/4.2.1/xcore-xmos-elf&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ctrlproto/module_ctrlproto/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_fwupdate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src/canod}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/commutation}&quot;"/>
 								</option>
-								<inputType id="com.xmos.cdt.xc.compiler.input.533650233" name="XC Sources" superClass="com.xmos.cdt.xc.compiler.input"/>
+								<inputType id="com.xmos.cdt.xc.compiler.input.533650233" name="XC" superClass="com.xmos.cdt.xc.compiler.input"/>
+							</tool>
+							<tool id="com.xmos.cdt.c.compiler.653755055" name="com.xmos.cdt.c.compiler" superClass="com.xmos.cdt.c.compiler">
+								<option id="com.xmos.c.compiler.option.include.paths.1407153319" name="com.xmos.c.compiler.option.include.paths" superClass="com.xmos.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ctrlproto/module_ctrlproto/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_fwupdate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src/canod}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/commutation}&quot;"/>
+								</option>
+								<inputType id="com.xmos.cdt.c.compiler.input.c.882833888" name="C" superClass="com.xmos.cdt.c.compiler.input.c"/>
+							</tool>
+							<tool id="com.xmos.cdt.cxx.compiler.166145781" name="com.xmos.cdt.cxx.compiler" superClass="com.xmos.cdt.cxx.compiler">
+								<option id="com.xmos.cxx.compiler.option.include.paths.1150164465" name="com.xmos.cxx.compiler.option.include.paths" superClass="com.xmos.cxx.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ctrlproto/module_ctrlproto/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_adc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_comm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/auto-calib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/hall_qei_sync}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_nodeconfig/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_somanet-base/module_fwupdate}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_ecat_drive/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/predriver}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_qei/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_ethercat/module_ethercat/src/canod}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_commutation/commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/pwm}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_sm/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_common}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_profile/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_common/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_pwm_symmetrical/src/server}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_pwm/module_pwm_symmetrical/src/client}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_ctrl_loops/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_hall/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_gpio/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_brushed_dc/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_common/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/module_blocks/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/sc_sncn_motorcontrol/module_commutation/commutation}&quot;"/>
+								</option>
+								<inputType id="com.xmos.cdt.cxx.compiler.input.cpp.1861614601" name="C++" superClass="com.xmos.cdt.cxx.compiler.input.cpp"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
@@ -462,6 +813,7 @@
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
