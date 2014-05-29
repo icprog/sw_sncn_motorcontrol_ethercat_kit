@@ -23,7 +23,7 @@ This is a minimal hardware setup to start working with the motorcontrol software
 The image bellow illustrates the required set for this hardware setup.
 
 .. figure:: images/HW_set_minimal.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Required components and assembly parts
@@ -31,7 +31,7 @@ The image bellow illustrates the required set for this hardware setup.
 It is recommended to start assembly from the IFM Drive DC 100 board. Please place the long metal screws in two holes as shown in image bellow. Use 4 mm metal spaces between the IFM and the Core modules.
 
 .. figure:: images/assembly_p1.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 1
@@ -39,7 +39,7 @@ It is recommended to start assembly from the IFM Drive DC 100 board. Please plac
 Then proceed with the SOMANET Core module. Please hold the screws with your fingers to prevent them from falling out during the assembly procedure. Make sure that you connected the IFM side connector of the Core module to the IFM Drive DC 100 board. The IFM connector of the Core module has ``IF`` marking next to it. As a result you should see the ``COM`` connector being on top. For mounting the Core to XTAG2 Adapter in the next step please use the white plastic 3.5 mm spacers. 
 
 .. figure:: images/assembly_p2.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 2
@@ -47,7 +47,7 @@ Then proceed with the SOMANET Core module. Please hold the screws with your fing
 When mounting the Core to XTAG2 Adapter please fixate the IFM connector side with your thumb to prevent from unplugging. Also be careful with the golden pins of the Core to XTAG2 Adapter not to bend them or to break. The golden pins should have a reliable contact at the end with the corresponding pads of the SOMANET core C22 module. When successfully mounted, please fixate the stack with the metal nuts. The stack is ready to use.
 
 .. figure:: images/assembly_p3.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 3
@@ -56,7 +56,7 @@ All you need now to start programming is to connect the XMOS XTAG2 adapter as sh
 
 
 .. figure:: images/assembly_p8.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 4
@@ -78,7 +78,7 @@ This setup is required if you want to develop an EtherCAT based slave applicatio
 The image bellow illustrates the required set for this hardware setup.
 
 .. figure:: images/HW_set_complete.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Required components and assembly parts
@@ -86,7 +86,7 @@ The image bellow illustrates the required set for this hardware setup.
 To assemble the stack for using with SOMANET COM-EtherCAT please perform steps 1 to 3 as described above. Do not place the metal nuts or remove them. Please use two metal 4 mm spacers instead for mounting the COM-EtherCAT board on top of the Core to XTAG2 Adapter. 
 
 .. figure:: images/assembly_p9.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 4
@@ -94,7 +94,7 @@ To assemble the stack for using with SOMANET COM-EtherCAT please perform steps 1
 When mounting the COM-EtherCAT board please fixate the IFM connector side of the Core module with your thumb to prevent from unplugging. Press together the modules on the COM connector side and make sure that the all modules are properly plugged. Then fixate the screws with the nuts.
 
 .. figure:: images/assembly_p4.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 5
@@ -103,7 +103,7 @@ All you need now to start programming is to connect the XMOS XTAG2 adapter as sh
 
 
 .. figure:: images/assembly_p7.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 6
@@ -126,7 +126,7 @@ This setup is useful if software debugging or XScope functionality is not requir
 The image bellow illustrates the required set for this hardware setup.
 
 .. figure:: images/HW_set_complete_w_o_debug.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Required components and assembly parts
@@ -134,7 +134,7 @@ The image bellow illustrates the required set for this hardware setup.
 To assemble the stack for using with SOMANET COM-EtherCAT without the Core to XTAG2 Adapter please perform step 1 as  described in **Setting up without COM-EtherCAT module** section. Then proceed with the SOMANET Core module. Please hold the screws with your fingers to prevent them from falling out during the assembly procedure. Make sure that you connected the IFM side connector of the Core module to the IFM Drive DC 100 board. The IFM connector of the Core module has ``IF`` marking next to it. As a result you should see the ``COM`` connector being on top. For mounting the COM-EtherCAT module in the next step please use the metal 4 mm spacers. 
 
 .. figure:: images/assembly_p5.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 2
@@ -142,7 +142,7 @@ To assemble the stack for using with SOMANET COM-EtherCAT without the Core to XT
 When mounting the COM-EtherCAT board please fixate the IFM connector side of the Core module with your thumb to prevent from unplugging. Press together the modules on the COM connector side and make sure that the all modules are properly plugged. Then fixate the screws with the nuts.
 
 .. figure:: images/assembly_p6.jpg
-   :width: 400px
+   :width: 300px
    :align: center
 
    Step 3
