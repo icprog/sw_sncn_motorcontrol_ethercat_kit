@@ -18,16 +18,16 @@
  * define Motor Specific Constants (found in motor specification sheet)
  * Mandatory constants to be set
  */
-#define POLE_PAIRS  				8
-#define MAX_NOMINAL_SPEED  			4000	// rpm
-#define MAX_NOMINAL_CURRENT  		2		// A
-#define MOTOR_TORQUE_CONSTANT 		34    	// mNm/A
+#define POLE_PAIRS                  3               // Number of pole pairs
+#define MAX_NOMINAL_SPEED           4000            // rpm
+#define MAX_NOMINAL_CURRENT         2               // A
+#define MOTOR_TORQUE_CONSTANT       72              // mNm/A
 
 /* If you have any gears added specify gear-ratio
  * and any additional encoders attached specify encoder resolution here (optional)
  */
-#define GEAR_RATIO  				26		// if no gears are attached - set to gear ratio to 1
-#define ENCODER_RESOLUTION 			4000	// 4 x Max count of Quadrature Encoder (4X decoding)
+#define GEAR_RATIO                  1                   // if no gears are attached - set to gear ratio to 1
+#define ENCODER_RESOLUTION          16384               // 4 x Max count of Incremental Encoder (4X decoding - quadrature mode)
 
 /* Choose Position/Velocity Sensor */
 #define SENSOR_USED 				HALL 	// QEI
@@ -35,7 +35,7 @@
 /*Define your Encoder type*/
 #define QEI_SENSOR_TYPE  			QEI_WITH_INDEX	// QEI_WITH_NO_INDEX
 
-#define QEI_SENSOR_POLARITY			INVERTED		// NORMAL
+#define QEI_SENSOR_POLARITY			NORMAL		// INVERTED
 
 /*Somanet IFM Internal Config*/
 #define IFM_RESOLUTION				DC100_RESOLUTION  // DC300_RESOLUTION   /* Specifies the current sensor resolution/A
@@ -53,7 +53,7 @@
 /* Profile defines (optional) */
 #define MAX_PROFILE_VELOCITY  		MAX_NOMINAL_SPEED
 #define PROFILE_VELOCITY 			1000	// rpm
-#define MAX_ACCELERATION   			5000    // rpm/s
+#define MAX_ACCELERATION   			4000    // rpm/s
 #define PROFILE_ACCELERATION		2000	// rpm/s
 #define PROFILE_DECELERATION   		2000	// rpm/s
 #define QUICK_STOP_DECELERATION 	2000	// rpm/s
@@ -65,9 +65,9 @@
     /* Velocity Control (Mandatory if Velocity control used)
      * possible range of gains Kp/Ki/Kd: 1/2^30 to 2^30
      * Note: gains are calculated as NUMERATOR/DENOMINATOR to give ranges */
-#define VELOCITY_Kp_NUMERATOR       5
-#define VELOCITY_Kp_DENOMINATOR     10
-#define VELOCITY_Ki_NUMERATOR       5
+#define VELOCITY_Kp_NUMERATOR       1
+#define VELOCITY_Kp_DENOMINATOR     15
+#define VELOCITY_Ki_NUMERATOR       2
 #define VELOCITY_Ki_DENOMINATOR     100
 #define VELOCITY_Kd_NUMERATOR       0
 #define VELOCITY_Kd_DENOMINATOR     1
@@ -77,22 +77,22 @@
     /* Torque Control (Mandatory if Torque control used)
      * possible range of gains Kp/Ki/Kd: 1/2^30 to 2^30
      * Note: gains are calculated as NUMERATOR/DENOMINATOR to give ranges */
-#define TORQUE_Kp_NUMERATOR         50
-#define TORQUE_Kp_DENOMINATOR       10
-#define TORQUE_Ki_NUMERATOR         11
+#define TORQUE_Kp_NUMERATOR         2
+#define TORQUE_Kp_DENOMINATOR       20
+#define TORQUE_Ki_NUMERATOR         1
 #define TORQUE_Ki_DENOMINATOR       110
-#define TORQUE_Kd_NUMERATOR         1
+#define TORQUE_Kd_NUMERATOR         0
 #define TORQUE_Kd_DENOMINATOR       10
 
     /* Position Control (Mandatory if Position control used)
      * possible range of gains Kp/Ki/Kd: 1/2^30 to 2^30
      * Note: gains are calculated as NUMERATOR/DENOMINATOR to give ranges */
-#define POSITION_Kp_NUMERATOR       180
-#define POSITION_Kp_DENOMINATOR     2000
-#define POSITION_Ki_NUMERATOR       50
-#define POSITION_Ki_DENOMINATOR     102000
-#define POSITION_Kd_NUMERATOR       100
-#define POSITION_Kd_DENOMINATOR     10000
+#define POSITION_Kp_NUMERATOR       100
+#define POSITION_Kp_DENOMINATOR     1000
+#define POSITION_Ki_NUMERATOR       1
+#define POSITION_Ki_DENOMINATOR     1200
+#define POSITION_Kd_NUMERATOR       0
+#define POSITION_Kd_DENOMINATOR     1000
 
 #define MAX_POSITION_LIMIT 			359
 #define MIN_POSITION_LIMIT 			-359
@@ -187,3 +187,4 @@ void init_velocity_control_param(ctrl_par &velocity_ctrl_params);
 void init_position_control_param(ctrl_par &position_ctrl_params);
 
 #endif
+
