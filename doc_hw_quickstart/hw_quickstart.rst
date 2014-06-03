@@ -212,9 +212,26 @@ All you need now to start programming is to connect the XMOS xTAG-2 adapter as s
 Connecting the Motor Guide
 ---------------------------
 
-The Motor & Motion Control Kit includes an sample motor that you can use the software modules to run.
+The kit includes a sample motor that you can use the software modules to run. The motor is available with Hall Sensor only option, or Quadrature Encoding and Hall sensors.
 
+Power is supplied to all the boards in the kit by an 8-24V DC power supply, connected to the power connection on the IFM DC100 board. 
 
+Connect the motor
++++++++++++++++++++++
+
+   #. Plug the power connector from the motor into the white Motor and Hall Sensor 8-pin SPOX connector on the IFM DC100 board.
+
+   #. **QEI motors only**: Plug the Quadrature Encoding connector to the red 10-pin Encoder connector on the IFM DC100 board.
+
+   #. **EtherCAT communication only**: Plug the EtherCAT cable into PORT1 connector on the COM EtherCAT board.
+
+   #. Connect the xTAG-2 debug adapter to the xSYS connector on the xTAG Adapter. Connect the xTAG-2 to your development system.
+
+   #. Slide the switch on the xTAG Adapter away from the xTAG-2. An LED lights up to indicate that the JTAG connection is active.
+
+   #. Plug the power cable from a standalone power supply into the power connector on the IFM CD100 board.
+
+Your motor is now ready for testing.
 
 .. _XMOS_Motor_Motion_Control_Kit_User_Guide_Software:
 
@@ -223,34 +240,107 @@ Software Quick Start Guide
 
 The Motor & Motion Control Kit includes a set of software modules that run on the hardware, including:
 
-   * Hall Sensor
-   * Motor commutation
-   * AN Other
+   * Core control module with up to 2000 MIPS compute
+   * Current, speed and position control loops, closed on slave or master side
+   * CiA 402 drive profile
+   * Communications - EtherCAT (Linux master provided)
    
-We recommend that you run the Hall Sensor application first to test that the motor runs correctly.
-
 The software is delivered as individual components within the xTIMEcomposer Studio development tools, which are available free of charge from the XMOS website: http://www.xmos.com/xtimecomposer
 
 Installing xTIMEcomposer
 +++++++++++++++++++++++++++
 
-Details about downloading and installing the tools
+The xTIMEcomposer tool chain is a suite of development tools for xCORE multicore microcontrollers. It provides everything you need to develop applications to run on the hardware, as well as unique tools for timing closure and code instrumentation. The tools can be run from xTIMEcomposer Studio, and integrated development environment based on Eclipse, or the command line. XMOS provides a free to download version of xTIMEcomposer to all users who register on the XMOS website. The tools can be downloaded from: http://www.xmos.com/xtimecomposer
 
-Importing and running the Hall Sensor application
+Detailed information on how to use xTIMEcomposer is available in the xTIMEcomposer User Guide (http://www.xmos.com/published/xtimecomposer-user-guide). The xTIMEcomposer Studio Welcome screen also contains many useful links.
+
+Information and examples on how to program xCORE multicore microcontrollers is available in the XMOS programming guide (http://www.xmos.com/published/xmos-programming-guide).
+
+**NOTE**: The first time you run xTIMEcomposer Studio you must be connected to the internet, so that you can register your version of the tools.
+
+Importing and running the Profile application
 ++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Drag in from xSOFTip Browser.
+The SOMANET software includes a Profile application that provides the ideal starting application. It uses data from the Hall sensors to test that your motor is working correctly.
 
-Copy XN file to project.
+The SOMANET software is delivered as xSOFTip components in xTIMEcomposer Studio. You can add them to your project using the xSOFTip Explorer, an integrated tool in xTIMEcomposer Studio.
 
-Build and run on hardware.
+   #. Open xTIMEcomposer Studio.
 
-Importing another application
-+++++++++++++++++++++++++++++++
+   #. Go to the xSOFTip Explorer in the bottom right corner of the xTIMEcomposer Studio window.
 
-Import a motor commutation app.
+   #. Open the Synapticon > SOMANET folder, which contains all the software that will run on the kit.
 
-Build and run.
+   #. Click on the Motor_Control_Profile demo. Detailed information about the module is displayed in the Developer Column on the right of the window.
+
+   #. Double-click the Motor_Control_Profile demo in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. 
+
+   #. Click Finish. xTIMEcomposer imports the software including any dependencies, and the software is added to a new project.
+
+   #. Select the app_sncn_motorctrl_profile application in the Project Explorer, and then click Project > Build Project (Hammer) button to build the project. 
+
+      The build progress is displayed in the xTIMEcomposer Console. When the application has been built, the compiled binary is added to the app_sncn_motorctrl_profile/bin folder.
+
+   #. Click Run > Run Configurations, and double-click xCORE Application.
+
+   #. On Project, click on Browse and select app_sncn_motorctrl_profile. 
+
+   #. Click on Refresh on Debug Adpater. "XMOS xTAG 2 connected to L1[0..3] should appear" indicating that there is communication between the JTAG adaptor and the C22 module. 
+
+      If JTAG is not recognized by xTIMEcomposer Studio, check if the JTAG drivers of the JTAG. Download the driver from here.
+
+      If JTAG is recognized but "L1[0..3]" does not appear, check the connections and see if the Motor & Motion Control Kit is powered up.
+
+   #. Click Run. 
+
+After few second the motor should begin to rotate. The position feedback from the kit will be printed on the console.
+
+
+Importing the EtherCAT application
++++++++++++++++++++++++++++++++++++
+
+Introduction to EtherCAT application including details about importing and building application
+
+If this is your first EtherCAT implementation you will need to install the EtherCAT Driver.
+
+   #. Connect the M&M Kit to your computer using an EtherCAT cable.
+
+   #. Open a terminal and enter the following command to run the EtherCAT driver::
+
+      sudo /etc/init.d/ethercat start
+
+   #. Type the following command to verify the connected slaves::
+
+      ethercat slave
+
+Master application side
+
+   #. Open a terminal and go into the sc_sncn_ctrlproto directory.
+
+   #. Type the following command to run the master example::
+
+      linux_ctrlproto_master_example/bin/linux_ctrlproto_ecmaster_example
+
+Slave application side
+
+   #. In xTIMEcomposer Studio go to Run>Run Configurations.
+
+   #. Double click on xCORE Application.
+
+   #. Select sc_sncn_ctrlproto under Projects
+
+   #. Check that the C/C++ Application is app_ctrlproto_test_xmos.xe
+
+   #. Click on Run 
+
+Output
+
+Check the terminal. The master application sends values to the node and then the nodes sends them back, which are displayed in the terminal.
+
+If you disconnect the cable, the prints to terminal stop as there is no connection between the two points. 
+
+If you reconnect the cable, the system will start sending the data again.
+
 
 .. _XMOS_Motor_Motion_Control_Kit_User_Guide_Next:
 
