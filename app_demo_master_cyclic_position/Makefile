@@ -5,7 +5,7 @@ MASTER_INSTALLDIR := /opt/etherlab
 
 SOURCES += src/main.c 
 
-INCLUDE_DIRS += -I ../module_sm/include
+INCLUDE_DIRS += -I ../inc_ctrlproto-common
 INCLUDE_DIRS += -I config/motor
 INCLUDE_DIRS += -I ../module_profile/include
 INCLUDE_DIRS += -I ../module_motorcontrol_common/include
