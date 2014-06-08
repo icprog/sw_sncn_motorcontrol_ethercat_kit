@@ -21,12 +21,12 @@
 #include <velocity_ctrl_server.h>
 #include <xscope_wrapper.h>
 #include <profile.h>
-#include <internal_config.h>
-#include <bldc_motor_config.h>
 #include <drive_config.h>
 #include <profile_control.h>
-#include <test.h>
 #include <qei_client.h>
+#include <internal_config.h>
+//configure your motor parameters here:
+#include <bldc_motor_config.h>
 
 //#define ENABLE_xscope_main
 #define COM_TILE 0
@@ -46,7 +46,7 @@ void xscope_initialise_1()
 /* Test Profile Velocity function */
 void profile_velocity_test(chanend c_velocity_ctrl)
 {
-	int target_velocity =-400;	 		// rpm
+	int target_velocity =-1000;	 		// rpm
 	int acceleration 	= 100;			// rpm/s
 	int deceleration 	= 100;			// rpm/s
 
