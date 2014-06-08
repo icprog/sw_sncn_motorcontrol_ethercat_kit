@@ -18,14 +18,14 @@
 #include <refclk.h>
 #include <xscope_wrapper.h>
 #include <qei_server.h>
-#include <bldc_motor_config.h>
 #include <profile.h>
 #include <position_ctrl_server.h>
 #include <drive_config.h>
 #include <profile_control.h>
-#include <internal_config.h>
 #include "position_ctrl_client.h"
-#include <test.h>  //Unit Testing Position control (optional)
+#include <internal_config.h>
+//configure your motor parameters here:
+#include <bldc_motor_config.h>
 
 //#define ENABLE_xscope
 #define COM_TILE 0
@@ -48,7 +48,7 @@ void xscope_initialise_1()
 void position_profile_test(chanend c_position_ctrl, chanend c_qei, chanend c_hall)
 {
 	int actual_position = 0;			// ticks
-	int target_position = 4700;		// ticks
+	int target_position = 4096*3;		// HALL: 4096 extrapolated ticks x nr. pole pairs = one rotation; QEI: your encoder documented resolution x 4 = one rotation
 	int velocity 		= 100;			// rpm
 	int acceleration 	= 100;			// rpm/s
 	int deceleration 	= 100;     	// rpm/s
