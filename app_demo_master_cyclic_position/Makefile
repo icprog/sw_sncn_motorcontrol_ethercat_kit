@@ -47,4 +47,4 @@ endif
 ##Add clean Master Application
 clean: masterAppClean
 masterAppClean:
-	rm -f bin/demo-master-cyclic-position
+	rm -f bin/app_demo_master_cyclic_position
