@@ -19,14 +19,14 @@
 #include <comm_loop_server.h>
 #include <refclk.h>
 #include <xscope_wrapper.h>
-#include <bldc_motor_config.h>
 #include <torque_ctrl_server.h>
 #include <profile_control.h>
-#include <internal_config.h>
 #include <drive_config.h>
 #include "torque_ctrl_client.h"
 #include <profile.h>
-#include <test.h>
+#include <internal_config.h>
+//configure your motor parameters here:
+#include <bldc_motor_config.h>
 
 //#define ENABLE_xscope
 
@@ -46,7 +46,7 @@ void xscope_initialise_1()
 /* Test Profile Torque Function */
 void profile_torque_test(chanend c_torque_ctrl)
 {
-	int target_torque = 200; 	//(desired torque/torque_constant)  * IFM resolution
+	int target_torque = 1000; 	//(desired torque/torque_constant)  * IFM resolution
 	int torque_slope  = 100;  	//(desired torque_slope/torque_constant)  * IFM resolution
 	cst_par cst_params; int actual_torque; timer t; unsigned int time;
 	init_cst_param(cst_params);
