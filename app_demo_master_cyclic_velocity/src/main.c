@@ -55,9 +55,9 @@ int main()
 {
 	int flag = 0;
 
-	int final_target_velocity = -500;			//rpm
-	int acceleration= 1000;						//rpm/s
-	int deceleration = 1000;					//rpm/s
+	int final_target_velocity = -2000;			//rpm
+	int acceleration= 100;						//rpm/s
+	int deceleration = 100;					//rpm/s
 	int steps = 0;
 	int i = 1;
 	int target_velocity = 0;					// rpm
@@ -74,7 +74,7 @@ int main()
 	initialize_torque(slave_number, slv_handles);
 
 	/* Initialize all connected nodes with Mandatory Motor Configurations (specified under config/motor/)*/
-	init_nodes(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES, sdo_update);
+	init_nodes(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
 	/* Initialize the node specified with slave_number with CSV configurations (specified under config/motor/)*/
 	set_operation_mode(CSV, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
@@ -110,25 +110,8 @@ int main()
 				printf("Velocity: %d Position: %d Torque: %f\n", actual_velocity, actual_position, actual_torque);
 				i = i+1;
 			}
-		/*	if(i>=steps && flag == 0)
-			{
-				actual_velocity = get_velocity_actual_rpm(slave_number, slv_handles);
-				final_target_velocity = 1000; //rpm
-				steps = init_velocity_profile_params(final_target_velocity, actual_velocity, acceleration, \
-							deceleration, slave_number, slv_handles);
-				i = 1;
-				flag = 1;
-			}
-			if(i>=steps && flag == 1)
-			{
-				actual_velocity = get_velocity_actual_rpm(slave_number, slv_handles);
-				final_target_velocity = -500;	//rpm
-				steps = init_velocity_profile_params(final_target_velocity, actual_velocity, acceleration, \
-							deceleration, slave_number, slv_handles);
-				i = 1;
-				flag = 2;
-			}*/
-			if(i >= steps && flag == 0)
+
+			if(i >= steps )
 			{
 				break;
 			}
@@ -145,44 +128,6 @@ int main()
 
 	enable_operation(slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
-	/*i = 0;
-	flag = 0;
-	final_target_velocity = 1000; //rpm
-	actual_velocity = get_velocity_actual_rpm(slave_number, slv_handles); //rpm
-	steps = init_velocity_profile_params(final_target_velocity, actual_velocity, acceleration, \
-							deceleration, slave_number, slv_handles);
-
-	while(1)
-	{
-		pdo_handle_ecat(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
-
-		if(master_setup.op_flag)//Check if we are up
-		{
-			if(i<steps)
-			{
-				target_velocity = generate_profile_velocity( i, slave_number, slv_handles);
-				set_velocity_rpm(target_velocity, slave_number, slv_handles);
-				actual_velocity = get_velocity_actual_rpm(slave_number, slv_handles);
-				printf("velocity %d position %d\n",actual_velocity, get_position_actual_ticks(slave_number, slv_handles));
-				i = i+1;
-			}
-			if(i>=steps && flag == 0)
-			{
-				actual_velocity = get_velocity_actual_rpm(slave_number, slv_handles);
-				final_target_velocity = 0; //rpm
-				steps = init_velocity_profile_params(final_target_velocity, actual_velocity, acceleration, \
-							deceleration, slave_number, slv_handles);
-				i = 1;
-				flag = 1;
-			}
-			if(i >= steps && flag == 1)
-			{
-				break;
-			}
-		}
-	}
-
-*/
 	/* Shutdown node operations */
 	shutdown_operation(CSV, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
