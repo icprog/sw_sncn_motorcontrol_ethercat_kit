@@ -6,13 +6,12 @@ MASTER_INSTALLDIR := /opt/etherlab
 SOURCES += src/main.c 
 
 INCLUDE_DIRS += -I ../inc_ctrlproto-common
-INCLUDE_DIRS += -I config/motor
+INCLUDE_DIRS += -I ../motor_config
 INCLUDE_DIRS += -I ../module_profile/include
 INCLUDE_DIRS += -I ../module_motorcontrol_common/include
-INCLUDE_DIRS += -I ../lib_linux_ctrlproto/include
-INCLUDE_DIRS += -I ../lib_linux_motor_drive/include
 INCLUDE_DIRS += -I $(MASTER_INSTALLDIR)/include
 INCLUDE_DIRS += -I ../lib_linux_ctrlproto/include
+INCLUDE_DIRS += -I ../lib_linux_motor_drive/include
 
 LIB_DIRS += -L $(MASTER_INSTALLDIR)/lib
 LIB_DIRS += -L ../lib_linux_ctrlproto/lib
