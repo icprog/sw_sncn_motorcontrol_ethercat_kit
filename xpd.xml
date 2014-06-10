@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<xpd>
+    <components></components>
+    <location>https://github.com/synapticon/sw_sncn_motorcontrol_ethercat_kit.git</location>
+    <name>sw_sncn_motorcontrol_ethercat_kit</name>
+    <release parenthash = "3ddf986102651794a82be6a75398b0264edce62e" version = "1.0.0beta0"></release>
+    <version_defines></version_defines>
+    <xpd_version>1.0</xpd_version>
+</xpd>
