@@ -271,7 +271,7 @@ The SOMANET software is delivered as xSOFTip components in xTIMEcomposer Studio.
 
    #. Click on the ``SOMANET Profile Mode Position Control Application`` item in the xSOFTip Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
 
-   #. Double-click the ``SOMANET Profile Mode Position Control Application`` in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. Note that the SOMANET software is licensed under different terms to the usual XMOS xSOFTip license.
+   #. Double-click the ``SOMANET Profile Mode Position Control Application`` in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. Select the option to copy the files to a specified location (do not select the 'copy files into workspace' option). Note that the SOMANET software is licensed under different terms to the usual XMOS xSOFTip license.
 
    #. Click Finish. xTIMEcomposer imports the software including all its dependencies, and the software is added to a new project.
 
@@ -305,15 +305,14 @@ Importing the EtherCAT application
 
 **Master application side**
 
-   #. Open a terminal and go into the sc_sncn_ctrlproto directory.
-   #. Type the following command to run the master example::
+   #. #. Open the Synapticon > SOMANET folder and click on the ``EtherCAT CSP motorcontrol demo`` item in the xSOFTip Explorer. Select to copy the files to the same location chosen for the previous demo.
+   #. Now in a separate terminal navigate to the location specified in the previous step, change directory to sw_sncn_motorcontrol_ethercat_kit/app_demo_master_cyclic_position and type the following command to run the master example::
 
       linux_ctrlproto_master_example/bin/linux_ctrlproto_ecmaster_example
 
 **Slave application side**
 
-   #. Open the Synapticon > SOMANET folder, which contains all the software that will run on the kit.
-   #. Click on the ``SOMANET etherCAT Slave Application`` item in the xSOFTip Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
+   #. Open the Synapticon > SOMANET folder and click on the ``SOMANET etherCAT Slave Application`` item in the xSOFTip Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
    #. Double-click the ``SOMANET etherCAT Slave Application`` in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. 
    #. Click Finish. xTIMEcomposer imports the software including all its dependencies, and the software is added to a new project.
    #. Select the ``app_demo_slave_ethercat_motorcontrol`` item in the Project Explorer, and then click Project > Build Project (Hammer) button to build the project.  The build progress is displayed in the xTIMEcomposer Console. When the application has been built, the compiled binary is added to the app_sncn_motorctrl_profile/bin folder.

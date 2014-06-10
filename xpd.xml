@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<xpd>
+    <components></components>
+    <dependency repo = "sc_sncn_motorcontrol">
+        <githash>b83649ba327021827f4875f1b8b6173c2092a319</githash>
+        <uri>https://github.com/synapticon/sc_sncn_motorcontrol.git</uri>
+        <version>1.0.0beta1</version>
+    </dependency>
+    <description>Top level applications and demonstrations for the SOMANET Motion Control Kit</description>
+    <location>https://github.com/synapticon/sw_sncn_motorcontrol_ethercat_kit.git</location>
+    <name>sw_sncn_motorcontrol_ethercat_kit</name>
+    <maintainer>Synapticon</maintainer>
+    <partnumber>XM-005843-DH</partnumber>
+    <subpartnumber>XM-005844-SM</subpartnumber>
+    <vendor>XMOS</vendor>
+    <docdir>doc_hw_quickstart</docdir>
+    <docdir>app_demo_master_cyclic_position/doc_quickstart</docdir>
+    <docdir>app_demo_slave_ethercat_motorcontrol/doc_quickstart</docdir>
+    <docdir>app_demo_bldc_position/doc_quickstart</docdir>
+    <version_defines></version_defines>
+    <xcore_repo>git://github.com/xcore/sw_sncn_motorcontrol_ethercat_kit.git</xcore_repo>
+    <xpd_version>1.0</xpd_version>
+</xpd>
