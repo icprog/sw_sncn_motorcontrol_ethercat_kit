@@ -4,7 +4,7 @@ EtherCAT CSP motorcontrol demo
 :scope: Example
 :description: This example demonstrates how to implement an EtherCAT master motorcontrol application for a Linux PC. A Cyclic Synchronous Positioning mode is demonstrated.
 :keywords: COM-EtherCAT, Motorcontrol, EtherCAT master
-:boards: SOMANET EtherCAT motorcontrol kit
+:boards: XK-SN-1BH12-E, XK-SN-1BQ12-E, SOMANET Motor Control etherCAT Kit
 
 Description
 -----------

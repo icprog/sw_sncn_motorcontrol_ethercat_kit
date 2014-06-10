@@ -17,6 +17,12 @@
     <docdir>app_demo_master_cyclic_position/doc_quickstart</docdir>
     <docdir>app_demo_slave_ethercat_motorcontrol/doc_quickstart</docdir>
     <docdir>app_demo_bldc_position/doc_quickstart</docdir>
+    <exclude_dir>app_demo_master_cyclic_velocity</exclude_dir>
+    <exclude_dir>app_demo_master_cyclic_torque</exclude_dir>
+    <exclude_dir>app_demo_bldc_torque</exclude_dir>
+    <exclude_dir>app_demo_bldc_velocity</exclude_dir>
+    <non_xmos_project>motor_config</non_xmos_project>
+    <non_xmos_project>app_demo_master_cyclic_position</non_xmos_project>
     <version_defines></version_defines>
     <xcore_repo>git://github.com/xcore/sw_sncn_motorcontrol_ethercat_kit.git</xcore_repo>
     <xpd_version>1.0</xpd_version>
