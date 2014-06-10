@@ -1,9 +1,9 @@
-<Add title here>
-================
+SOMANET Motor and Controller Configuration Files
+================================================
 
-:scope: <Put one of Roadmap, Example, Early Development or General Use>
-:description: <Add one line here>
-:keywords: <Add comma separated list of keywords>
-:boards: <Add comma separated list of supported boards>
+:scope: General Use
+:description: Configuration files containing motor and controller specific parameters
+:keywords: SOMANET, EtherCAT, Motor Configuration
+:boards: XK-SN-1BH12-E, XK-SN-1BQ12-E, SOMANET COM-EtherCAT, SOMANET IFM-DC100, SOMANET IFM-DC300
 
-<Add description of software block>
+

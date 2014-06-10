@@ -1,18 +1,60 @@
 <?xml version="1.0" ?>
 <xpd>
-    <components></components>
+    <components>
+        <component description = "This example demonstrates how to implement an EtherCAT master motorcontrol application for a Linux PC. A Cyclic Synchronous Positioning mode is demonstrated." type = "demoCode" scope = "Example" path = "app_demo_master_cyclic_position" local = "false" id = "app_demo_master_cyclic_position" name = "EtherCAT CSP motorcontrol demo">
+            <board>XK-SN-1BH12-E</board>
+            <board>XK-SN-1BQ12-E</board>
+            <board>SOMANET Motor Control etherCAT Kit</board>
+            <keyword>COM-EtherCAT</keyword>
+            <keyword>Motorcontrol</keyword>
+            <keyword>EtherCAT master</keyword>
+        </component>
+        <component description = "Configuration files containing motor and controller specific parameters" type = "demoCode" scope = "General Use" path = "motor_config" local = "false" id = "motor_config" name = "SOMANET Motor and Controller Configuration Files">
+            <board>XK-SN-1BH12-E</board>
+            <board>XK-SN-1BQ12-E</board>
+            <board>SOMANET COM-EtherCAT</board>
+            <board>SOMANET IFM-DC100</board>
+            <board>SOMANET IFM-DC300</board>
+            <keyword>SOMANET</keyword>
+            <keyword>EtherCAT</keyword>
+            <keyword>Motor Configuration</keyword>
+        </component>
+        <component description = "This example demonstrates how to implement a motorcontrol software for the slave side to be used for EtherCAT based control. The example includes all control modes that can be freely selected from the master side." type = "demoCode" scope = "Example" path = "app_demo_slave_ethercat_motorcontrol" local = "false" id = "app_demo_slave_ethercat_motorcontrol" name = "EtherCAT slave motorcontrol demo">
+            <board>XK-SN-1BH12-E</board>
+            <board>XK-SN-1BQ12-E</board>
+            <board>SOMANET EtherCAT motorcontrol kit</board>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_adc</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_motorcontrol_common</componentDependency>
+            <componentDependency>\</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_communication</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_blocks</componentDependency>
+            <keyword>COM-EtherCAT</keyword>
+            <keyword>Motorcontrol</keyword>
+            <keyword>EtherCAT slave</keyword>
+        </component>
+        <component description = "This example demonstrates how to implement a standalong profile positioning control mode on SOMANET devices with IFM Drive DCXXX modules." type = "demoCode" scope = "Example" path = "app_demo_bldc_position" local = "false" id = "app_demo_bldc_position" name = "Standalong profile positioning control demo">
+            <board>XK-SN-1BH12-E</board>
+            <board>XK-SN-1BQ12-E</board>
+            <board>SOMANET EtherCAT motorcontrol kit</board>
+            <board>SOMANET Core C22</board>
+            <board>SOMANET IFM Drive DC 100/300</board>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_adc</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_commutation</componentDependency>
+            <componentDependency>\</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_motorcontrol_common</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_blocks</componentDependency>
+            <keyword>COM-EtherCAT</keyword>
+            <keyword>Motorcontrol</keyword>
+            <keyword>EtherCAT slave</keyword>
+        </component>
+    </components>
     <dependency repo = "sc_sncn_motorcontrol">
+        <gitbranch>release</gitbranch>
         <githash>b83649ba327021827f4875f1b8b6173c2092a319</githash>
         <uri>https://github.com/synapticon/sc_sncn_motorcontrol.git</uri>
         <version>1.0.0beta1</version>
     </dependency>
     <description>Top level applications and demonstrations for the SOMANET Motion Control Kit</description>
-    <location>https://github.com/synapticon/sw_sncn_motorcontrol_ethercat_kit.git</location>
-    <name>sw_sncn_motorcontrol_ethercat_kit</name>
-    <maintainer>Synapticon</maintainer>
-    <partnumber>XM-005843-DH</partnumber>
-    <subpartnumber>XM-005844-SM</subpartnumber>
-    <vendor>XMOS</vendor>
     <docdir>doc_hw_quickstart</docdir>
     <docdir>app_demo_master_cyclic_position/doc_quickstart</docdir>
     <docdir>app_demo_slave_ethercat_motorcontrol/doc_quickstart</docdir>
@@ -21,8 +63,14 @@
     <exclude_dir>app_demo_master_cyclic_torque</exclude_dir>
     <exclude_dir>app_demo_bldc_torque</exclude_dir>
     <exclude_dir>app_demo_bldc_velocity</exclude_dir>
+    <location>https://github.com/synapticon/sw_sncn_motorcontrol_ethercat_kit.git</location>
+    <name>sw_sncn_motorcontrol_ethercat_kit</name>
+    <maintainer>Synapticon</maintainer>
     <non_xmos_project>motor_config</non_xmos_project>
     <non_xmos_project>app_demo_master_cyclic_position</non_xmos_project>
+    <partnumber>XM-005843-DH</partnumber>
+    <subpartnumber>XM-005844-SM</subpartnumber>
+    <vendor>XMOS</vendor>
     <version_defines></version_defines>
     <xcore_repo>git://github.com/xcore/sw_sncn_motorcontrol_ethercat_kit.git</xcore_repo>
     <xpd_version>1.0</xpd_version>

@@ -1,5 +1,5 @@
-SOMANET EtherCAT Software Component
-...................................
+SOMANET EtherCAT Software Package
+.................................
 
 :Latest release: 1.0.0beta1
 :Maintainer: XMOS
