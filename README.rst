@@ -5,8 +5,6 @@ SOMANET EtherCAT Software Package
 :Maintainer: XMOS
 :Description: The SOMANET EtherCAT Sowtware Package provides a collection of Motorcontrol applications that kan be used together with the SOMANET/XMOS EtherCAT evaluation kit.
 
-.. image:: https://s3-eu-west-1.amazonaws.com/synapticon-resources/images/logos/synapticon_fullname_blackoverwhite_280x48.png
-   :align: left
 
 Key features
 ============

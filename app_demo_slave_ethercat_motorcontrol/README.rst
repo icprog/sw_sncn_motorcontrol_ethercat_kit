@@ -1,5 +1,5 @@
-EtherCAT slave motorcontrol demo
-================================
+SOMANET EtherCAT slave motorcontrol demo
+========================================
 
 :scope: Example
 :description: This example demonstrates how to implement a motorcontrol software for the slave side to be used for EtherCAT based control. The example includes all control modes that can be freely selected from the master side.
