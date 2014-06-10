@@ -124,6 +124,6 @@ Examine the code
        run_qei(c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6, p_ifm_encoder, qei_params);  
 
 
-NOTE: The user is not intended to change this application to use various EtherCAT-based positioning controls as all configuration and controllers selection is performed form the master side.
+NOTE: The user is not intended to change this application to use various EtherCAT-based controls as all configuration and controllers selection are performed form the master side.
 
 
