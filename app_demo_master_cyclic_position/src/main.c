@@ -75,10 +75,10 @@ int main()
     /* Initialize torque parameters */
     initialize_torque(slave_number, slv_handles);
 
-    /* Initialize all connected nodes with Mandatory Motor Configurations (specified under config/motor/)*/
+    /* Initialize all connected nodes with Mandatory Motor Configurations (specified in motor_config)*/
     init_nodes(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
-    /* Initialize the node specified with slave_number with CSP configurations (specified under config/motor/)*/
+    /* Initialize the node specified with slave_number with CSP configurations (specified under motor_config)*/
     set_operation_mode(CSP, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
     /* Enable operation of node in CSP mode */
