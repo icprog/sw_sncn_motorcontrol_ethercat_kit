@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <xpd>
     <components>
-        <component description = "This example demonstrates how to implement an EtherCAT master motorcontrol application for a Linux PC. A Cyclic Synchronous Positioning mode is demonstrated." type = "demoCode" scope = "Example" path = "app_demo_master_cyclic_position" local = "false" id = "app_demo_master_cyclic_position" name = "EtherCAT CSP motorcontrol demo">
+        <component description = "This example demonstrates how to implement an EtherCAT master motorcontrol application for a Linux PC. A Cyclic Synchronous Positioning mode is demonstrated." type = "demoCode" scope = "Example" path = "app_demo_master_cyclic_position" local = "false" id = "app_demo_master_cyclic_position" name = "SOMANET EtherCAT CSP motorcontrol demo">
             <board>XK-SN-1BH12-E</board>
             <board>XK-SN-1BQ12-E</board>
             <board>SOMANET Motor Control etherCAT Kit</board>
@@ -19,30 +19,55 @@
             <keyword>EtherCAT</keyword>
             <keyword>Motor Configuration</keyword>
         </component>
-        <component description = "This example demonstrates how to implement a motorcontrol software for the slave side to be used for EtherCAT based control. The example includes all control modes that can be freely selected from the master side." type = "demoCode" scope = "Example" path = "app_demo_slave_ethercat_motorcontrol" local = "false" id = "app_demo_slave_ethercat_motorcontrol" name = "EtherCAT slave motorcontrol demo">
+        <component description = "This example demonstrates how to implement a motorcontrol software for the slave side to be used for EtherCAT based control. The example includes all control modes that can be freely selected from the master side." type = "demoCode" scope = "Example" path = "app_demo_slave_ethercat_motorcontrol" local = "false" id = "app_demo_slave_ethercat_motorcontrol" name = "SOMANET EtherCAT slave motorcontrol demo">
             <board>XK-SN-1BH12-E</board>
             <board>XK-SN-1BQ12-E</board>
             <board>SOMANET EtherCAT motorcontrol kit</board>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_adc</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_motorcontrol_common</componentDependency>
-            <componentDependency>\</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_communication</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_blocks</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_hall</componentDependency>
+            <componentDependency>module_ethercat_fwupdate</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_adc</componentDependency>
+            <componentDependency>module_pwm_common</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_profile</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_commutation</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_qei</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_communication</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_ctrl_loops</componentDependency>
+            <componentDependency>module_nodeconfig</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_motorcontrol_common</componentDependency>
+            <componentDependency>module_ctrlproto</componentDependency>
+            <componentDependency>module_ethercat</componentDependency>
+            <componentDependency>module_pwm_symmetrical</componentDependency>
+            <componentDependency>module_xscope-wrapper</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_sm</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_ecat_drive</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.0">module_pwm_common</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_gpio</componentDependency>
             <keyword>COM-EtherCAT</keyword>
             <keyword>Motorcontrol</keyword>
             <keyword>EtherCAT slave</keyword>
         </component>
-        <component description = "This example demonstrates how to implement a standalong profile positioning control mode on SOMANET devices with IFM Drive DCXXX modules." type = "demoCode" scope = "Example" path = "app_demo_bldc_position" local = "false" id = "app_demo_bldc_position" name = "Standalong profile positioning control demo">
+        <component description = "This example demonstrates how to implement a standalong profile positioning control mode on SOMANET devices with IFM Drive DCXXX modules." type = "demoCode" scope = "Example" path = "app_demo_bldc_position" local = "false" id = "app_demo_bldc_position" name = "SOMANET Standalone profile positioning control demo">
             <board>XK-SN-1BH12-E</board>
             <board>XK-SN-1BQ12-E</board>
             <board>SOMANET EtherCAT motorcontrol kit</board>
             <board>SOMANET Core C22</board>
             <board>SOMANET IFM Drive DC 100/300</board>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_adc</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_commutation</componentDependency>
-            <componentDependency>\</componentDependency>
+            <componentDependency>module_xscope-wrapper</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_ctrl_loops</componentDependency>
+            <componentDependency>module_nodeconfig</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_motorcontrol_common</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_qei</componentDependency>
+            <componentDependency>module_pwm_symmetrical</componentDependency>
+            <componentDependency>module_pwm_common</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_profile</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_sm</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_adc</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.0">module_pwm_common</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_blocks</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_motor</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_commutation</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.0">module_hall</componentDependency>
             <keyword>COM-EtherCAT</keyword>
             <keyword>Motorcontrol</keyword>
             <keyword>EtherCAT slave</keyword>
