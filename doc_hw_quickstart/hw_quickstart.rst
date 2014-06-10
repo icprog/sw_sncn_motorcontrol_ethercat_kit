@@ -19,7 +19,7 @@ The software modules available for the kit include:
    * EtherCAT communication[1]
    * CiA402 drive profile
 
-[1] To evaluate the EtherCAT module an EtherCAT master is required which is currently only available free of charge on Linux platforms. Windows developers must purchase a TwinCAT license from Beckhoff Automation GmbH, or a similar solution. 
+[1] The Motor & Motion Control kits can be driven directly from the USB port using the xTAG-2 debug adapter; however to evaluate the EtherCAT module contained in the kit an EtherCAT master is required. An open source Linux-based IgH EtherCAT Master is available from EtherLab. Windows developers must purchase a TwinCAT license from Beckhoff Automation GmbH, or a similar solution. 
 
 For information on running the sotware modules, see the Software Quick Start Guide.
 
