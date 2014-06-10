@@ -250,7 +250,7 @@ The software is delivered as individual components within the xTIMEcomposer Stud
 Installing xTIMEcomposer
 +++++++++++++++++++++++++++
 
-The xTIMEcomposer tool chain is a suite of development tools for xCORE multicore microcontrollers. It provides everything you need to develop applications to run on the hardware, as well as unique tools for timing closure and code instrumentation. The tools can be run from xTIMEcomposer Studio, and integrated development environment based on Eclipse, or the command line. XMOS provides a free to download version of xTIMEcomposer to all users who register on the XMOS website. The tools can be downloaded from: http://www.xmos.com/xtimecomposer
+The xTIMEcomposer tool chain is a suite of development tools for xCORE multicore microcontrollers. It provides everything you need to develop applications to run on the hardware, as well as unique tools for timing closure and code instrumentation. The tools can be run from xTIMEcomposer Studio, an integrated development environment based on Eclipse, or the command line. XMOS provides a free to download version of xTIMEcomposer to all users who register on the XMOS website. The tools can be downloaded from: http://www.xmos.com/xtimecomposer
 
 Detailed information on how to use xTIMEcomposer is available in the xTIMEcomposer User Guide (http://www.xmos.com/published/xtimecomposer-user-guide). The xTIMEcomposer Studio Welcome screen also contains many useful links.
 
