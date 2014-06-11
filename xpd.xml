@@ -75,33 +75,33 @@
     </components>
     <dependency repo = "sc_sncn_motorcontrol">
         <gitbranch>release</gitbranch>
-        <githash>b83649ba327021827f4875f1b8b6173c2092a319</githash>
+        <githash>0e2e6ba69942aa47483cae4514d93b5c0cd3076f</githash>
         <uri>https://github.com/synapticon/sc_sncn_motorcontrol.git</uri>
-        <version>1.0.0beta1</version>
+        <version>1.0.0rc0</version>
     </dependency>
     <dependency repo = "sc_pwm">
         <gitbranch>develop</gitbranch>
-        <githash>7d5744e0ad575aed7779c28faf150accf9f06890</githash>
+        <githash>e3391d26ef95c6c2c4279fb2cd156d3fa23eb008</githash>
         <uri>https://github.com/synapticon/sc_pwm.git</uri>
-        <version>1.0.0beta0</version>
+        <version>1.0.0rc0</version>
     </dependency>
     <dependency repo = "sc_somanet-base">
         <gitbranch>release</gitbranch>
-        <githash>db515aa8fe90eae3d37c39a7269042199a5401b1</githash>
+        <githash>c61053d7f43ccba1bed5fd0865786f84f0367abf</githash>
         <uri>git@github.com:djpwilk/sc_somanet-base.git</uri>
-        <version>1.0.1beta3</version>
+        <version>1.0.1rc0</version>
     </dependency>
     <dependency repo = "sc_sncn_ethercat">
         <gitbranch>release</gitbranch>
-        <githash>51368a08a35b472eeb405f11ce6497b029d63250</githash>
+        <githash>6ffd5d8d7d615238609f245ec5907d2b0e2f8db4</githash>
         <uri>git@github.com:synapticon/sc_sncn_ethercat.git</uri>
-        <version>1.0.0beta4</version>
+        <version>1.0.0rc0</version>
     </dependency>
     <dependency repo = "sc_sncn_ctrlproto">
         <gitbranch>release</gitbranch>
-        <githash>2a57ba8813e8a1157a96acd95135a679b66f1166</githash>
+        <githash>09c4c1669da6b53af66ac91297af9cfbe3f954e5</githash>
         <uri>https://github.com/synapticon/sc_sncn_ctrlproto.git</uri>
-        <version>1.0.0beta1</version>
+        <version>1.0.0rc0</version>
     </dependency>
     <description>Top level applications and demonstrations for the SOMANET Motion Control Kit</description>
     <docdir>app_demo_master_cyclic_position/doc_quickstart</docdir>
@@ -119,7 +119,7 @@
     <non_xmos_project>app_demo_master_cyclic_position</non_xmos_project>
     <partnumber>XM-005843-DH</partnumber>
     <release parenthash = "3ddf986102651794a82be6a75398b0264edce62e" version = "1.0.0beta0" githash = "1f0af54e95188c316fe898da3be0dc2a26b80ff9"></release>
-    <release parenthash = "cc4d6f3f45f33712817a4f1c6a5e93afcc60e61f" version = "1.0.0beta1"></release>
+    <release parenthash = "cc4d6f3f45f33712817a4f1c6a5e93afcc60e61f" version = "1.0.0beta1" githash = "08661237a70a537e3cc97fec8f7b5799b7a822f4"></release>
     <subpartnumber>XM-005844-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>
