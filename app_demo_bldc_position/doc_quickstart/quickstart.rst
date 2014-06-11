@@ -1,7 +1,7 @@
 .. _SOMANET_IFM_Drive_Positioning_Control_Demo_Quickstart:
 
-SOMANET Slave Firmware Update Demo Quickstart Guide
-===================================================
+SOMANET Standalone Position Control Demo Quickstart Guide
+=========================================================
 
 sw_sncn_motorcontrol_ethercat_kit : Quick Start Guide
 -----------------------------------------------------
