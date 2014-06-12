@@ -5,7 +5,8 @@
     <name>sw_sncn_motorcontrol_ethercat_kit</name>
     <release parenthash = "3ddf986102651794a82be6a75398b0264edce62e" version = "1.0.0beta0" githash = "1f0af54e95188c316fe898da3be0dc2a26b80ff9"></release>
     <release parenthash = "cc4d6f3f45f33712817a4f1c6a5e93afcc60e61f" version = "1.0.0beta1" githash = "08661237a70a537e3cc97fec8f7b5799b7a822f4"></release>
-    <release parenthash = "139ce94ca2c594ef79f13567445b4aa707d352ef" version = "1.0.0rc0"></release>
+    <release parenthash = "139ce94ca2c594ef79f13567445b4aa707d352ef" version = "1.0.0rc0" githash = "ab7f41cb127857ca5d3b44cdff197aa42f66cad4"></release>
+    <release parenthash = "acbd7264754fc5f95a16b227360ab3b24ec09c65" version = "1.0.0rc1"></release>
     <version_defines></version_defines>
     <xpd_version>1.0</xpd_version>
 </xpd>
