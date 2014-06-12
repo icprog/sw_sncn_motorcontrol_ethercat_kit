@@ -1,5 +1,5 @@
-SOMANET Standalone profile positioning control demo
-===================================================
+SOMANET Profile Mode Position Control Application
+=================================================
 
 :scope: Example
 :description: This example demonstrates how to implement a standalong profile positioning control mode on SOMANET devices with IFM Drive DCXXX modules. 
