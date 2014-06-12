@@ -1,7 +1,7 @@
 .. _XMOS_Motor_Motion_Control_Kit_User_Guide:
 
-The XMOS MOTOR and MOTION Control Kit Hardware
-========================================================
+Getting Started with your XMOS Motor & Motion Control Kit
+=========================================================
 
 The XMOS Motor & Motion Control Kit contains a combination of hardware and software modules developed by Synapticon using SOMANET technology and XMOS multicore microcontrollers, with a smaple BLDC motor. The kit can be assembled in different configurations depending on the type of motor and communications interface you require. Currently there are two hardware configurations:
 
