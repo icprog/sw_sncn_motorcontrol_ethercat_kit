@@ -87,15 +87,15 @@
     </dependency>
     <dependency repo = "sc_somanet-base">
         <gitbranch>release</gitbranch>
-        <githash>c61053d7f43ccba1bed5fd0865786f84f0367abf</githash>
+        <githash>93f945d2a7a92c92e5369c32234bf34cffe2aefd</githash>
         <uri>git@github.com:djpwilk/sc_somanet-base.git</uri>
-        <version>1.0.1rc0</version>
+        <version>1.0.1rc1</version>
     </dependency>
     <dependency repo = "sc_sncn_ethercat">
         <gitbranch>release</gitbranch>
-        <githash>6ffd5d8d7d615238609f245ec5907d2b0e2f8db4</githash>
+        <githash>b80612b315272c7fd3c445128d73ffad4e406585</githash>
         <uri>git@github.com:synapticon/sc_sncn_ethercat.git</uri>
-        <version>1.0.0rc0</version>
+        <version>1.0.0rc1</version>
     </dependency>
     <dependency repo = "sc_sncn_ctrlproto">
         <gitbranch>release</gitbranch>
@@ -122,7 +122,7 @@
     <release parenthash = "3ddf986102651794a82be6a75398b0264edce62e" version = "1.0.0beta0" githash = "1f0af54e95188c316fe898da3be0dc2a26b80ff9"></release>
     <release parenthash = "cc4d6f3f45f33712817a4f1c6a5e93afcc60e61f" version = "1.0.0beta1" githash = "08661237a70a537e3cc97fec8f7b5799b7a822f4"></release>
     <release parenthash = "139ce94ca2c594ef79f13567445b4aa707d352ef" version = "1.0.0rc0" githash = "ab7f41cb127857ca5d3b44cdff197aa42f66cad4"></release>
-    <release parenthash = "acbd7264754fc5f95a16b227360ab3b24ec09c65" version = "1.0.0rc1"></release>
+    <release parenthash = "acbd7264754fc5f95a16b227360ab3b24ec09c65" version = "1.0.0rc1" githash = "586b10fc6f4f680eac3cf82487466f6024fd500e"></release>
     <subpartnumber>XM-005844-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>
