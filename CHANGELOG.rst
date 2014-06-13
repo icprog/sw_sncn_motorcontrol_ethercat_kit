@@ -5,7 +5,7 @@ sw_sncn_motorcontrol_ethercat_kit Change Log
 -----
 
   * Preparation for publishing in xSOFTip
-  * Profile Generation for multinode configurations
+  * Profile Generation for multi-node configurations
 
 0.9.0
 -----

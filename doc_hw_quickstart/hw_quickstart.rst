@@ -3,7 +3,7 @@
 Getting Started with your XMOS Motor & Motion Control Kit
 =========================================================
 
-The XMOS Motor & Motion Control Kit contains a combination of hardware and software modules developed by Synapticon using SOMANET technology and XMOS multicore microcontrollers, with a smaple BLDC motor. The kit can be assembled in different configurations depending on the type of motor and communications interface you require. Currently there are two hardware configurations:
+The XMOS Motor & Motion Control Kit contains a combination of hardware and software modules developed by Synapticon using SOMANET technology and XMOS multicore microcontrollers, with a sample BLDC motor. The kit can be assembled in different configurations depending on the type of motor and communications interface you require. Currently there are two hardware configurations:
 
    * Drive DC 100 with EtherCAT comms and BLDC motor with Hall sensor encoding
    * Drive DC 100 with EtherCAT comms and BLDC motor with Quadrature encoder and Hall sensor encoding
@@ -21,7 +21,7 @@ The software modules available for the kit include:
 
 [1] The Motor & Motion Control kits can be driven directly from the USB port using the xTAG-2 debug adapter; however to evaluate the EtherCAT module contained in the kit an EtherCAT master is required. An open source Linux-based IgH EtherCAT Master is available from EtherLab. Windows developers must purchase a TwinCAT license from Beckhoff Automation GmbH, or a similar solution. 
 
-For information on running the sotware modules, see the Software Quick Start Guide.
+For information on running the software modules, see the Software Quick Start Guide.
 
 .. _XMOS_Motor_Motion_Control_Kit_User_Guide_Hardware:
 
@@ -281,7 +281,7 @@ The SOMANET software is delivered as xSOFTip components in xTIMEcomposer Studio.
 
    #. On Project, click on Browse and select ``app_demo_bldc_position``. 
 
-   #. Click on Refresh on Debug Adpater. "XMOS xTAG 2 connected to L1[0..3] should appear" indicating that there is communication between the JTAG adaptor and the C22 module. If JTAG is not recognized by xTIMEcomposer Studio, check if the JTAG drivers of the JTAG. Download the driver from here. If JTAG is recognized but "L1[0..3]" does not appear, check the connections and see if the Motor & Motion Control Kit is powered up.
+   #. Click on Refresh on Debug Adapter. "XMOS xTAG 2 connected to L1[0..3] should appear" indicating that there is communication between the JTAG adapter and the C22 module. If JTAG is not recognized by xTIMEcomposer Studio, check if the JTAG drivers of the JTAG. Download the driver from here. If JTAG is recognized but "L1[0..3]" does not appear, check the connections and see if the Motor & Motion Control Kit is powered up.
 
    #. Click Run. 
 
@@ -291,11 +291,11 @@ After few second the motor should begin to execute its position seeking algorith
 Importing the EtherCAT application
 +++++++++++++++++++++++++++++++++++
 
-**Installing the etherCAT Master Software**
+**Installing the EtherCAT Master Software**
 
 If you have not done so already you need to install the IgH EtherCAT Master for Linux.
 
-   #. Download the etherCAT master software and associated makefiles from `<http://doc.synapticon.com/wiki/index.php/File:IgHEthercatLinuxMaster.zip>`_. Do not try and get the software from the etherlab site.
+   #. Download the EtherCAT master software and associated makefiles from `<http://doc.synapticon.com/wiki/index.php/File:IgHEthercatLinuxMaster.zip>`_. Do not try and get the software from the EtherLab site.
    #. Unpack the file and navigate into the folder
    #. Be sure to have Linux kernel headers and build-essential installed in order to avoid compilation errors. They can be installed following this command::
 
@@ -313,7 +313,7 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
 
      make clean
 
-   #. Connect the SOMANET COM etherCAT mopdule to your computer using the EtherCAT cable provided in the kit.
+   #. Connect the SOMANET COM etherCAT module to your computer using the EtherCAT cable provided in the kit.
    #. Open a terminal and enter the following command to run the EtherCAT driver::
 
       sudo /etc/init.d/ethercat start
@@ -326,7 +326,7 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
    #. to stop your EtherCAT Master driver just run::
      sudo /etc/init.d/ethercat stop
 
-**Preparing the etherCAT Master Demo application**
+**Preparing the EtherCAT Master Demo application**
 
    #. Open the Synapticon > SOMANET folder and bring the ``EtherCAT CSP motorcontrol demo`` item in the xSOFTip Explorer into your Project Explorer by dragging it or double clicking it.
    #. Now do the same thing for the following items::
@@ -346,7 +346,7 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
 **Slave application side**
 
    #. Open the Synapticon > SOMANET folder and click on the ``SOMANET etherCAT Slave Application`` item in the xSOFTip Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
-   #. Double-click the ``SOMANET etherCAT Slave Application`` in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. 
+   #. Double-click the ``SOMANET EtherCAT Slave Application`` in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. 
    #. Click Finish. xTIMEcomposer imports the software including all its dependencies, and the software is added to a new project.
    #. Select the ``app_demo_slave_ethercat_motorcontrol`` item in the Project Explorer, and then click Project > Build Project (Hammer) button to build the project.  The build progress is displayed in the xTIMEcomposer Console. When the application has been built, the compiled binary is added to the app_sncn_motorctrl_profile/bin folder.
    #. Click Run > Run Configurations, and double-click xCORE Application.

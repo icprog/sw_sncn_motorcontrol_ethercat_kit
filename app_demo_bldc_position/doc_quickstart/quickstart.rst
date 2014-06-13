@@ -1,4 +1,4 @@
-.. _SOMANET_IFM_Drive_Positioning_Control_Demo_Quickstart:
+﻿.. _SOMANET_IFM_Drive_Positioning_Control_Demo_Quickstart:
 
 SOMANET Standalone Position Control Demo Quickstart Guide
 =========================================================
@@ -6,18 +6,18 @@ SOMANET Standalone Position Control Demo Quickstart Guide
 sw_sncn_motorcontrol_ethercat_kit : Quick Start Guide
 -----------------------------------------------------
 
-This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brushless dc motor. Position loop can be closed with a positioning feedback either from a HALL sensor or QEI Sensor.
+This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brushless DC motor. Position loop can be closed with a positioning feedback either from a HALL sensor or QEI Sensor.
 
 Hardware setup
 ++++++++++++++
 
-A minimal requirement for this application to run is having the SOMANET stack assembled consisting of the SOMANET Core, SOMANET Core to xTAG-2 Debug Adapter, and SOMANET IFM Drive DC 100/300 modules. The stack should be powered via the SOMANET IFM board. An example of an assembled stack is shown in the image below. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Ampers of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
+A minimal requirement for this application to run is having the SOMANET stack assembled consisting of the SOMANET Core, SOMANET Core to xTAG-2 Debug Adapter, and SOMANET IFM Drive DC 100/300 modules. The stack should be powered via the SOMANET IFM board. An example of an assembled stack is shown in the image below. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
 .. figure:: images/assembly_p9.jpg
    :width: 400px
    :align: center
 
-   Hardware Setup for standalong MotorPositioning Control Demo
+   Hardware Setup for standalone MotorPositioning Control Demo
 
 To setup the system:
 
@@ -28,7 +28,7 @@ To setup the system:
    #. Connect the IFM DC 100 board to a 24 V DC power supply
    #. Switch on the power supply. If everything is connected properly, drained current should not exceed 100mA. 
 
-.. figure:: images/standalong_motorcontrol.jpg
+.. figure:: images/standalone_motorcontrol.jpg
    :width: 400px
    :align: center
 
@@ -59,16 +59,16 @@ When the application has been compiled, the next step is to run it on the SOMANE
 Next steps
 ++++++++++
 
-As a next step you can try changing the target position in the ``demo-bldc-position.xc`` file located in the ``src`` forlder of the app. In the function ``position_profile_test`` change the variable ``target_position`` to some other value within the defined in the motor configuration file limit. The configuration file can be found in the ``module_motor`` and is common for all standalong motorcontrol applications. The parameter ``MAX_POSITION_LIMIT`` in the ``bldc_motor_config.h`` defines the positioning control limit. 
+As a next step you can try changing the target position in the ``demo-bldc-position.xc`` file located in the ``src`` folder of the app. In the function ``position_profile_test`` change the variable ``target_position`` to some other value within the defined in the motor configuration file limit. The configuration file can be found in the ``module_motor`` and is common for all standalone motor control applications. The parameter ``MAX_POSITION_LIMIT`` in the ``bldc_motor_config.h`` defines the positioning control limit. 
 
-You might also try varing accelerations and decelerations as well as profile velocity (``acceleration``, ``deceleration``, ``velocity``). The maximum setpoint values of those variables are also defined in the ``bldc_motor_config.h``.
+You might also try varying accelerations and decelerations as well as profile velocity (``acceleration``, ``deceleration``, ``velocity``). The maximum setpoint values of those variables are also defined in the ``bldc_motor_config.h``.
 
 
 Examine the code
 ................
 
    #. In xTIMEcomposer navigate to the ``src`` directory under ``app_demo_bldc_position`` and double click on the ``demo-bldc-positioning.xc`` file within it. The file will open in the central editor window.
-   #. Find the main function and note that application runs one logical core on the COM_TILE (tile 0) for the user motorcontrol application, one logical core on tile 2 for the main positioning control loop, and five cores on the IFM_TILE for commutation, watchdog, and motor feedback sensor servers.
+   #. Find the main function and note that application runs one logical core on the COM_TILE (tile 0) for the user motor control application, one logical core on tile 2 for the main positioning control loop, and five cores on the IFM_TILE for commutation, watchdog, and motor feedback sensor servers.
    #. Core 1:  Test Profile Position Client function. It implements a user application for the profile positioning control. ::
 
        position_profile_test(c_position_ctrl, c_qei_p5, c_hall_p5);
@@ -102,5 +102,5 @@ Now please have a closer look onto the ``position_profile_test`` function that i
 
 To start with the motion profile generation first you need to define the control limits. Please call the ``init_position_profile_limits`` for that. After that you can call the profile positioning controller ``set_profile_position`` that takes as input the desired profile parameters and the target position and executes the motion profile. 
 
-You can get the positioning feedback buy calling the ``get_position`` method. In this demo application you can use XScope to monitor the feedback in realtime.  
+You can get the positioning feedback buy calling the ``get_position`` method. In this demo application you can use XScope to monitor the feedback in real-time.  
 

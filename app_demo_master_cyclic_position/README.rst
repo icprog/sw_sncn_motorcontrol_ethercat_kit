@@ -2,7 +2,7 @@ SOMANET EtherCAT CSP motorcontrol demo
 ======================================
 
 :scope: Example
-:description: This example demonstrates how to implement an EtherCAT master motorcontrol application for a Linux PC. A Cyclic Synchronous Positioning mode is demonstrated.
+:description: This example demonstrates how to implement an EtherCAT master motor control application for a Linux PC. A Cyclic Synchronous Positioning mode is demonstrated.
 :keywords: COM-EtherCAT, Motorcontrol, EtherCAT master
 :boards: XK-SN-1BH12-E, XK-SN-1BQ12-E, SOMANET Motor Control etherCAT Kit
 
@@ -16,6 +16,6 @@ taken care of.
 
 The motor configuration and control parameter for each node connected to the motor must be specified at motor_config/bldc_motor_config_N.h
 
-NOTE: The application requires EtherCAT Master for Linux from IGH to be installed on your PC (`Etherlab EtherCAT Linux Driver <http://www.etherlab.org/en/ethercat/>`_
+NOTE: The application requires EtherCAT Master for Linux from IGH to be installed on your PC (`EtherLab EtherCAT Linux Driver <http://www.etherlab.org/en/ethercat/>`_
 ). 
 
