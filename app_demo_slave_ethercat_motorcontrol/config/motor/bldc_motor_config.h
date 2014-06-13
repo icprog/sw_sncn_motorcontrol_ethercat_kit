@@ -7,8 +7,8 @@
  * \date 10/04/2014
  */
 
-#ifndef __DC_MOTOR_CONFIG__H__ETHERCAT_MOTOR_DRIVE
-#define __DC_MOTOR_CONFIG__H__ETHERCAT_MOTOR_DRIVE
+#pragma once
+
 #include <print.h>
 #include <internal_config.h>
 
@@ -185,6 +185,3 @@ void init_velocity_control_param(ctrl_par &velocity_ctrl_params);
  * \param position_ctrl_params struct defines position control PID params
  */
 void init_position_control_param(ctrl_par &position_ctrl_params);
-
-#endif
-
