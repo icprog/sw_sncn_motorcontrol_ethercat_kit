@@ -331,9 +331,10 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
    #. Open the Synapticon > SOMANET folder and bring the ``EtherCAT CSP motorcontrol demo`` item in the xSOFTip Explorer into your Project Explorer by dragging it or double clicking it.
    #. Now do the same thing for the following items::
 
-      Synapticon -> SOMANET ->  SOMANET CiA 402 Definitions for Control Protocol
-      Synapticon -> SOMANET ->  SOMANET Protocol Library for Motor Control
-      Synapticon -> SOMANET ->  SOMANET Motor Drive Library
+      * Synapticon -> SOMANET ->  SOMANET CiA 402 Definitions for Control Protocol
+      * Synapticon -> SOMANET ->  SOMANET Protocol Library for Motor Control
+      * Synapticon -> SOMANET ->  SOMANET Motor Drive Library
+      * Synapticon -> SOMANET ->  SOMANET Motor and Controller Configuration Files
 
    #. Now place your xTIMEcomposer into the background and in a separate terminal and navigate into your workspace folder.
    #. cd into ``lib_linux_ctrlproto`` and type ``make`` to build that library
