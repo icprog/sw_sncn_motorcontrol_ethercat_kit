@@ -1,7 +1,7 @@
 .. _SOMANET_IFM_Drive_Positioning_Control_Demo_Quickstart:
 
-SOMANET Slave Firmware Update Demo Quickstart Guide
-===================================================
+SOMANET Standalone Position Control Demo Quickstart Guide
+=========================================================
 
 sw_sncn_motorcontrol_ethercat_kit : Quick Start Guide
 -----------------------------------------------------
@@ -13,7 +13,7 @@ Hardware setup
 
 A minimal requirement for this application to run is having the SOMANET stack assembled consisting of the SOMANET Core, SOMANET Core to xTAG-2 Debug Adapter, and SOMANET IFM Drive DC 100/300 modules. The stack should be powered via the SOMANET IFM board. An example of an assembled stack is shown in the image below. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Ampers of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
-.. figure:: images/assembly_p9
+.. figure:: images/assembly_p9.jpg
    :width: 400px
    :align: center
 

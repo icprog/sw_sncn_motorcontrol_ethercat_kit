@@ -1,7 +1,7 @@
 .. _XMOS_Motor_Motion_Control_Kit_User_Guide:
 
-The XMOS MOTOR & MOTION Control Kit Hardware
-========================================================
+Getting Started with your XMOS Motor & Motion Control Kit
+=========================================================
 
 The XMOS Motor & Motion Control Kit contains a combination of hardware and software modules developed by Synapticon using SOMANET technology and XMOS multicore microcontrollers, with a smaple BLDC motor. The kit can be assembled in different configurations depending on the type of motor and communications interface you require. Currently there are two hardware configurations:
 
@@ -285,7 +285,7 @@ The SOMANET software is delivered as xSOFTip components in xTIMEcomposer Studio.
 
    #. Click Run. 
 
-After few second the motor should begin to rotate. The position feedback from the kit will be printed on the console.
+After few second the motor should begin to execute its position seeking algorithm. The position feedback from the kit will be printed on the console. Attempting to gently turn the spindle of the motor should provoke a reaction from the controller as it holds its position.
 
 
 Importing the EtherCAT application
@@ -293,7 +293,26 @@ Importing the EtherCAT application
 
 **Installing the etherCAT Master Software**
 
-   #. If you have not done so already you need to install the IgH EtherCAT Master for Linux, available at `<http://www.etherlab.org/en/ethercat/>`_
+If you have not done so already you need to install the IgH EtherCAT Master for Linux.
+
+   #. Download the etherCAT master software and associated makefiles from `<http://doc.synapticon.com/wiki/index.php/File:IgHEthercatLinuxMaster.zip>`_. Do not try and get the software from the etherlab site.
+   #. Unpack the file and navigate into the folder
+   #. Be sure to have Linux kernel headers and build-essential installed in order to avoid compilation errors. They can be installed following this command::
+
+     sudo apt-get install linux-headers-$(uname -r) build-essential
+
+   #. Compile the master driver::
+
+     make ethercatMaster
+
+   #. After compiling, install the driver. You also have the possibility to install it setting an auto-start when booting configuration::
+
+     make ethercatMasterInstall
+
+   #. Remove the installation files at the directory then do::
+
+     make clean
+
    #. Connect the SOMANET COM etherCAT mopdule to your computer using the EtherCAT cable provided in the kit.
    #. Open a terminal and enter the following command to run the EtherCAT driver::
 
@@ -303,17 +322,29 @@ Importing the EtherCAT application
 
       ethercat slave
 
-**Master application side**
+   #. The SOMANET slave node should now be recognised and displayed in the terminal.
+   #. to stop your EtherCAT Master driver just run::
+     sudo /etc/init.d/ethercat stop
 
-   #. Open a terminal and go into the sc_sncn_ctrlproto directory.
-   #. Type the following command to run the master example::
+**Preparing the etherCAT Master Demo application**
 
-      linux_ctrlproto_master_example/bin/linux_ctrlproto_ecmaster_example
+   #. Open the Synapticon > SOMANET folder and bring the ``EtherCAT CSP motorcontrol demo`` item in the xSOFTip Explorer into your Project Explorer by dragging it or double clicking it.
+   #. Now do the same thing for the following items::
+
+      Synapticon -> SOMANET ->  SOMANET CiA 402 Definitions for Control Protocol
+      Synapticon -> SOMANET ->  SOMANET Protocol Library for Motor Control
+      Synapticon -> SOMANET ->  SOMANET Motor Drive Library
+
+   #. Now place your xTIMEcomposer into the background and in a separate terminal and navigate into your workspace folder.
+   #. cd into ``lib_linux_ctrlproto`` and type ``make`` to build that library
+   #. cd into ``lib_linux_motor_drive`` and type ``make`` to build that library
+   #. cd back into your workspace and then cd to ``app_demo_master_cyclic_position/bin`` and type the following command to run the master example::
+
+     sudo ./demo-master-cyclic-position
 
 **Slave application side**
 
-   #. Open the Synapticon > SOMANET folder, which contains all the software that will run on the kit.
-   #. Click on the ``SOMANET etherCAT Slave Application`` item in the xSOFTip Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
+   #. Open the Synapticon > SOMANET folder and click on the ``SOMANET etherCAT Slave Application`` item in the xSOFTip Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
    #. Double-click the ``SOMANET etherCAT Slave Application`` in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. 
    #. Click Finish. xTIMEcomposer imports the software including all its dependencies, and the software is added to a new project.
    #. Select the ``app_demo_slave_ethercat_motorcontrol`` item in the Project Explorer, and then click Project > Build Project (Hammer) button to build the project.  The build progress is displayed in the xTIMEcomposer Console. When the application has been built, the compiled binary is added to the app_sncn_motorctrl_profile/bin folder.
