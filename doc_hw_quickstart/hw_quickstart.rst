@@ -358,12 +358,7 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
 
 **Output**
 
-Check the terminal. The master application sends values to the node and then the nodes sends them back, which are displayed in the terminal.
-
-If you disconnect the cable, the prints to terminal stop as there is no connection between the two points. 
-
-If you reconnect the cable, the system will start sending the data again.
-
+Check the terminal. The master application sends values to the node and then the nodes sends them back, which are displayed in the terminal. After the controller executes the desired motion profile the master application will disable the motor and exit.
 
 .. _XMOS_Motor_Motion_Control_Kit_User_Guide_Next:
 
