@@ -59,7 +59,7 @@
 #define GEAR_RATIO_1 					1		// if no gears are attached - set to gear ratio to 1
 #define ENCODER_RESOLUTION_1 			16384	// 4 x Max count of Incremental Encoder (4X decoding - quadrature mode)
 
-/* Somanet IFM Internal Config:  Specifies the current sensor resolution per Ampere
+/* Somanet IFM Internal Configuration:  Specifies the current sensor resolution per Ampere
  *  (DC300_RESOLUTION / DC100_RESOLUTION / OLD_DC300_RESOLUTION) */
 #define IFM_RESOLUTION_1				DC100_RESOLUTION
 
@@ -141,8 +141,8 @@
 	#define POSITION_Ki_DENOMINATOR_1  		1200
 	#define POSITION_Kd_NUMERATOR_1    		0
 	#define POSITION_Kd_DENOMINATOR_1  		1000
-	#define MAX_POSITION_LIMIT_1 			POLE_PAIRS_1*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO_1		// ticks (max range: 2^30, limited for safe operation) qei/hall/any position sensor
-	#define MIN_POSITION_LIMIT_1			-POLE_PAIRS_1*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO_1		// ticks (min range: -2^30, limited for safe operation) qei/hall/any position sensor
+	#define MAX_POSITION_LIMIT_1 			POLE_PAIRS_1*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO_1 * 10		// ticks (max range: 2^30, limited for safe operation) qei/hall/any position sensor
+	#define MIN_POSITION_LIMIT_1			-POLE_PAIRS_1*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO_1 * 10	// ticks (min range: -2^30, limited for safe operation) qei/hall/any position sensor
 #endif
 
 #endif
