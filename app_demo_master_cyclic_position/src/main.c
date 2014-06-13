@@ -69,7 +69,7 @@ int main()
 
     int slave_number = 0;
 
-    /* Initialize Ethercat Master */
+    /* Initialize EtherCAT Master */
     init_master(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
     /* Initialize torque parameters */
@@ -104,7 +104,7 @@ int main()
                  if(i>3)
                  {
                      /* Compute a target position */
-                     target_position =  actual_position + 24576;//
+                     target_position =  actual_position + 12288;//
                     // if(target_position > 52000)
                      //  target_position = 52000;
 
@@ -140,17 +140,17 @@ int main()
     }
 
     /* Quick stop position mode (for emergency) */
-//  quick_stop_position(slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
+    quick_stop_position(slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
     /* Regain control of node to continue after quick stop */
-//  renable_ctrl_quick_stop(CSP, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES); //after quick-stop
+    renable_ctrl_quick_stop(CSP, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES); //after quick-stop
 
-//  set_operation_mode(CSP, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
+    set_operation_mode(CSP, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
-//  enable_operation(slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
+    enable_operation(slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
     /* Shutdown node operations */
-//  shutdown_operation(CSP, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
+    shutdown_operation(CSP, slave_number, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
     return 0;
 }
