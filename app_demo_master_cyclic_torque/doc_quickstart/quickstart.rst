@@ -66,7 +66,7 @@ When the application has been compiled, the next step is to run it on the Linux 
 
        sudo ./demo-master-cyclic-torque 
 
-   #. The application will deploy the motor-specific configuration parameters over the EtherCAT and the rotor of the motor should make one rotation and hold the last position. In the terminal window you should be able to see the motor's feedback as actual torque, position, and velocity along with the commanded to the slave target torque value ::
+   #. The application will deploy the motor-specific configuration parameters over the EtherCAT and the rotor of the motor should start rotating. In the terminal window you should be able to see the motor's feedback as actual torque, position, and velocity along with the commanded to the slave target torque value ::
 
        target_torque 99.990005 
        actual_torque 100.410812 actual_position 7763 actual_velocity 732
