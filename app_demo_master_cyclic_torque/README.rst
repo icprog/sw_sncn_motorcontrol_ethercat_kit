@@ -1,4 +1,4 @@
-SOMANET EtherCAT CSP motorcontrol demo
+SOMANET EtherCAT CST motorcontrol demo
 ======================================
 
 :scope: Example
