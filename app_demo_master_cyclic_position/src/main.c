@@ -105,11 +105,9 @@ int main()
                  {
                      /* Compute a target position */
                      target_position =  actual_position + 12288;//
-                    // if(target_position > 52000)
-                     //  target_position = 52000;
 
                      /* Compute steps needed for the target position */
-                     steps = init_position_profile_params(target_position, actual_position, velocity, acceleration, \
+                     steps = init_position_profile_params(target_position, actual_position, velocity, acceleration, 
                                 deceleration, slave_number, slv_handles);
                      flag = 1;
                      i = 1;

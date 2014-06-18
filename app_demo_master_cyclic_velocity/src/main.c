@@ -84,7 +84,7 @@ int main()
 
 	i = 1;
 	/* Initialize velocity profile parameters */
-	steps = init_velocity_profile_params(final_target_velocity, actual_velocity, acceleration, \
+	steps = init_velocity_profile_params(final_target_velocity, actual_velocity, acceleration, 
 				deceleration, slave_number, slv_handles);
 
 
