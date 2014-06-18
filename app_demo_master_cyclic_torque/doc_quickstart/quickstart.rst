@@ -108,7 +108,7 @@ Examine the code
 
    #. The motion control routine should be executed in a loop. In the example we are ramping up to the target torque value and then executing a quick stop action. The ``pdo_handle_ecat`` is a handler that takes care of a real-time information update over EtherCAT.  
 
-   #. The steps are then provided in a cyclic way to the motion profile generator (``generate_profile_linear``) that calculates the immediate torque setpoint (``target_torque``) that is used as input for the positioning controller on the slave side (is sent over EtherCAT by the ``set_torque_mNm`` function call). 
+   #. The steps are then provided in a cyclic way to the motion profile generator (``generate_profile_linear``) that calculates the immediate torque setpoint (``target_torque``) that is used as input for the torque controller on the slave side (is sent over EtherCAT by the ``set_torque_mNm`` function call). 
 
    #. To get the torque, position, and velocity feedback from the controller the ``get_torque_actual_mNm``, ``get_position_actual_ticks``, and ``get_velocity_actual_rpm`` functions are used respectively.
 
