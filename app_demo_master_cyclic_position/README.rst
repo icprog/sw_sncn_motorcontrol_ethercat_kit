@@ -17,5 +17,5 @@ taken care of.
 The motor configuration and control parameter for each node connected to the motor must be specified at motor_config/bldc_motor_config_N.h
 
 NOTE: The application requires EtherCAT Master for Linux from IGH to be installed on your PC (`EtherLab EtherCAT Linux Driver <http://www.etherlab.org/en/ethercat/>`_
-). 
+). You can also refer to the `Synapticon installation documentation <http://doc.synapticon.com/wiki/index.php/EtherCAT_Master_Software>`_ for a simplified EtherCAT driver installation procedure.
 

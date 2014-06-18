@@ -42,7 +42,7 @@ Import and build the application
 
 For help in using xTIMEcomposer, try the xTIMEcomposer tutorial, which you can find by selecting Help->Tutorials from the xTIMEcomposer menu.
 
-Note that the Developer Column in xTIMEcomposer Studio on the right hand side of your screen provides information on the xSOFTip components you are using. Select the ``sw_sncn_motorcontrol_ethercat_kit`` component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this quickstart guide within the Developer Column.
+Note that the Developer Column in xTIMEcomposer Studio on the right hand side of your screen provides information on the xSOFTip components you are using. Select one of the imported components in the Project Explorer, and you will see their description together with API documentation. Having done this, click the `back` icon until you return to this quickstart guide within the Developer Column.
 
 
 Run the application
