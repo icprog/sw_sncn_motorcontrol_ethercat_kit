@@ -1,5 +1,5 @@
-SOMANET EtherCAT CSP motorcontrol demo
-======================================
+SOMANET EtherCAT CSP motorcontrol two nodes demo
+================================================
 
 :scope: Example
 :description: This example demonstrates how to implement an EtherCAT master motor control application for a Linux PC and two connected nodes. A Cyclic Synchronous Positioning mode is demonstrated.
