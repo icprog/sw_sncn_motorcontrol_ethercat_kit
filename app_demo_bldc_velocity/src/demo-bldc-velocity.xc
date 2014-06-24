@@ -21,7 +21,8 @@
 #include <velocity_ctrl_server.h>
 #include <xscope_wrapper.h>
 #include <profile.h>
-#include <drive_config.h>
+#include <drive_modes.h>
+#include <statemachine.h>
 #include <profile_control.h>
 #include <qei_client.h>
 #include <internal_config.h>

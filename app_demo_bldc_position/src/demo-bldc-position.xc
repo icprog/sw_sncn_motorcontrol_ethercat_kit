@@ -20,7 +20,8 @@
 #include <qei_server.h>
 #include <profile.h>
 #include <position_ctrl_server.h>
-#include <drive_config.h>
+#include <drive_modes.h>
+#include <statemachine.h>
 #include <profile_control.h>
 #include "position_ctrl_client.h"
 #include <internal_config.h>
