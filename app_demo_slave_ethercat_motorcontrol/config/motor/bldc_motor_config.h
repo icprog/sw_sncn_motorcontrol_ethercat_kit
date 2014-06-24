@@ -11,6 +11,7 @@
 
 #include <print.h>
 #include <internal_config.h>
+#include <hall_config.h>
 
 #pragma once
 
@@ -109,25 +110,11 @@
 void init_sensor_filter_param(filter_par &sensor_filter_par) ;
 
 /**
- * \brief initialize QEI sensor
- *
- * \param qei_params struct defines the resolution for quadrature encoder (QEI),
- * 			gear-ratio, poles, encoder type
- */
-void init_qei_param(qei_par &qei_params);
-
-/**
  * \brief initialize hall sensor
  *
  * \param hall_params struct defines the pole-pairs and gear ratio
  */
-void init_hall_param(hall_par &hall_params);
 
-/**
- * \brief initialize cyclic synchronous velocity params
- *
- * \param csv_params struct defines cyclic synchronous velocity params
- */
 void init_csv_param(csv_par &csv_params);
 
 /**
