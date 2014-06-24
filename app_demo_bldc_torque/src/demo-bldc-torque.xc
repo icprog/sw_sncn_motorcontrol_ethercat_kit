@@ -21,9 +21,9 @@
 #include <xscope_wrapper.h>
 #include <torque_ctrl_server.h>
 #include <profile_control.h>
-#include "torque_ctrl_client.h"
 #include <drive_modes.h>
 #include <statemachine.h>
+#include <torque_ctrl_client.h>
 #include <profile.h>
 #include <internal_config.h>
 //configure your motor parameters here:
