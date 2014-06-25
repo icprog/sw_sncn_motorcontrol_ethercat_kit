@@ -6,7 +6,7 @@ SOMANET Standalone Position Control Demo Quickstart Guide
 sw_sncn_motorcontrol_ethercat_kit : Quick Start Guide
 -----------------------------------------------------
 
-This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brushless DC motor. Position loop can be closed with a positioning feedback either from a HALL sensor or QEI Sensor.
+This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brush-less DC motor. Position loop can be closed with a positioning feedback either from a HALL sensor or QEI Sensor.
 
 Hardware setup
 ++++++++++++++
@@ -49,7 +49,7 @@ Note that the Developer Column in xTIMEcomposer Studio on the right hand side of
 Run the application
 +++++++++++++++++++
 
-When the application has been compiled, the next step is to run it on the SOMANET Core module using the tools to load the application over JTAG (via the xTAG-2 and Core Debug Adapter) into the xCORE multicore microcontroller.
+When the application has been compiled, the next step is to run it on the SOMANET Core module using the tools to load the application over JTAG (via the xTAG-2 and Core Debug Adapter) into the xCORE multi-core microcontroller.
 
    #. Select the file ``app_demo_bldc_position.xe`` in the ``app_demo_bldc_position`` project from the Project Explorer.
    #. Click on the ``Run`` icon (the white arrow in the green circle). 
