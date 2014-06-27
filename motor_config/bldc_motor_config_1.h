@@ -38,8 +38,8 @@
 #define QEI_SENSOR_POLARITY_1			POLARITY_NORMAL
 
 /* Commutation offset (range 0-4095) (HALL sensor based commutation) */
-#define COMMUTATION_OFFSET_CLK_1		683
-#define COMMUTATION_OFFSET_CCLK_1		2731
+#define COMMUTATION_OFFSET_CLK_1		910
+#define COMMUTATION_OFFSET_CCLK_1		2460
 
 /* Motor Winding type (STAR_WINDING/DELTA_WINDING) */
 #define WINDING_TYPE_1					DELTA_WINDING
