@@ -49,7 +49,7 @@ Note that the Developer Column in xTIMEcomposer Studio on the right hand side of
 Run the application
 +++++++++++++++++++
 
-When the application has been compiled, the next step is to run it on the Linux PC. Before doing that, make sure that the SOMANET EtherCAT stack has been flashed with or are running a proper motor control software for the EtherCAT slave side, i.e. ``app_demo_slave_ethercat_motorcontrol``.  
+When the application has been compiled, the next step is to run it on the Linux PC. Before doing that, make sure that the SOMANET EtherCAT stacks have been flashed with or are running a proper motor control software for the EtherCAT slave side, i.e. ``app_demo_slave_ethercat_motorcontrol``.  
 
    #. Make sure that the stacks are recognized. For this you have to have the EtherCAT driver up and running. To start the driver on a Linux machine execute in a terminal the following command: ::
 
@@ -131,7 +131,7 @@ Examine the code
 
    #. To get the position, velocity and torque feedback from the controller the ``get_position_actual_ticks``, ``get_velocity_actual_rpm``, and ``get_torque_actual_mNm`` functions are used respectively.
 
-   #. As an example for the steps of the state machine to be executed e.g. in case of emergency stop the methods as ``quick_stop_position``, ``renable_ctrl_quick_stop``, ``set_operation_mode``, ``enable_operation``, and ``shutdown_operation`` are included in the software and are executed when the user interrupts execution of the master application by pressing the ``Ctrl + C`` interrupt sequence or when maximum velocity is reached. Please refer to the state machine diagram to include them properly when developing a custom application.
+   #. As an example for the steps of the state machine to be executed e.g. in case of emergency stop the methods as ``quick_stop_torque``, ``renable_ctrl_quick_stop``, ``set_operation_mode``, ``enable_operation``, and ``shutdown_operation`` are included in the software and are executed when the user interrupts execution of the master application by pressing the ``Ctrl + C`` interrupt sequence or when maximum velocity is reached. Please refer to the state machine diagram to include them properly when developing a custom application.
 
 Examine the EtherCAT configuration file
 .......................................
