@@ -49,7 +49,7 @@ Note that the Developer Column in xTIMEcomposer Studio on the right hand side of
 Run the application
 +++++++++++++++++++
 
-When the application has been compiled, the next step is to run it on the Linux PC. Before doing that, make sure that the SOMANET EtherCAT stack has been flashed with or are running a proper motor control software for the EtherCAT slave side, i.e. ``app_demo_slave_ethercat_motorcontrol``.  
+When the application has been compiled, the next step is to run it on the Linux PC. Before doing that, make sure that the SOMANET EtherCAT stacks have been flashed with or are running a proper motor control software for the EtherCAT slave side, i.e. ``app_demo_slave_ethercat_motorcontrol``.  
 
    #. Make sure that the stacks are recognized. For this you have to have the EtherCAT driver up and running. To start the driver on a Linux machine execute in a terminal the following command: ::
 
@@ -88,7 +88,7 @@ Examine the code
 
    #. Before the main function you see a global variable and an interrupt handling function. These are there only for handling interrupts when a user executes the ``Ctrl + C`` interrupt sequence. 
 
-   #. Now find and examine the main function. At the beginning you'll find variables declarations that will be used to define your desired motion profile and provide you feedback from the motor. The two defines ``SLAVE_1`` and ``SLAVE_2`` are used to address the two EtherCAT slave nodes based on the nodes' topology or on the slave nodes' alias. 
+   #. Now find and examine the main function. At the beginning you'll find variables declarations that will be used to define your desired motion profile and provide you feedback from the motor. The enumeration with ``SLAVE_1`` and ``SLAVE_2`` is used to address the two EtherCAT slave nodes based on the nodes' topology or on the slave nodes' alias.
 
    #. Note, that positioning control uses Hall or Encoder sensor ticks to close the loop. The Hall sensors provide a discrete feedback and the values between are interpolated based on the velocity. One magnetic rotation results in 4096 Hall sensor ticks. To perform one complete rotation the magnetic rotation setpoint value should be multiplied by the number of magnetic poles. In the kit the motor has 3 pole pairs, therefore the desired setpoint for that would be 4096 X 3 = 12288. That calculation is therefore shown to initialize the ``one_rotation`` variable.
 
