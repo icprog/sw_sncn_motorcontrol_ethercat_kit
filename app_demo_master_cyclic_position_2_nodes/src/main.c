@@ -97,14 +97,14 @@ int main()
     initialize_position_profile_limits(SLAVE_1, slv_handles);
     initialize_position_profile_limits(SLAVE_2, slv_handles);
 
+    /* catch interrupt signal */
+    signal(SIGINT, INThandler);
+
 
     while(1)
     {
         /* Update the process data (EtherCat packets) sent/received from the node */
         pdo_handle_ecat(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
-
-        /* catch interrupt signal */
-        signal(SIGINT, INThandler);
 
         if(master_setup.op_flag && !break_loop)    /*Check if the master is active*/
         {
