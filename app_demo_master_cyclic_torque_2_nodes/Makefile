@@ -1,9 +1,11 @@
+APP_NAME = app_demo_master_cyclic_torque_2_nodes
+
 UNAME := $(shell uname)
 SOURCE_DIRS = src
 
 MASTER_INSTALLDIR := /opt/etherlab
 
-SOURCES += src/main.c
+SOURCES += src/main.c 
 
 INCLUDE_DIRS += -I ../inc_ctrlproto-common
 INCLUDE_DIRS += -I ../motor_config
@@ -20,7 +22,7 @@ LIB_DIRS += -L ../lib_linux_ctrlproto/lib
 LIB_DIRS += -L ../lib_linux_motor_drive/lib
 
 LIBS += -lsncn_ctrlproto -lsncn_motor_drive
-LIBS += -lethercat -lm 
+LIBS += -lethercat -lm
 
 FLAGS = -static
 FLAGS += -std=c99
@@ -37,7 +39,7 @@ else
 		@if test -d $(MASTER_INSTALLDIR); \
 		then \
 		mkdir bin -p;\
-		gcc $(SOURCES) $(LIBS) $(INCLUDE_DIRS) $(LIB_DIRS) $(FLAGS) -o bin/app_demo_master_cyclic_torque_2_nodes ; \
+		gcc $(SOURCES) $(LIBS) $(INCLUDE_DIRS) $(LIB_DIRS) $(FLAGS) -o bin/$(APP_NAME)	; \
 		else echo \
 		"\n\
 		-----------------------------------------------------------------------------------------------------------------\n\
@@ -49,4 +51,4 @@ endif
 ##Add clean Master Application
 clean: masterAppClean
 masterAppClean:
-	rm -f bin/app_demo_master_cyclic_torque_2_nodes
+	rm -f bin/$(APP_NAME)

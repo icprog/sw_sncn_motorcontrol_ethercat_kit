@@ -1,3 +1,5 @@
+APP_NAME = app_demo_master_cyclic_velocity_2_nodes
+
 UNAME := $(shell uname)
 SOURCE_DIRS = src
 
@@ -37,7 +39,7 @@ else
 		@if test -d $(MASTER_INSTALLDIR); \
 		then \
 		mkdir bin -p;\
-		gcc $(SOURCES) $(LIBS) $(INCLUDE_DIRS) $(LIB_DIRS) $(FLAGS) -o bin/app_demo_master_cyclic_velocity_2_nodes; \
+		gcc $(SOURCES) $(LIBS) $(INCLUDE_DIRS) $(LIB_DIRS) $(FLAGS) -o bin/$(APP_NAME)	; \
 		else echo \
 		"\n\
 		-----------------------------------------------------------------------------------------------------------------\n\
@@ -49,4 +51,5 @@ endif
 ##Add clean Master Application
 clean: masterAppClean
 masterAppClean:
-	rm -f bin/app_demo_master_cyclic_velocity_2_nodes
+	rm -f bin/$(APP_NAME)
+
