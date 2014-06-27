@@ -85,17 +85,14 @@ int main()
     bool new_target_slave_2 = true;
 
 	enum {SLAVE_1, SLAVE_2};
-    int *p;
 
+    int *p;
     p = read_user_input();
 
     printf("\n*****************************\nLoading motor configurations\n*****************************\n");
 
     /* Initialize Ethercat Master */
 	init_master(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
-
-    /* catch interrupt signal */
-    signal(SIGINT, INThandler);
 
     /* Initialize all connected nodes with Mandatory Motor Configurations (specified under config/motor/)*/
 	init_nodes(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
@@ -116,6 +113,8 @@ int main()
         steps[i] = init_linear_profile_params(final_target_torque, actual_torque_slave_1, torque_slope, i, slv_handles);
     }
 
+	/* catch interrupt signal */
+	signal(SIGINT, INThandler);
 
 	while(1)
 	{
