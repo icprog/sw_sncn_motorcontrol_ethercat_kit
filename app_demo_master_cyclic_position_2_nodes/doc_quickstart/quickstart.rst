@@ -3,7 +3,7 @@
 EtherCAT Master Cyclic Positioning Control with Two Nodes Demo Quickstart Guide
 ===============================================================================
 
-This simple demonstration shows how to control multiple motors using SOMANET EtherCAT motor control kit from a Linux PC. Only Cyclic Synchronous Positioning control mode is included with a simple linear profile generator. The CSP control mode is designed to achieve a desired motion trajectory by using various motion profiles and closing the control loop over EtherCAT. The slave controller in its turn is taking the generated at a fixed time interval (1ms) target position setpoints as a controller input and will be following them. 
+This simple demonstration shows how to control multiple motors using SOMANET EtherCAT motor control kit from a Linux PC. Only Cyclic Synchronous Positioning control mode is included with a simple linear profile generator. The CSP control mode is designed to achieve a desired motion trajectory by using various motion profiles or cascaded control approach with closing the control loop over EtherCAT. The slave controller in its turn is taking the generated at a fixed time interval (1ms) target position setpoints as a controller input and will be following them. That means that for the CSP the position control loop is closed on the slave and is not limited by any parameter. All the configurations are done from the master side.
 
 Hardware setup
 ++++++++++++++
