@@ -113,6 +113,8 @@ int main()
     int actual_position_slave_2 = 0;            // ticks
     int actual_velocity_slave_2 = 0;            // rpm
 
+    #define MAX_VELOCITY 4000
+
     bool new_target_slave_1 = true;
     bool new_target_slave_2 = true;
 
@@ -160,7 +162,7 @@ int main()
 			{
 				/* Generate target torque steps */
 				target_torque_slave_1 = generate_profile_linear(inc_slave_1, SLAVE_1, slv_handles);
-				printf("target_torque slave 1: %f \n",target_torque_slave_1);
+				printf("\ntarget_torque slave 1: %f \n",target_torque_slave_1);
 				/* Send target torque for the node specified by slave_number */
 				set_torque_mNm(target_torque_slave_1, SLAVE_1, slv_handles);
 
@@ -170,6 +172,13 @@ int main()
 				actual_velocity_slave_1 = get_velocity_actual_rpm(SLAVE_1, slv_handles);
 				printf("actual_torque slave 1: %f actual_position slave 1: %d actual_velocity slave 1: %d\n",
 				        actual_torque_slave_1, actual_position_slave_1, actual_velocity_slave_1);
+
+                /* Trigger emergency stop if max velocity is reached*/
+                if (actual_velocity_slave_1 > MAX_VELOCITY){
+                    printf("\nDanger! Max velocity is reached\n");
+                    break_loop = true;
+                }
+
 				inc_slave_1++;
 			}
 
@@ -177,7 +186,7 @@ int main()
             {
                 /* Generate target torque steps */
                 target_torque_slave_2 = generate_profile_linear(inc_slave_2, SLAVE_2, slv_handles);
-                printf("target_torque slave 2: %f \n",target_torque_slave_2);
+                printf("\ntarget_torque slave 2: %f \n",target_torque_slave_2);
                 /* Send target torque for the node specified by slave_number */
                 set_torque_mNm(target_torque_slave_2, SLAVE_2, slv_handles);
 
@@ -187,6 +196,13 @@ int main()
                 actual_velocity_slave_2 = get_velocity_actual_rpm(SLAVE_2, slv_handles);
                 printf("actual_torque slave 2: %f actual_position slave 2: %d actual_velocity slave 2: %d\n",
                         actual_torque_slave_2, actual_position_slave_2, actual_velocity_slave_2);
+
+                /* Trigger emergency stop if max velocity is reached*/
+                if (actual_velocity_slave_2 > MAX_VELOCITY){
+                    printf("\nDanger! Max velocity is reached\n");
+                    break_loop = true;
+                }
+
                 inc_slave_2++;
             }
 
