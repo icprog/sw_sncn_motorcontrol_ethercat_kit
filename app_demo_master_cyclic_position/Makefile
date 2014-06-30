@@ -54,9 +54,8 @@ else
 		then \
 		mkdir bin -p;\
 		gcc src/main.c  $(LIBS) $(INCLUDE_DIRS) $(LIB_DIRS) $(FLAGS) -o bin/$(notdir $(shell pwd)); \
-		echo Run you application by typing: ;\
 		echo ;\
-		echo "	\033[1msudo bin/$(notdir $(shell pwd))\033[0m" ;\
+		echo "Run you application by typing: sudo bin/$(notdir $(shell pwd))" ;\
 		echo ;\
 		else echo \
 		"\n\
