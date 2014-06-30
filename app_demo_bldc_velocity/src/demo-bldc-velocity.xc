@@ -1,9 +1,7 @@
-
 /**
  * @file test_velocity-ctrl.xc
  * @brief Test illustrates usage of profile velocity control
- * @author Pavan Kanajar <pkanajar@synapticon.com>
- * @author Martin Schwarz <mschwarz@synapticon.com>
+ * @author Synapticon GmbH (www.synapticon.com)
  */
 
 #include <xs1.h>

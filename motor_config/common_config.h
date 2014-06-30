@@ -1,8 +1,7 @@
-
 /**
  * @file common_config.h
  * @brief common internal configurations
- * @author Pavan Kanajar <pkanajar@synapticon.com>
+ * @author Synapticon GmbH (www.synapticon.com)
  */
 
 /* These are fixed configuration parameters (Default values)*/

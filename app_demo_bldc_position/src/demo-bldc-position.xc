@@ -1,8 +1,7 @@
 /**
  * @file test_position-ctrl.xc
  * @brief Test illustrates usage of profile position control
- * @author Pavan Kanajar <pkanajar@synapticon.com>
- * @author Martin Schwarz <mschwarz@synapticon.com>
+ * @author Synapticon GmbH (www.synapticon.com)
  */
 
 #include <xs1.h>

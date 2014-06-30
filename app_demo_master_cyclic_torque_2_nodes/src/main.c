@@ -1,7 +1,7 @@
 /**
  * @file main.c
  * @brief Example Master App for Cyclic Synchronous Torque (on PC)
- * @author Pavan Kanajar <pkanajar@synapticon.com>
+ * @author Synapticon GmbH (www.synapticon.com)
  */
 
 #include <ctrlproto_m.h>
