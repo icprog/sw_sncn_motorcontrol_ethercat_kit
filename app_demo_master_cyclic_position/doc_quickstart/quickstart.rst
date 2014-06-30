@@ -50,11 +50,11 @@ Run the application
 
 When the application has been compiled, the next step is to run it on the Linux PC. Before doing that, make sure that the SOMANET EtherCAT stack is running a proper motor control software for the EtherCAT slave side, i.e. ``app_demo_slave_ethercat_motorcontrol``.  
 
-   #. Make sure that the stack is recognized. For this you have to have the EtherCAT driver up and running. To start the driver on a Linux machine execute in a terminal the following command: ::
+   #. Make sure your EtherCAT Master is up and running. To start the Master on a Linux machine, execute the following command: ::
 
        sudo /etc/init.d/ethercat start
 
-   #. To verify that the node is present in the system, type: ::
+   #. Make sure your SOMANET node is accesable by the EtherCAT master by typing: ::
 
        ethercat slave 
 
@@ -64,11 +64,11 @@ When the application has been compiled, the next step is to run it on the Linux 
 
    #. Navigate with the terminal to your compiled application binary on the hard disk. Then execute the application with super user rights: ::
 
-       sudo ./demo-master-cyclic-position 
+       sudo ./app_demo_master_cyclic_position 
 
-   #. The application will deploy the motor-specific configuration parameters over the EtherCAT and the rotor of the motor should make one rotation and hold the last position. In the terminal window you should be able to see the motor's feedback as current position, velocity, and torque ::
+   #. The application will deploy the motor-specific configuration parameters over the EtherCAT and the rotor of the motor should make 3 rotations: 360deg CW, 360deg CCW, 360deg CW. In the terminal window you should be able to see the motor's feedback for current position, velocity, and torque ::
 
-       actual position 12728 actual velocity 43 actual_torque 8.172973
+       Position 12728    Velocity 43    Torque 8.172973
 
    #. The debug console window in xTIMEcomposer will not display any message because the demo application is written to work with an EtherCAT master application and feedback is therefore provided via EtherCAT communication.
 
@@ -87,8 +87,8 @@ Examine the code
 
    #. Before starting the main control routine you are required to initialise a set of parameters and to follow a motor starting state machine as defined in the CiA 402 directive (see the image bellow).
 
-.. figure:: images/Ethercat_operating_state_machine.jpg
-   :width: 400px
+.. figure:: images/statemachine.png
+   :width: 100%
    :align: center
 
    Motorcontrol state machine

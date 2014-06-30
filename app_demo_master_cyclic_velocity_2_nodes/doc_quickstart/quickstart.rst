@@ -1,29 +1,29 @@
 ﻿.. _EtherCAT_Master_Cyclic_Velocity_Control_with_Two_Nodes_Demo_Quickstart:
 
 EtherCAT Master Cyclic Velocity Control with Two Nodes Demo Quickstart Guide
-==========================================================================
+============================================================================
 
-This simple demonstration shows how to control multiple motors using SOMANET EtherCAT motor control kit from a Linux PC. Only Cyclic Synchronous Velocity control mode is included with a simple linear profile generator. The CSV control mode is designed to achieve a desired motion trajectory by using various motion profiles or cascaded control approach with closing the control loop over EtherCAT. The slave controller in its turn is taking the generated at a fixed time interval (1ms) target velocity set-points as a controller input and will be following them. That means that for the CSV the velocity control loop is closed on the slave and is not limited by any parameter. All the configurations are done from the master side.
+This simple demonstration shows how to control multiple motors using SOMANET EtherCAT motor control kit from a Linux PC. This demo features the Cyclic Synchronous Velocity control mode with a simple linear profile generator. The CSV control mode is designed to follow a desired motion trajectory by using various motion profiles or cascaded control approach with closing the control loop over EtherCAT. The slave controller in its turn is taking the generated at a fixed time interval (1ms) target velocity set-points as a controller input and will be following them. That means that for the CSV the velocity control loop (PID loop) is closed on the slave and is not limited by any parameter. All the configurations are done from the master side.
 
 Hardware setup
 ++++++++++++++
 
-A minimal requirement for this application to run is having two complete SOMANET stacks assembled consisting of the SOMANET Core, SOMANET COM-EtherCAT, and SOMANET IFM Drive DC 100 modules. The stacks have to be flashed with the ``app_demo_slave_ethercat_motorcontrol`` firmware. An example of a single stack consisting of the SOMANET COM-EtherCAT, Core, and IFM Drive DC 100 boards is shown below. IFM DC 100 boards in general can be supplied with 12 - 24 V DC power source. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 4 Amperes of power (in case of powering both nodes from the same source). Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
+A minimal requirement for running this application is a complete SOMANET nodes assembled of the "SOMANET Core C22", "SOMANET COM EtherCAT", and "SOMANET IFM Drive DC100" modules. The nodes have to be flashed with the ``app_demo_slave_ethercat_motorcontrol`` firmware. An example of a single SOMANET node consisting of the "SOMANET COM EtherCAT", "SOMANET Core C22", and "SOMANET IFM Drive DC100" boards is shown in the image below. "SOMANET IFM Drive DC100" motor drivers can be supplied with 12 - 24 V DC power source. For the motor included in the kit, the required power supply voltage is 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 4 Amperes of power (in case of powering both nodes from the same source). Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
 .. figure:: images/assembly_p6.jpg
    :width: 400px
    :align: center
 
-   Hardware Setup for SOMANET Cyclic Velocity Control with EtherCAT Demo
+   Reuqired hardware setup for this demo
 
 To setup the system:
 
-   #. If you don't have the stacks assembled, assemble them as shown in the image above. Make sure to connect the IFM side of the SOMANET core module to the IFM DC 100 board and COM side to the Core Debug Adapter (see markings on the Core module)
+   #. If you don't have the SOMANET nodes assembled, assemble them as shown in the image above. Make sure to connect the IFM side of the SOMANET Core module to the "SOAMNET IFM Drive DC100" board and COM side to the Core Debug Adapter (see markings on the Core module)
    #. Connect the xTAG-2 Adapter to the Core Debug Adapter.
    #. Connect the xTAG-2 to host PC. 
-   #. Connect the motor supplied with the kit as shown in the image bellow.
-   #. Connect the IFM DC 100 board to a 24 V DC power supply
-   #. Connect one side of the S-002_O-03 SOMANET Option COM EtherCAT cable to the node (port one) and plug the RS-45 connector to an Ethernet port of your PC.
+   #. Connect the included motor as shown in the image bellow.
+   #. Connect the IFM Drive DC100 board to a 24 V DC power supply
+   #. Connect one side of the cable ("S-002_O-03 SOMANET Option COM EtherCAT") to the node (port one) and plug the RJ-45 connector to an Ethernet port of your PC.
    #. Connect port two of the EtherCAT node with the port one of the second EtherCAT node using the S-002_O-04 SOMANET Option COM EtherCAT Cable.
    #. Switch on the power supply. If everything is connected properly, drained current should not exceed 200 mA. 
 
@@ -49,13 +49,13 @@ Note that the Developer Column in xTIMEcomposer Studio on the right hand side of
 Run the application
 +++++++++++++++++++
 
-When the application has been compiled, the next step is to run it on the Linux PC. Before doing that, make sure that the SOMANET EtherCAT stacks have been flashed with or are running a proper motor control software for the EtherCAT slave side, i.e. ``app_demo_slave_ethercat_motorcontrol``.  
+When the application has been compiled, the next step is to run it on the Linux PC. Before doing that, make sure that the SOMANET EtherCAT nodes have been flashed with or are running a proper motor control software for the EtherCAT slave side, i.e. ``app_demo_slave_ethercat_motorcontrol``.  
 
-   #. Make sure that the stacks are recognized. For this you have to have the EtherCAT driver up and running. To start the driver on a Linux machine execute in a terminal the following command: ::
+   #. Make sure your EtherCAT Master is up and running. To start the Master on a Linux machine, execute the following command: ::
 
        sudo /etc/init.d/ethercat start
 
-   #. To verify that the nodes are present in the system, type: ::
+   #. Make sure your SOMANET nodes are accesable by the EtherCAT master by typing: ::
 
        ethercat slave 
 
@@ -66,20 +66,20 @@ When the application has been compiled, the next step is to run it on the Linux 
 
    #. Navigate with the terminal to your compiled application binary on the hard disk. Then execute the application with super user rights: ::
 
-       sudo ./demo_master_cyclic_velocity_2_nodes 
+       sudo ./app_demo_master_cyclic_velocity_2_nodes 
 
    #. The application first will prompt to enter target velocity values for the two slaves in the setup one by one. Complete the entry by pressing Enter. Please try first some small values bellow a thousand. The application will not allow the motors to reach higher velocities than the defined in the motor configuration file maximum (4000 RPM). ::
        
        2 slaves are defined in the system
-       enter target velocity for slave 1: 
+       enter target velocity for drive (slave) 1: 
        500
-       enter target velocity for slave 2: 
+       enter target velocity for drive (slave) 2: 
        500
 
    #. After entering the target velocity values, the application will deploy the motor-specific configuration parameters over the EtherCAT and the rotors of the both motors will start rotating. The application can be interrupted at any time by the ``Ctrl + C`` keyboard interrupt sequence. In the terminal window you should be able to see the motor's feedback as current velocity, position, and torque of both motors: ::
 
-       Velocity slave 1: 1336 Position slave 1: 595 Torque slave 1: 11.77
-       Velocity slave 2: -1347 Position slave 2: -22317 Torque slave 2: 23.94
+       Velocity drive 1: 1336 Position drive 1: 595 Torque drive 1: 11.77
+       Velocity drive 2: -1347 Position drive 2: -22317 Torque drive 2: 23.94
 
    #. The debug console window in xTIMEcomposer will not display any message because the demo application is written to work with an EtherCAT master application and feedback is therefore provided via EtherCAT communication.
 
@@ -98,12 +98,12 @@ Examine the code
 
    #. For you convenience a user console input handling function ``read_user_input`` is included. 
 
-   #. Now find and examine the main function. At the beginning you'll find variables declarations that will be used to define your desired motion profile and provide you feedback from the motor. The enumeration with ``SLAVE_1`` and ``SLAVE_2`` is used to address the two EtherCAT slave nodes based on the nodes' topology or on the slave nodes' alias.
+   #. Now find and examine the main function. At the beginning you'll find variables declarations that will be used to define your desired motion profile and provide you feedback from the motor. The enumeration with ``ECAT_SLAVE_0`` and ``ECAT_SLAVE_1`` is used to address the two EtherCAT slave nodes based on the nodes' topology or on the slave nodes' alias.
 
    #. Before starting the main control routine you are required to initialize the EtherCAT master and to follow a motor starting state machine as defined in the CiA 402 directive (see the image bellow). These routines are performed for all connected nodes, except for the ``init_nodes`` function.
 
-.. figure:: images/Ethercat_operating_state_machine.jpg
-   :width: 400px
+.. figure:: images/statemachine.png
+   :width: 100%
    :align: center
 
    Motorcontrol state machine
