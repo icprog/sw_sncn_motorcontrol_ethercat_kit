@@ -10,16 +10,17 @@ ETHERCAT_MASTER_INSTALLDIR := /opt/etherlab
 CTRL_PROTO_PATH := ..
 MOTORCONTROL_PATH := ..
 
-# DEVELOPERS ONLY #
-ifeq ($(MAKECMDGOALS),develop)
-	CTRL_PROTO_PATH := ../../sc_sncn_ctrlproto
+ifneq (,$(wildcard ../../sc_sncn_motorcontrol/.))
 	MOTORCONTROL_PATH := ../../sc_sncn_motorcontrol
-	TARGET := develop
 endif
-# END DEVELOPERS ONLY #
+
+ifneq (,$(wildcard ../../sc_sncn_ctrlproto/.)) 
+	CTRL_PROTO_PATH := ../../sc_sncn_ctrlproto
+endif
 
 INCLUDE_DIRS += -I $(ETHERCAT_MASTER_INSTALLDIR)/include
 INCLUDE_DIRS += -I ../motor_config
+
 INCLUDE_DIRS += -I $(CTRL_PROTO_PATH)/inc_ctrlproto-common
 INCLUDE_DIRS += -I $(CTRL_PROTO_PATH)/lib_linux_ctrlproto/include
 INCLUDE_DIRS += -I $(CTRL_PROTO_PATH)/lib_linux_motor_drive/include
@@ -35,12 +36,12 @@ LIB_DIRS += -L $(CTRL_PROTO_PATH)/lib_linux_motor_drive/lib
 # Needed for checking if Linux machine
 UNAME := $(shell uname)
 
-all develop:
+all:
 		@echo Bulding dependency: lib_linux_ctrlproto...
-		@cd $(CTRL_PROTO_PATH)/lib_linux_ctrlproto; make $(TARGET)
+		@cd $(CTRL_PROTO_PATH)/lib_linux_ctrlproto; make
 		@echo 
 		@echo Bulding dependency: lib_linux_motor_drive...
-		@cd $(CTRL_PROTO_PATH)/lib_linux_motor_drive; make $(TARGET)
+		@cd $(CTRL_PROTO_PATH)/lib_linux_motor_drive; make
 		@echo 
 		@echo Bulding application...
 ifneq "$(UNAME)" "Linux"
@@ -55,7 +56,7 @@ else
 		mkdir bin -p;\
 		gcc src/main.c  $(LIBS) $(INCLUDE_DIRS) $(LIB_DIRS) $(FLAGS) -o bin/$(notdir $(shell pwd)); \
 		echo ;\
-		echo "Run you application by typing: sudo bin/$(notdir $(shell pwd))" ;\
+		echo "Run your application by typing: sudo bin/$(notdir $(shell pwd))" ;\
 		echo ;\
 		else echo \
 		"\n\
