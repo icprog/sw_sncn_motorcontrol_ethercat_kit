@@ -1,7 +1,8 @@
 /**
  * @file main.c
  * @brief Example Master App for Cyclic Synchronous Velocity (on PC)
- * @author Synapticon GmbH (www.synapticon.com)
+ * @author Pavan Kanajar <pkanajar@synapticon.com>
+ * @author Christian Holl <choll@synapticon.com>
  */
 
 #include <ctrlproto_m.h>
@@ -143,6 +144,7 @@ int main()
                 actual_velocity = get_velocity_actual_rpm(ECAT_SLAVE_1, slv_handles);
                 actual_position = get_position_actual_ticks(ECAT_SLAVE_1, slv_handles);
                 actual_torque = get_torque_actual_mNm(ECAT_SLAVE_1, slv_handles);
+                printf("Velocity drive 2: %d Position slave 2: %d Torque slave 2: %4.2f\n",
                         actual_velocity, actual_position, actual_torque);
                 inc[ECAT_SLAVE_1]++;
             }
