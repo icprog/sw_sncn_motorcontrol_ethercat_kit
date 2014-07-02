@@ -11,7 +11,6 @@ Hardware setup
 A minimal requirement for running this application is a complete SOMANET nodes assembled of the *SOMANET Core-C22*, *SOMANET COM-EtherCAT*, and *SOMANET IFM-Drive-DC100* modules. The nodes have to be flashed with the ``app_demo_slave_ethercat_motorcontrol`` firmware. An example of a single SOMANET node consisting of the *SOMANET COM-EtherCAT*, *SOMANET Core-C22*, and *SOMANET IFM-Drive-DC100* boards is shown in the image below. *SOMANET IFM-Drive-DC100* motor drivers can be supplied with 12 - 24 V DC power source. For the motor included in the kit, the required power supply voltage is 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 4 Amperes of power (in case of powering both nodes from the same source). Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
 .. figure:: images/assembly_p6.jpg
-   :width: 400px
    :align: center
 
    Required hardware setup for this demo
@@ -28,7 +27,6 @@ To setup the system:
    #. Switch on the power supply. If everything is connected properly, drained current should not exceed 200 mA. 
 
 .. figure:: images/EtherCAT_two_nodes.jpg
-   :width: 400px
    :align: center
 
    Connecting the motor and cables to your kit

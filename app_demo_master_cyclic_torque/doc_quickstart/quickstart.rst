@@ -11,7 +11,6 @@ Hardware setup
 A minimal requirement for this application to run is having the complete SOMANET stack assembled consisting of a *SOMANET Core-C22*, *SOMANET COM-EtherCAT*, and a *SOMANET IFM-Drive-DC100/300* modules. The stack should be powered via the *SOMANET IFM* board. An example of a stack consisting of the *SOMANET* COM-EtherCAT, Core-C22, and IFM-Drive-DC100 boards is shown below. In this case the *IFM-DC100* board can be supplied with 12 - 24 V DC power source. For the motor supplied with the kit required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations the starting current may be as high as 10 times the nominal.     
 
 .. figure:: images/ethercat_stack.jpg
-   :width: 400px
    :align: center
 
    Hardware Setup for SOMANET Cyclic Torque Control with EtherCAT Demo
@@ -27,7 +26,6 @@ To setup the system:
    #. Switch on the power supply. If everything is connected properly, the drained current should not exceed 100mA. 
 
 .. figure:: images/stack_and_motor.jpg
-   :width: 400px
    :align: center
 
    Connecting the motor and cables to your kit

@@ -14,7 +14,6 @@ Hardware setup
 A minimal requirement for this application to run is having the *SOMANET* stack assembled consisting of the *SOMANET Core-C22*, *SOMANET Core* to xTAG-2 Debug Adapter, and *SOMANET IFM-Drive-DC100/300* modules. The stack should be powered via the *SOMANET IFM* board. An example of an assembled stack is shown in the image below. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
 .. figure:: images/assembly_p9.jpg
-   :width: 400px
    :align: center
 
    Hardware Setup for standalone Torque Control Demo
@@ -29,7 +28,6 @@ To setup the system:
    #. Switch on the power supply. If everything is connected properly, drained current should not exceed 100mA. 
 
 .. figure:: images/standalone_motorcontrol.jpg
-   :width: 400px
    :align: center
 
    Connecting the motor and cables to your kit
