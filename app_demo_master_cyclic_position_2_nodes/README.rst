@@ -1,15 +1,15 @@
-SOMANET EtherCAT CSP motorcontrol two nodes demo
-================================================
+SOMANET EtherCAT CSP Motor Control Two Nodes Demo
+=================================================
 
 :scope: Example
 :description: This example demonstrates how to implement an EtherCAT master motor control application for a Linux PC and two connected nodes. A Cyclic Synchronous Positioning mode is demonstrated.
-:keywords: COM-EtherCAT, Motorcontrol, EtherCAT master, Mutinode setup
+:keywords: COM-EtherCAT, Motor Control, EtherCAT master, Muti-node setup
 :boards: XK-SN-1BH12-E, XK-SN-1BQ12-E, SOMANET Motor Control etherCAT Kit
 
 Description
 -----------
 
-This application provides a multinode example of a Master Application for Cyclic Synchronous Position (host side). The SOMANET nodes must be running app_demo_slave_ethercat_motorcontrol before starting the Linux EtherCAT Master application.
+This application provides a multi-node example of a Master Application for Cyclic Synchronous Position (host side). The SOMANET nodes must be running app_demo_slave_ethercat_motorcontrol before starting the Linux EtherCAT Master application.
 
 In Cyclic Synchronous position mode a user can set a new target position per node every millisecond making cyclic modes an ideal application for real-time control. An examples that generates a linear position profile for a target position with millisecond steps is included into the application.
 taken care of. 

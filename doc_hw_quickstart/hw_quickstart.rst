@@ -3,10 +3,10 @@
 Getting Started with your XMOS Motor & Motion Control Kit
 =========================================================
 
-The XMOS Motor & Motion Control Kit contains a combination of hardware and software modules developed by Synapticon using *SOMANET* technology and XMOS multicore microcontrollers, with a sample BLDC motor. The kit can be assembled in different configurations depending on the type of motor and communications interface you require. Currently there are two hardware configurations:
+The XMOS Motor & Motion Control Kit contains a combination of hardware and software modules developed by Synapticon using *SOMANET* technology and XMOS multi-core micro-controllers, with a sample BLDC motor. The kit can be assembled in different configurations depending on the type of motor and communications interface you require. Currently there are two hardware configurations:
 
-   * *SOMANET IFM Drive DC 100* with EtherCAT comms and BLDC motor with Hall sensor encoding
-   * *SOMANET IFM Drive DC 100* with EtherCAT comms and BLDC motor with Quadrature encoder and Hall sensor encoding
+   * *SOMANET IFM-Drive-DC100* with EtherCAT comms and BLDC motor with Hall sensor encoding
+   * *SOMANET IFM-Drive-DC100* with EtherCAT comms and BLDC motor with Quadrature encoder and Hall sensor encoding
 
 For information on assembling the *SOMANET* hardware modules, see the Hardware Quick Start Guide.
 
@@ -30,9 +30,9 @@ Hardware Quick Start Guide
 
 This guide shows how to assemble the Motor & Motion Control Kit modules in the following configurations:
 
-   * *SOMANET IFM Drive DC 100* with *SOMANET COM EtherCAT* module and xTAG debug adapter
-   * *SOMANET IFM Drive DC 100* with *SOMANET COM EtherCAT* module and no debug adapter
-   * *SOMANET IFM Drive DC 100* without *SOMANET COM EtherCAT* module
+   * *SOMANET IFM-Drive-DC100* with *SOMANET COM-EtherCAT* module and xTAG debug adapter
+   * *SOMANET IFM-Drive-DC100* with *SOMANET COM-EtherCAT* module and no debug adapter
+   * *SOMANET IFM-Drive-DC100* without *SOMANET COM-EtherCAT* module
 
 .. _XMOS_Motor_Motion_Control_Kit_User_Guide_Hardware_EtherCAT:
 
@@ -41,9 +41,9 @@ Setting up with COM-EtherCAT module
 
 This setup is required if you want to develop an EtherCAT based slave application for *SOMANET* devices. Before you start, make sure that you have all hardware components and assembly parts at hand. You will require the following items:
 
-   #. 1 x *SOMANET IFM Drive DC 100* board.
-   #. 1 x *SOMANET Core C22* module.
-   #. 1 x *SOMANET COM EtherCAT*
+   #. 1 x *SOMANET IFM-Drive-DC100* board.
+   #. 1 x *SOMANET Core-C22* module.
+   #. 1 x *SOMANET COM-EtherCAT*
    #. 1 x Core to xTAG-2 Debug Adapter.
    #. 1 x XMOS xTAG-2 Adapter
    #. 2 x 25mm M2 screws
@@ -59,7 +59,7 @@ The image below illustrates the required set for this hardware setup.
 
    Required components and assembly parts
 
-It is recommended to start assembly from the *SOMANET IFM Drive DC 100* board. Place the long metal screws in two holes as shown in image below. Use 4 mm metal spaces between the IFM and the Core modules.
+It is recommended to start assembly from the *SOMANET IFM-Drive-DC100* board. Place the long metal screws in two holes as shown in image below. Use 4 mm metal spaces between the IFM and the Core modules.
 
 .. figure:: images/assembly_p1.jpg
    :width: 300px
@@ -67,7 +67,7 @@ It is recommended to start assembly from the *SOMANET IFM Drive DC 100* board. P
 
    Step 1
 
-Then proceed with the *SOMANET Core C22* module. Hold the screws with your fingers to prevent them from falling out during the assembly procedure. Make sure that you connect the IFM side connector of the Core module to the *SOMANET IFM Drive DC 100* board. The IFM connector of the Core module has ``IF`` marking next to it. As a result you should see the ``COM`` connector being on top. For mounting the Core to xTAG-2 Adapter in the next step please use the white plastic 3.5 mm spacers. 
+Then proceed with the *SOMANET Core-C22* module. Hold the screws with your fingers to prevent them from falling out during the assembly procedure. Make sure that you connect the IFM side connector of the Core module to the *SOMANET IFM-Drive-DC100* board. The IFM connector of the Core module has ``IF`` marking next to it. As a result you should see the ``COM`` connector being on top. For mounting the Core to xTAG-2 Adapter in the next step please use the white plastic 3.5 mm spacers. 
 
 .. figure:: images/assembly_p2.jpg
    :width: 300px
@@ -75,7 +75,7 @@ Then proceed with the *SOMANET Core C22* module. Hold the screws with your finge
 
    Step 2
 
-When mounting the Core to xTAG-2 Adapter, hold the IFM connector side with your thumb to prevent from unplugging. Also be careful with the golden pins of the Core to xTAG-2 Adapter not to bend them or to break. The golden pins should have a reliable contact at the end with the corresponding pads of the *SOMANET Core C22* module.
+When mounting the Core to xTAG-2 Adapter, hold the IFM connector side with your thumb to prevent from unplugging. Also be careful with the golden pins of the Core to xTAG-2 Adapter not to bend them or to break. The golden pins should have a reliable contact at the end with the corresponding pads of the *SOMANET Core-C22* module.
 
 .. figure:: images/assembly_p3.jpg
    :width: 300px
@@ -117,9 +117,9 @@ This setup is useful if software debugging or xSCOPE functionality is not requir
 
 You will require the following items:
 
-   #. 1 x *SOMANET IFM Drive DC 100* board.
+   #. 1 x *SOMANET IFM-Drive-DC100* board.
    #. 1 x *SOMANET Core C2* module.
-   #. 1 x *SOMANET COM EtherCAT*
+   #. 1 x *SOMANET COM-EtherCAT*
    #. 2 x 25mm M2 screws
    #. 4 x 4mm metal spacers
    #. 2 x M2 nuts.
@@ -132,7 +132,7 @@ The image below illustrates the required set for this hardware setup.
 
    Required components and assembly parts
 
-To assemble the stack for using with *SOMANET COM EtherCAT* without the Core to XTAG2 Adapter please perform step 1 as described in **Setting up with COM-EtherCAT module** section. Then proceed with the *SOMANET Core C22* module. Please hold the screws with your fingers to prevent them from falling out during the assembly procedure. Make sure that you connected the IFM side connector of the "Core C22" module to the *SOMANET IFM Drive DC 100* board. The IFM connector of the core module has ``IF`` marking next to it. As a result you should see the connector marged as``COM`` being on top. For mounting the COM-EtherCAT module in the next step please use the metal 4 mm spacers. 
+To assemble the stack for using with *SOMANET COM-EtherCAT* without the Core to XTAG2 Adapter please perform step 1 as described in **Setting up with COM-EtherCAT module** section. Then proceed with the *SOMANET Core-C22* module. Please hold the screws with your fingers to prevent them from falling out during the assembly procedure. Make sure that you connected the IFM side connector of the "Core-C22" module to the *SOMANET IFM-Drive-DC100* board. The IFM connector of the core module has ``IF`` marking next to it. As a result you should see the connector marked as``COM`` being on top. For mounting the COM-EtherCAT module in the next step please use the metal 4 mm spacers. 
 
 .. figure:: images/assembly_p5.jpg
    :width: 300px
@@ -158,8 +158,8 @@ Setting up without COM-EtherCAT module
 
 This is a minimal hardware setup to start working with the motor control software. Before you start, make sure that you have all hardware components and assembly parts at hand. You will require the following items:
 
-   #. 1 x *SOMANET IFM Drive DC 100* board.
-   #. 1 x *SOMANET Core C22* module.
+   #. 1 x *SOMANET IFM-Drive-DC100* board.
+   #. 1 x *SOMANET Core-C22* module.
    #. 1 x Core to xTAG-2 Debug Adapter.
    #. 1 x XMOS xTAG-2 Adapter
    #. 2 x 25mm M2 screws
@@ -175,7 +175,7 @@ The image below illustrates the required set for this hardware setup.
 
    Required components and assembly parts
 
-It is recommended to start assembly from the *SOMANET IFM Drive DC 100* board. Please place the long metal screws in two holes as shown in image below. Use 4 mm metal spaces between the IFM and the Core modules.
+It is recommended to start assembly from the *SOMANET IFM-Drive-DC100* board. Please place the long metal screws in two holes as shown in image below. Use 4 mm metal spaces between the IFM and the Core modules.
 
 .. figure:: images/assembly_p1.jpg
    :width: 300px
@@ -183,7 +183,7 @@ It is recommended to start assembly from the *SOMANET IFM Drive DC 100* board. P
 
    Step 1
 
-Then proceed with the *SOMANET Core C22* module. Please hold the screws with your fingers to prevent them from falling out during the assembly procedure. Make sure that you connected the IFM side connector of the Core module to the IFM Drive DC 100 board. The IFM connector of the Core module has ``IF`` marking next to it. As a result you should see the ``COM`` connector being on top. For mounting the Core to xTAG-2 Adapter in the next step please use the white plastic 3.5 mm spacers. 
+Then proceed with the *SOMANET Core-C22* module. Please hold the screws with your fingers to prevent them from falling out during the assembly procedure. Make sure that you connected the IFM side connector of the Core module to the IFM-Drive-DC100 board. The IFM connector of the Core module has ``IF`` marking next to it. As a result you should see the ``COM`` connector being on top. For mounting the Core to xTAG-2 Adapter in the next step please use the white plastic 3.5 mm spacers. 
 
 .. figure:: images/assembly_p2.jpg
    :width: 300px
@@ -191,7 +191,7 @@ Then proceed with the *SOMANET Core C22* module. Please hold the screws with you
 
    Step 2
 
-When mounting the Core to xTAG-2 Adapter please fixate the IFM connector side with your thumb to prevent from unplugging. Also be careful with the golden pins of the Core to xTAG-2 Adapter not to bend them or to break. The golden pins should have a reliable contact at the end with the corresponding pads of the *SOMANET Core C22* module. When successfully mounted, please fixate the stack with the metal nuts. The stack is ready to use.
+When mounting the Core to xTAG-2 Adapter please fixate the IFM connector side with your thumb to prevent from unplugging. Also be careful with the golden pins of the Core to xTAG-2 Adapter not to bend them or to break. The golden pins should have a reliable contact at the end with the corresponding pads of the *SOMANET Core-C22* module. When successfully mounted, please fixate the stack with the metal nuts. The stack is ready to use.
 
 .. figure:: images/assembly_p3.jpg
    :width: 300px
@@ -244,45 +244,45 @@ The Motor & Motion Control Kit includes a set of software modules that run on th
    * CiA 402 drive profile
    * Communications - EtherCAT (Linux master provided)
    
-The software is delivered as individual components within the xTIMEcomposer Studio development tools, which are available free of charge from the XMOS website: http://www.xmos.com/xtimecomposer
+The software is delivered as individual components within the *xTIMEcomposer* Studio development tools, which are available free of charge from the XMOS website: http://www.xmos.com/xtimecomposer
 
-Installing xTIMEcomposer
+Installing *xTIMEcomposer*
 ++++++++++++++++++++++++
 
-The xTIMEcomposer tool chain is a suite of development tools for xCORE multicore microcontrollers. It provides everything you need to develop applications to run on the hardware, as well as unique tools for timing closure and code instrumentation. The tools can be run from xTIMEcomposer Studio, an integrated development environment based on Eclipse, or the command line. XMOS provides a free to download version of xTIMEcomposer to all users who register on the XMOS website. The tools can be downloaded from: http://www.xmos.com/xtimecomposer
+The *xTIMEcomposer* tool chain is a suite of development tools for xCORE multi-core micro-controllers. It provides everything you need to develop applications to run on the hardware, as well as unique tools for timing closure and code instrumentation. The tools can be run from *xTIMEcomposer* Studio, an integrated development environment based on Eclipse, or the command line. XMOS provides a free to download version of *xTIMEcomposer* to all users who register on the XMOS website. The tools can be downloaded from: http://www.xmos.com/xtimecomposer
 
-Detailed information on how to use xTIMEcomposer is available in the xTIMEcomposer User Guide (http://www.xmos.com/published/xtimecomposer-user-guide). The xTIMEcomposer Studio Welcome screen also contains many useful links.
+Detailed information on how to use *xTIMEcomposer* is available in the *xTIMEcomposer* User Guide (http://www.xmos.com/published/xtimecomposer-user-guide). The *xTIMEcomposer* Studio Welcome screen also contains many useful links.
 
-Information and examples on how to program xCORE multicore microcontrollers is available in the XMOS programming guide (http://www.xmos.com/published/xmos-programming-guide).
+Information and examples on how to program xCORE multi-core micro-controllers is available in the XMOS programming guide (http://www.xmos.com/published/xmos-programming-guide).
 
-**NOTE**: The first time you run xTIMEcomposer Studio you must be connected to the internet, so that you can register your version of the tools.
+**NOTE**: The first time you run *xTIMEcomposer* Studio you must be connected to the Internet, so that you can register your version of the tools.
 
 Importing and running the Profile application
 +++++++++++++++++++++++++++++++++++++++++++++
 
 The *SOMANET* software includes a Profile application that provides the ideal starting application. It uses data from the Hall sensors to test that your motor is working correctly.
 
-The *SOMANET* software is delivered as xSOFTip components in xTIMEcomposer Studio. You can add them to your project using the xSOFTip Explorer, an integrated tool in xTIMEcomposer Studio.
+The *SOMANET* software is delivered as *xSOFTip* components in *xTIMEcomposer* Studio. You can add them to your project using the *xSOFTip* Explorer, an integrated tool in *xTIMEcomposer* Studio.
 
-   #. Open xTIMEcomposer Studio.
+   #. Open *xTIMEcomposer* Studio.
 
-   #. Go to the xSOFTip Explorer in the bottom right corner of the xTIMEcomposer Studio window.
+   #. Go to the *xSOFTip* Explorer in the bottom right corner of the *xTIMEcomposer* Studio window.
 
    #. Open the Synapticon > *SOMANET* folder, which contains all the software that will run on the kit.
 
-   #. Click on the ``SOMANET Profile Mode Position Control Application`` item in the xSOFTip Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
+   #. Click on the ``SOMANET Profile Mode Position Control Application`` item in the *xSOFTip* Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
 
-   #. Double-click the ``SOMANET Profile Mode Position Control Application`` in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. Note that the *SOMANET* software is licensed under different terms to the usual XMOS xSOFTip license.
+   #. Double-click the ``SOMANET Profile Mode Position Control Application`` in *xSOFTip* Explorer. *xTIMEcomposer* prompts you to import the module. Note that the *SOMANET* software is licensed under different terms to the usual XMOS *xSOFTip* license.
 
-   #. Click Finish. xTIMEcomposer imports the software including all its dependencies, and the software is added to a new project.
+   #. Click Finish. *xTIMEcomposer* imports the software including all its dependencies, and the software is added to a new project.
 
-   #. Select the ``app_demo_bldc_position`` item in the Project Explorer, and then click Project > Build Project (Hammer) button to build the project.  The build progress is displayed in the xTIMEcomposer Console. When the application has been built, the compiled binary is added to the app_sncn_motorctrl_profile/bin folder.
+   #. Select the ``app_demo_bldc_position`` item in the Project Explorer, and then click Project > Build Project (Hammer) button to build the project.  The build progress is displayed in the *xTIMEcomposer* Console. When the application has been built, the compiled binary is added to the app_sncn_motorctrl_profile/bin folder.
 
    #. Click Run > Run Configurations, and double-click xCORE Application.
 
    #. On Project, click on Browse and select ``app_demo_bldc_position``. 
 
-   #. Click on Refresh on Debug Adapter. "XMOS xTAG 2 connected to L1[0..3] should appear" indicating that there is communication between the JTAG adapter and the C22 module. If JTAG is not recognized by xTIMEcomposer Studio, check if the JTAG drivers of the JTAG. Download the driver from here. If JTAG is recognized but "L1[0..3]" does not appear, check the connections and see if the Motor & Motion Control Kit is powered up.
+   #. Click on Refresh on Debug Adapter. "XMOS xTAG 2 connected to L1[0..3] should appear" indicating that there is communication between the JTAG adapter and the C22 module. If JTAG is not recognized by *xTIMEcomposer* Studio, check if the JTAG drivers of the JTAG. Download the driver from here. If JTAG is recognized but "L1[0..3]" does not appear, check the connections and see if the Motor & Motion Control Kit is powered up.
 
    #. Click Run. 
 
@@ -316,7 +316,7 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
 
          make clean
 
-   #. Connect the *SOMANET COM EtherCAT* module to your computer using the EtherCAT cable provided in the kit.
+   #. Connect the *SOMANET COM-EtherCAT* module to your computer using the EtherCAT cable provided in the kit.
    #. Open a terminal and enter the following command to run the EtherCAT driver::
 
          sudo /etc/init.d/ethercat start
@@ -331,7 +331,7 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
 
 **Preparing the EtherCAT Master Demo application**
 
-   #. Open the Synapticon > SOMANET folder and bring the ``EtherCAT CSP motorcontrol demo`` item in the xSOFTip Explorer into your Project Explorer by dragging it or double clicking it.
+   #. Open the Synapticon > SOMANET folder and bring the ``EtherCAT CSP Motor Control Demo`` item in the *xSOFTip* Explorer into your Project Explorer by dragging it or double clicking it.
    #. Now do the same thing for the following items::
 
       * Synapticon -> SOMANET ->  SOMANET CiA 402 Definitions for Control Protocol
@@ -339,7 +339,7 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
       * Synapticon -> SOMANET ->  SOMANET Motor Drive Library
       * Synapticon -> SOMANET ->  SOMANET Motor and Controller Configuration Files
 
-   #. Now place your xTIMEcomposer into the background and in a separate terminal and navigate into your workspace folder.
+   #. Now place your *xTIMEcomposer* into the background and in a separate terminal and navigate into your workspace folder.
    #. cd into ``lib_linux_ctrlproto`` and type ``make`` to build that library
    #. cd into ``lib_linux_motor_drive`` and type ``make`` to build that library
    #. cd back into your workspace and then cd to ``app_demo_master_cyclic_position/bin`` and type the following command to run the master example::
@@ -348,12 +348,12 @@ If you have not done so already you need to install the IgH EtherCAT Master for 
 
 **Slave application side**
 
-   #. Open the Synapticon > SOMANET folder and click on the ``SOMANET etherCAT Slave Application`` item in the xSOFTip Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
-   #. Double-click the ``SOMANET EtherCAT Slave Application`` in xSOFTip Explorer. xTIMEcomposer prompts you to import the module. 
-   #. Click Finish. xTIMEcomposer imports the software including all its dependencies, and the software is added to a new project.
-   #. Select the ``app_demo_slave_ethercat_motorcontrol`` item in the Project Explorer, and then click Project > Build Project (Hammer) button to build the project.  The build progress is displayed in the xTIMEcomposer Console. When the application has been built, the compiled binary is added to the app_sncn_motorctrl_profile/bin folder.
+   #. Open the Synapticon > SOMANET folder and click on the ``SOMANET etherCAT Slave Application`` item in the *xSOFTip* Explorer. Detailed information about the module is displayed in the Developer Column on the right of the window.
+   #. Double-click the ``SOMANET EtherCAT Slave Application`` in *xSOFTip* Explorer. *xTIMEcomposer* prompts you to import the module. 
+   #. Click Finish. *xTIMEcomposer* imports the software including all its dependencies, and the software is added to a new project.
+   #. Select the ``app_demo_slave_ethercat_motorcontrol`` item in the Project Explorer, and then click Project > Build Project (Hammer) button to build the project.  The build progress is displayed in the *xTIMEcomposer* Console. When the application has been built, the compiled binary is added to the app_sncn_motorctrl_profile/bin folder.
    #. Click Run > Run Configurations, and double-click xCORE Application.
-   #. In xTIMEcomposer Studio go to Run>Run Configurations.
+   #. In *xTIMEcomposer* Studio go to Run>Run Configurations.
    #. Double click on xCORE Application.
    #. Select sw_sncn_motorcontrol_ethercat_kit under Projects
    #. Check that the C/C++ Application is ``app_demo_slave_ethercat_motorcontrol.xe``

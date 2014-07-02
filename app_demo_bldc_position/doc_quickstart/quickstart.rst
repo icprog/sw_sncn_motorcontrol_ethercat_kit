@@ -1,17 +1,17 @@
 ﻿.. _SOMANET_IFM_Drive_Positioning_Control_Demo_Quickstart:
 
-SOMANET Standalone Position Control Demo Quickstart Guide
-=========================================================
+SOMANET Standalone Position Control Demo Quick Start Guide
+==========================================================
 
 sw_sncn_motorcontrol_ethercat_kit : Quick Start Guide
 -----------------------------------------------------
 
-This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brush-less DC motor. Position loop can be closed with a positioning feedback either from a HALL sensor or QEI Sensor.
+This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brush-less DC motor. Position loop can be closed with a positioning feedback either from a HALL or QEI Sensor.
 
 Hardware setup
 ++++++++++++++
 
-A minimal requirement for this application to run is having the SOMANET stack assembled consisting of the SOMANET Core, SOMANET Core to xTAG-2 Debug Adapter, and SOMANET IFM Drive DC 100/300 modules. The stack should be powered via the SOMANET IFM board. An example of an assembled stack is shown in the image below. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
+A minimal requirement for this application to run is having the complete *SOMANET* stack assembled consisting of a *SOMANET Core-C22*, *SOMANET Core* to xTAG-2 Debug Adapter, and a *SOMANET IFM-Drive-DC100/300* modules. The stack should be powered via the* SOMANET IFM* board. An example of an assembled stack is shown in the image below. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
 .. figure:: images/assembly_p9.jpg
    :width: 400px
@@ -21,11 +21,11 @@ A minimal requirement for this application to run is having the SOMANET stack as
 
 To setup the system:
 
-   #. If you don't have the stack assembled, assemble it as shown in the image above. Make sure to connect the IFM side of the SOMANET core module to the IFM DC 100/300 board and COM side to the Core Debug Adapter (see markings on the Core module)
+   #. If you don't have the stack assembled, assemble it as shown in the image above. Make sure to connect the IFM side of the *SOMANET Core* module to the *IFM-Drive-DC100/300* board and COM side to the Core Debug Adapter (see markings on the Core module)
    #. Connect the xTAG-2 Adapter to the Core Debug Adapter.
    #. Connect the xTAG-2 to host PC. 
    #. Connect the motor supplied with the kit as shown in the image bellow.
-   #. Connect the IFM DC 100 board to a 24 V DC power supply
+   #. Connect the *IFM-DC100* board to a 24 V DC power supply
    #. Switch on the power supply. If everything is connected properly, drained current should not exceed 100mA. 
 
 .. figure:: images/standalone_motorcontrol.jpg
@@ -37,24 +37,24 @@ To setup the system:
 Import and build the application
 ++++++++++++++++++++++++++++++++
 
-   #. Open xTIMEcomposer Studio and check that it is operating in online mode. Open the edit perspective (Window->Open Perspective->XMOS Edit).
-   #. Locate the ``'Motorcontrol Profile Positioning Control Demo'`` item in the xSOFTip pane on the bottom left of the window and drag it into the Project Explorer window in xTIMEcomposer. This will also cause the modules on which this application depends to be imported as well. 
-   #. Click on the ``app_demo_bldc_position`` item in the Project Explorer plane then click on the build icon (hammer) in xTIMEcomposer. Check the Console window to verify that the application has built successfully. 
+   #. Open *xTIMEcomposer* Studio and check that it is operating in online mode. Open the edit perspective (Window->Open Perspective->XMOS Edit).
+   #. Locate the ``'Motor Control Profile Positioning Control Demo'`` item in the *xSOFTip* pane on the bottom left of the window and drag it into the Project Explorer window in *xTIMEcomposer*. This will also cause the modules on which this application depends to be imported as well. 
+   #. Click on the ``app_demo_bldc_position`` item in the Project Explorer plane then click on the build icon (hammer) in *xTIMEcomposer*. Check the Console window to verify that the application has built successfully. 
 
-For help in using xTIMEcomposer, try the xTIMEcomposer tutorial, which you can find by selecting Help->Tutorials from the xTIMEcomposer menu.
+For help in using *xTIMEcomposer*, try the *xTIMEcomposer* tutorial, which you can find by selecting Help->Tutorials from the *xTIMEcomposer* menu.
 
-Note that the Developer Column in xTIMEcomposer Studio on the right hand side of your screen provides information on the xSOFTip components you are using. Select the ``sw_sncn_motorcontrol_ethercat_kit`` component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this quickstart guide within the Developer Column.
+Note that the Developer Column in *xTIMEcomposer* Studio on the right hand side of your screen provides information on the *xSOFTip* components you are using. Select the ``sw_sncn_motorcontrol_ethercat_kit`` component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this Quick Start Guide within the Developer Column.
 
 
 Run the application
 +++++++++++++++++++
 
-When the application has been compiled, the next step is to run it on the SOMANET Core module using the tools to load the application over JTAG (via the xTAG-2 and Core Debug Adapter) into the xCORE multi-core microcontroller.
+When the application has been compiled, the next step is to run it on the *SOMANET Core* module using the tools to load the application over JTAG (via the xTAG-2 and Core Debug Adapter) into the xCORE multi-core micro-controller.
 
    #. Select the file ``app_demo_bldc_position.xe`` in the ``app_demo_bldc_position`` project from the Project Explorer.
    #. Click on the ``Run`` icon (the white arrow in the green circle). 
    #. At the ``Select Device`` dialog, select ``XMOS xTAG-2 connect to L1[0..3]`` and click ``OK``.
-   #. The debug console window in xTIMEcomposer will not display any message. With the non modified application the rotor of the motor should make exactly one rotation and keep on holding the last position. 
+   #. The debug console window in *xTIMEcomposer* will not display any message. With the non modified application the rotor of the motor should make exactly one rotation and keep on holding the last position. 
    
 Next steps
 ++++++++++
@@ -67,7 +67,7 @@ You might also try varying accelerations and decelerations as well as profile ve
 Examine the code
 ................
 
-   #. In xTIMEcomposer navigate to the ``src`` directory under ``app_demo_bldc_position`` and double click on the ``demo-bldc-positioning.xc`` file within it. The file will open in the central editor window.
+   #. In *xTIMEcomposer* navigate to the ``src`` directory under ``app_demo_bldc_position`` and double click on the ``demo-bldc-positioning.xc`` file within it. The file will open in the central editor window.
    #. Find the main function and note that application runs one logical core on the COM_TILE (tile 0) for the user motor control application, one logical core on tile 2 for the main positioning control loop, and five cores on the IFM_TILE for commutation, watchdog, and motor feedback sensor servers.
    #. Core 1:  Test Profile Position Client function. It implements a user application for the profile positioning control. ::
 

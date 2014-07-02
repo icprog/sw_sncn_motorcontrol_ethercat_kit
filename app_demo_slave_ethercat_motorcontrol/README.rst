@@ -3,8 +3,8 @@ SOMANET EtherCAT slave application
 
 :scope: Example
 :description: This example demonstrates how to implement a motor control software for the slave side to be used for EtherCAT based control. The example includes all control modes that can be freely selected from the master side.
-:keywords: COM-EtherCAT, Motorcontrol, EtherCAT slave
-:boards: XK-SN-1BH12-E, XK-SN-1BQ12-E, SOMANET EtherCAT motorcontrol kit
+:keywords: COM-EtherCAT, Motor Control, EtherCAT, slave
+:boards: XK-SN-1BH12-E, XK-SN-1BQ12-E, SOMANET EtherCAT Motor Control Kit
 
 Description
 -----------
