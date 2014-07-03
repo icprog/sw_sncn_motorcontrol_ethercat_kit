@@ -110,8 +110,8 @@
     <docdir>app_demo_master_cyclic_torque</docdir>
     <docdir>app_demo_slave_ethercat_motorcontrol/doc_quickstart</docdir>
     <docdir>app_demo_bldc_position/doc_quickstart</docdir>
-    <docdir>app_demo_bldc_torque</docdir>
-    <docdir>app_demo_bldc_velocity</docdir>
+    <docdir>app_demo_bldc_torque/doc_quickstart</docdir>
+    <docdir>app_demo_bldc_velocity/doc_quickstart</docdir>
     <location>https://github.com/synapticon/sw_sncn_motorcontrol_ethercat_kit.git</location>
     <name>sw_sncn_motorcontrol_ethercat_kit</name>
     <maintainer>Synapticon</maintainer>
