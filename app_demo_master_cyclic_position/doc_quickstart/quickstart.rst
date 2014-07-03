@@ -1,4 +1,4 @@
-﻿.. _SOMANET_Cyclic_Positioning_Control_with_EtherCAT_Demo_Quickstart:
+.. _SOMANET_Cyclic_Positioning_Control_with_EtherCAT_Demo_Quickstart:
 
 SOMANET Cyclic Positioning Control with EtherCAT Demo Quick Start Guide
 =======================================================================
