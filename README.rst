@@ -1,7 +1,7 @@
 SOMANET EtherCAT Software Package
 =================================
 
-:Latest release: 1.1.0rc1
+:Latest release: 1.1.0rc2
 :Maintainer: Synapticon
 :Description: Top level applications and demonstrations for the SOMANET Motion Control Kit
 
