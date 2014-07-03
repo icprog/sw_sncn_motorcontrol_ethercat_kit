@@ -1,4 +1,4 @@
-﻿.. _SOMANET_Cyclic_Torque_Control_with_EtherCAT_Demo_Quickstart:
+.. _SOMANET_Cyclic_Torque_Control_with_EtherCAT_Demo_Quickstart:
 
 SOMANET Cyclic Torque Control with EtherCAT Demo Quick Start Guide
 ==================================================================

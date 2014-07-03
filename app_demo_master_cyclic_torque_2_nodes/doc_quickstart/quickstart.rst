@@ -1,4 +1,4 @@
-﻿.. _EtherCAT_Master_Cyclic_Torque_Control_with_Two_Nodes_Demo_Quickstart:
+.. _EtherCAT_Master_Cyclic_Torque_Control_with_Two_Nodes_Demo_Quickstart:
 
 EtherCAT Master Cyclic Torque Control with Two Nodes Demo Quick Start Guide
 ===========================================================================

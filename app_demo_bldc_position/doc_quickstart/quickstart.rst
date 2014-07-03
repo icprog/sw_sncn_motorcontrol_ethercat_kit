@@ -1,4 +1,4 @@
-﻿.. _SOMANET_IFM_Drive_Positioning_Control_Demo_Quickstart:
+.. _SOMANET_IFM_Drive_Positioning_Control_Demo_Quickstart:
 
 SOMANET Standalone Position Control Demo Quick Start Guide
 ==========================================================
