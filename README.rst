@@ -1,7 +1,7 @@
 SOMANET EtherCAT Software Package
 =================================
 
-:Latest release: 1.0.0rc6
+:Latest release: 1.0.0
 :Maintainer: Synapticon
 :Description: Top level applications and demonstrations for the SOMANET Motion Control Kit
 
@@ -27,13 +27,4 @@ Support
 -------
 
 Issues may be submitted via the Issues tab in this GitHub repository. Response to any issues submitted is at the discretion of the maintainer for this line.
-
-Required software (dependencies)
-================================
-
-  * sc_pwm (https://github.com/synapticon/sc_pwm.git)
-  * sc_sncn_motorcontrol (https://github.com/synapticon/sc_sncn_motorcontrol.git)
-  * sc_somanet-base (git@github.com:djpwilk/sc_somanet-base.git)
-  * sc_sncn_ethercat (git@github.com:synapticon/sc_sncn_ethercat.git)
-  * sc_sncn_ctrlproto (https://github.com/synapticon/sc_sncn_ctrlproto.git)
 

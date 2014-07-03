@@ -75,43 +75,43 @@
     </components>
     <dependency repo = "sc_sncn_motorcontrol">
         <gitbranch>release</gitbranch>
-        <githash>0e2e6ba69942aa47483cae4514d93b5c0cd3076f</githash>
+        <githash>f2f85b918399844af1f856507d0a921a24bd8540</githash>
         <uri>https://github.com/synapticon/sc_sncn_motorcontrol.git</uri>
-        <version>1.0.0rc0</version>
+        <version>1.0.1rc0</version>
     </dependency>
     <dependency repo = "sc_pwm">
-        <gitbranch>develop</gitbranch>
-        <githash>e3391d26ef95c6c2c4279fb2cd156d3fa23eb008</githash>
+        <gitbranch>release</gitbranch>
+        <githash>81c4407e4c08d3ec1b867c0fb748cbd24e69872f</githash>
         <uri>https://github.com/synapticon/sc_pwm.git</uri>
-        <version>1.0.0rc0</version>
+        <version>1.0.1rc4</version>
     </dependency>
     <dependency repo = "sc_somanet-base">
-        <gitbranch>(no branch)</gitbranch>
-        <githash>93f945d2a7a92c92e5369c32234bf34cffe2aefd</githash>
+        <gitbranch>release</gitbranch>
+        <githash>2f1e87095ae72d490e424e145e2999d4cbbd8826</githash>
         <uri>git@github.com:djpwilk/sc_somanet-base.git</uri>
-        <version>1.0.1rc1</version>
+        <version>1.0.1rc2</version>
     </dependency>
     <dependency repo = "sc_sncn_ethercat">
         <gitbranch>release</gitbranch>
-        <githash>b80612b315272c7fd3c445128d73ffad4e406585</githash>
+        <githash>665a176f14aed8d1f0f8ce0e3de57ea3b1585486</githash>
         <uri>git@github.com:synapticon/sc_sncn_ethercat.git</uri>
-        <version>1.0.0rc1</version>
+        <version>1.0.0rc3</version>
     </dependency>
     <dependency repo = "sc_sncn_ctrlproto">
         <gitbranch>release</gitbranch>
-        <githash>09c4c1669da6b53af66ac91297af9cfbe3f954e5</githash>
+        <githash>4d79dc41a17ac79cb4b3b7325c32009d483bf1d9</githash>
         <uri>https://github.com/synapticon/sc_sncn_ctrlproto.git</uri>
-        <version>1.0.0rc0</version>
+        <version>1.0.0rc1</version>
     </dependency>
     <description>Top level applications and demonstrations for the SOMANET Motion Control Kit</description>
+    <docdir>doc_hw_quickstart</docdir>
     <docdir>app_demo_master_cyclic_position/doc_quickstart</docdir>
+    <docdir>app_demo_master_cyclic_velocity</docdir>
+    <docdir>app_demo_master_cyclic_torque</docdir>
     <docdir>app_demo_slave_ethercat_motorcontrol/doc_quickstart</docdir>
     <docdir>app_demo_bldc_position/doc_quickstart</docdir>
-    <docdir>doc_hw_quickstart</docdir>
-    <exclude_dir>app_demo_master_cyclic_velocity</exclude_dir>
-    <exclude_dir>app_demo_master_cyclic_torque</exclude_dir>
-    <exclude_dir>app_demo_bldc_torque</exclude_dir>
-    <exclude_dir>app_demo_bldc_velocity</exclude_dir>
+    <docdir>app_demo_bldc_torque</docdir>
+    <docdir>app_demo_bldc_velocity</docdir>
     <location>https://github.com/synapticon/sw_sncn_motorcontrol_ethercat_kit.git</location>
     <name>sw_sncn_motorcontrol_ethercat_kit</name>
     <maintainer>Synapticon</maintainer>
@@ -126,7 +126,7 @@
     <release parenthash = "b8ac717951a386528ae4692a306590514d20ad00" version = "1.0.0rc3" githash = "cbd151b3cab755d3bf75750d323d7c95e4c95c32"></release>
     <release parenthash = "6d6382f2a172901d7cf2a55a8bb2a0405eb64c10" version = "1.0.0rc4" githash = "f1280fee10ddcce8b439f7f707bfdb5156674f31"></release>
     <release parenthash = "c19e6e58d5e87890e1d3cf099b877ebf5c24a5dc" version = "1.0.0rc5" githash = "d2c2d813328f9fcd32700e1a06259260bfcee59b"></release>
-    <release parenthash = "0d0864b273db84b81bb90f509a946c0399253871" version = "1.0.0rc6"></release>
+    <release parenthash = "0d0864b273db84b81bb90f509a946c0399253871" version = "1.0.0rc6" githash = "aab8e1fd2229fce470633a568e76322fa429d9b2"></release>
     <subpartnumber>XM-005844-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>
