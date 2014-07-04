@@ -9,7 +9,7 @@
 #include <print.h>
 #include <ioports.h>
 #include <pwm_service_inv.h>
-#include <comm_loop_server.h>
+#include <commutation_server.h>
 #include <qei_server.h>
 #include <hall_server.h>
 #include <adc_server_ad7949.h>
