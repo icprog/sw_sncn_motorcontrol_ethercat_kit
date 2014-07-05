@@ -1,4 +1,4 @@
-﻿.. _SOMANET_IFM_Drive_Velocity_Control_Demo_Quickstart:
+.. _SOMANET_IFM_Drive_Velocity_Control_Demo_Quickstart:
 
 SOMANET Standalone Profile Velocity Control Demo Quick Start Guide
 ==================================================================

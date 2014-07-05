@@ -1,4 +1,4 @@
-﻿.. _EtherCAT_Master_Cyclic_Velocity_Control_with_Two_Nodes_Demo_Quickstart:
+.. _EtherCAT_Master_Cyclic_Velocity_Control_with_Two_Nodes_Demo_Quickstart:
 
 EtherCAT Master Cyclic Velocity Control with Two Nodes Demo Quick Start Guide
 =============================================================================

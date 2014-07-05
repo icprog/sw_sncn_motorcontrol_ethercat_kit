@@ -1,5 +1,5 @@
 SOMANET EtherCAT CST Motor Control Demo
-======================================
+=======================================
 
 :scope: Example
 :description: This example demonstrates how to implement an EtherCAT master motor control application for a Linux PC. A Cyclic Synchronous Torque mode is demonstrated.

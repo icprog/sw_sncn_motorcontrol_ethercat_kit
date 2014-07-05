@@ -1,4 +1,4 @@
-﻿.. _SOMANET_IFM_Drive_Torque_Control_Demo_Quickstart:
+.. _SOMANET_IFM_Drive_Torque_Control_Demo_Quickstart:
 
 SOMANET Standalone Profile Torque Control Demo Quick Start Guide
 ================================================================

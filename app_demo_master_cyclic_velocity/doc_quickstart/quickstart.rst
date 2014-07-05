@@ -1,4 +1,4 @@
-﻿.. _SOMANET_Cyclic_Velocity_Control_with_EtherCAT_Demo_Quickstart:
+.. _SOMANET_Cyclic_Velocity_Control_with_EtherCAT_Demo_Quickstart:
 
 SOMANET Cyclic Velocity Control with EtherCAT Demo Quick Start Guide
 ====================================================================

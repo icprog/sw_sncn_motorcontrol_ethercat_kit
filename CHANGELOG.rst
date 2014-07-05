@@ -1,6 +1,12 @@
 sw_sncn_motorcontrol_ethercat_kit Change Log
 ============================================
 
+1.1.0
+-----
+
+  * Introduced additional demo apps for torque and velocity control
+  * Other documentation improvements
+
 1.0.0
 -----
 

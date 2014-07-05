@@ -247,7 +247,7 @@ The Motor & Motion Control Kit includes a set of software modules that run on th
 The software is delivered as individual components within the *xTIMEcomposer* Studio development tools, which are available free of charge from the XMOS website: http://www.xmos.com/xtimecomposer
 
 Installing *xTIMEcomposer*
-++++++++++++++++++++++++
+++++++++++++++++++++++++++
 
 The *xTIMEcomposer* tool chain is a suite of development tools for xCORE multi-core micro-controllers. It provides everything you need to develop applications to run on the hardware, as well as unique tools for timing closure and code instrumentation. The tools can be run from *xTIMEcomposer* Studio, an integrated development environment based on Eclipse, or the command line. XMOS provides a free to download version of *xTIMEcomposer* to all users who register on the XMOS website. The tools can be downloaded from: http://www.xmos.com/xtimecomposer
 
