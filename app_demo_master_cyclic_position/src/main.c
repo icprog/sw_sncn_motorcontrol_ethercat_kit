@@ -53,25 +53,16 @@ int main() {
     /* Initialize position profile parameters */
     initialize_position_profile_limits(ECAT_SLAVE_0, slv_handles);
 
-    /**
-     * Makes motor move slightly to get some position feedback
-     */
-    for (int i = 1; i < n_init_ticks + 1; i++){
-        set_position_ticks(i, ECAT_SLAVE_0, slv_handles);
-        actual_position = get_position_actual_ticks(ECAT_SLAVE_0,
-                                slv_handles);
-    }
-    for (int j = n_init_ticks + 1; j > -1; j--){
-        set_position_ticks(j, ECAT_SLAVE_0, slv_handles);
-        actual_position = get_position_actual_ticks(ECAT_SLAVE_0,
-                                slv_handles);
-    }
-
     /* Just for better printing result */
     printf("\n");
     system("setterm -cursor off");
 
-    for (int times = 0; times < 3; times++) {
+    /* Getting actual position */
+    actual_position = get_position_actual_ticks(ECAT_SLAVE_0, slv_handles);
+    printf("our actual position: %i ticks\n",actual_position);
+
+    /* Moving four times one rotation back and forth */
+    for (int times = 0; times < 4; times++) {
 
         /* Compute a target position */
         relative_target_position = actual_position + direction
