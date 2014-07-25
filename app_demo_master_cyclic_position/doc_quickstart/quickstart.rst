@@ -103,17 +103,15 @@ Examine the code
 
    #. ``initialize_position_profile_limits`` initializes position control limits as defined in your ``bldc_motor_config_1.h`` file.
 
-   #. The motion control routine should be executed in a loop. In the example we perform one complete rotor rotation with a linear motion profile. The ``pdo_handle_ecat`` is a handler that takes care of a real-time information update over EtherCAT.  
+   #. The motion control routine should be executed in a loop. In the example we perform four complete rotor rotations with a linear motion profile. 
 
    #. To start moving to a desired position we first need to identify where we are. Call the ``get_position_actual_ticks`` method to get the actual position. Note, that positioning control uses Hall or Encoder sensor ticks to close the loop. The Hall sensors provide a discrete feedback and the values between are interpolated based on the velocity. One magnetic rotation results in 4096 Hall sensor ticks. To perform one complete rotation the magnetic rotation setpoint value should be multiplied by the number of magnetic poles. In the kit the motor has 3 pole pairs, therefore the desired setpoint would be 4096 X 3 = 12288 that is added to the actual position to calculate the ``target_position`` for one complete rotation.
 
    #. After we defined how far we should move, we need to calculate number of steps required for the profile generator to complete the motion. For this the ``init_position_profile_params`` method is used that takes as an input the target position, actual position, desired profile velocity, and accelerations and decelerations to reach that velocity.
 
-   #. The steps are then provided in a cyclic way to the motion profile generator (``generate_profile_position``) that calculates the immediate position setpoint (``position_ramp``) that is used as input for the positioning controller on the slave side (is sent over EtherCAT by the ``set_position_ticks`` function call). 
+   #. The steps are then provided in a cyclic way to the motion profile generator (``generate_profile_position``) that calculates the immediate position setpoint (``position_ramp``) that is used as input for the positioning controller on the slave side (is sent over EtherCAT by the ``set_position_ticks`` function call). The ``pdo_handle_ecat`` is a handler that takes care of a real-time information update over EtherCAT.  
 
    #. To get the position, velocity and torque feedback from the controller the ``get_position_actual_ticks``, ``get_velocity_actual_rpm``, and ``get_torque_actual_mNm`` functions are used respectively.
 
-
-   #. As an example for the state machine the methods as ``quick_stop_position``, ``renable_ctrl_quick_stop``, ``set_operation_mode``, ``enable_operation``, and ``shutdown_operation`` are included in the software but are not used. Please refer to the state machine diagram to include them properly when developing a custom application.
-
+   #. As an example for the state machine the methods as ``quick_stop_position``, ``renable_ctrl_quick_stop``, ``set_operation_mode``, ``enable_operation``, and ``shutdown_operation`` are included in the software and are executed after the four rotations are done. Please refer to the state machine diagram to include them properly when developing a custom application.
 
