@@ -49,24 +49,24 @@
             <board>XK-SN-1BH12-E</board>
             <board>XK-SN-1BQ12-E</board>
             <board>SOMANET EtherCAT Motor Control Kit</board>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motorcontrol_common</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_adc</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_gpio</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_profile</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.1">module_pwm_symmetrical</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_ctrlproto.git" version = "1.0.0">module_ctrlproto</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_sm</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_xscope-wrapper</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_blocks</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_ethercat.git" version = "1.0.0">module_ethercat_fwupdate</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_commutation</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_nodeconfig</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ctrl_loops</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_hall</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ecat_drive</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motor</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_qei</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_communication</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ecat_drive</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_xscope-wrapper</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_gpio</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_adc</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_profile</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_ctrlproto.git" version = "1.0.0">module_ctrlproto</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_qei</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_ethercat.git" version = "1.0.0">module_ethercat_fwupdate</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_blocks</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.1">module_pwm_symmetrical</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_commutation</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motorcontrol_common</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_hall</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ctrl_loops</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_nodeconfig</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_sm</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motor</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_ethercat.git" version = "1.0.0">module_ethercat</componentDependency>
             <keyword>COM-EtherCAT</keyword>
             <keyword>Motor Control</keyword>
@@ -97,18 +97,18 @@
             <board>SOMANET Core-C22</board>
             <board>SOMANET IFM-Drive-DC100/300</board>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_profile</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_xscope-wrapper</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motorcontrol_common</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_commutation</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_hall</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ctrl_loops</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_sm</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_adc</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motor</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motorcontrol_common</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_blocks</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.1">module_pwm_symmetrical</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_adc</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ctrl_loops</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_commutation</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_nodeconfig</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.1">module_pwm_symmetrical</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_hall</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_qei</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_xscope-wrapper</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motor</componentDependency>
             <keyword>Motor Control</keyword>
             <keyword>Profile Velocity</keyword>
         </component>
@@ -118,19 +118,19 @@
             <board>SOMANET EtherCAT Motor Control Kit</board>
             <board>SOMANET Core-C22</board>
             <board>SOMANET IFM-Drive-DC100/300</board>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_sm</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_hall</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_xscope-wrapper</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motor</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ctrl_loops</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_commutation</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_blocks</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_profile</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.1">module_pwm_symmetrical</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_qei</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_nodeconfig</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motorcontrol_common</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.1">module_pwm_symmetrical</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_sm</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_profile</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_xscope-wrapper</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_adc</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_commutation</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_hall</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_blocks</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_qei</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ctrl_loops</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_nodeconfig</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motor</componentDependency>
             <keyword>COM-EtherCAT</keyword>
             <keyword>Motor Control</keyword>
             <keyword>Profile Torque</keyword>
@@ -141,19 +141,19 @@
             <board>SOMANET EtherCAT Motor Control Kit</board>
             <board>SOMANET Core-C22</board>
             <board>SOMANET IFM-Drive-DC100/300</board>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motor</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motorcontrol_common</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_xscope-wrapper</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_sm</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_hall</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.1">module_pwm_symmetrical</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_adc</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_commutation</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motor</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_blocks</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_profile</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_sm</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_qei</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_ctrl_loops</componentDependency>
             <componentDependency repo = "git://github.com/synapticon/sc_somanet-base.git" version = "1.0.1">module_nodeconfig</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_pwm.git" version = "1.0.1">module_pwm_symmetrical</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_motorcontrol_common</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_qei</componentDependency>
-            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_adc</componentDependency>
+            <componentDependency repo = "git://github.com/synapticon/sc_sncn_motorcontrol.git" version = "1.0.1">module_profile</componentDependency>
             <keyword>COM-EtherCAT</keyword>
             <keyword>Motor Control</keyword>
             <keyword>EtherCAT slave</keyword>
@@ -161,9 +161,9 @@
     </components>
     <dependency repo = "sc_sncn_motorcontrol">
         <gitbranch>release</gitbranch>
-        <githash>98596aa49304db50207b2915f2e9dd35cacc9beb</githash>
+        <githash>88f41d1317ab6a16bdf5166f765d62c72ddc54c8</githash>
         <uri>https://github.com/synapticon/sc_sncn_motorcontrol.git</uri>
-        <version>1.0.1rc2</version>
+        <version>1.0.1rc3</version>
     </dependency>
     <dependency repo = "sc_pwm">
         <gitbranch>release</gitbranch>
@@ -215,7 +215,8 @@
     <release parenthash = "0d0864b273db84b81bb90f509a946c0399253871" version = "1.0.0rc6" githash = "aab8e1fd2229fce470633a568e76322fa429d9b2"></release>
     <release parenthash = "1320129ea52639313a723f64c7e29b0476590210" version = "1.1.0rc0" githash = "5f6a9e32d713bb0bd44c9e035cfc03a4f8b93510"></release>
     <release parenthash = "ffea7367466a1527a07a7200e60f24c4fede6be5" version = "1.1.0rc1" githash = "2ec89b94ba646d3352a243ffcb91d127ea7945a1"></release>
-    <release parenthash = "c90bf0478cd9e78574d1feb122a0bedeec4f533d" version = "1.1.0rc2"></release>
+    <release parenthash = "c90bf0478cd9e78574d1feb122a0bedeec4f533d" version = "1.1.0rc2" githash = "2c6f5789771ca386c0bdde2dbc3c7919526367dd"></release>
+    <release parenthash = "0815778c485346b5a047febf03d6f5d4548be2ae" version = "1.1.0rc3"></release>
     <subpartnumber>XM-005844-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>
