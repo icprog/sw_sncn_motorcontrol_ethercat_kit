@@ -81,6 +81,8 @@ Examine the code
 
    #. In *xTIMEcomposer* navigate to the ``src`` directory under ``app_demo_master_cyclic_torque`` and double click on the ``main.c`` file within it. The file will open in the central editor window.
 
+   #. Before the main function you see a global variable and an interrupt handling function. These are there only for handling interrupts when a user executes the ``Ctrl + C`` interrupt sequence. 
+
    #. Find and examine the main function. At the beginning you'll find variables declarations that will be used to define your desired motion profile and provide you feedback from the motor. The ``slave_number`` variable is used when the nodes are operating in a multi-node setup.
 
    #. Before starting the main control routine you are required to initialise a set of parameters and to follow a motor starting state machine as defined in the CiA 402 directive (see the image bellow).
@@ -93,8 +95,6 @@ Examine the code
 
    #. ``init_master`` is taking care of the EtherCAT communication initialization. In case of the multi-node system the EtherCAT nodes can be configured from the ``ethercat_setup.h`` in the ``src`` directory. The default configuration allows you to get started with a single node setup without making any changes.
 
-   #. ``initialize_torque`` is required to have a torque feedback, even if you are not using the torque control.
-
    #. The ``init_nodes`` routine will take care of loading your motor configuration(s) into the slaves via EtherCAT. All slave nodes are running the same software and can be configured for using different motors from the master side. The motor configurations are included in the ``motor_config`` folder, and the config files there have ``_N`` extensions to differentiate between various motors. When you specify a CONFIG_NUMBER in the ``SOMANET_C22_CTRLPROTO_SLAVE_HANDLES_ENTRY`` (defined in the ``ethercat_setup.h``), all corresponding configurations are being loaded to all the nodes. For the single-node setup only ``bldc_motor_config_1.h`` is used.
 
    #. ``set_operation_mode`` defines the control mode to be used. In this example we are using the Cyclic Synchronous Velocity mode (CSV).
@@ -103,12 +103,12 @@ Examine the code
 
    #. To compute the number of steps required to achieve the desired velocity profile we need to call the ``init_velocity_profile_params`` function and provide it our desired profile parameters as the target and actual velocity values along with acceleration and deceleration.
 
-   #. The motion control routine should be executed in a loop. In the example we are ramping up to the target velocity value and then executing a quick stop action. The ``pdo_handle_ecat`` is a handler that takes care of a real-time information update over EtherCAT.  
+   #. The motion control routine should be executed in a loop. In the example we are ramping up to the target velocity value and executing a quick stop action if user presses the ``Ctrl + C`` interrupt sequence. The ``pdo_handle_ecat`` is a handler that takes care of a real-time information update over EtherCAT.  
 
-   #. The steps are then provided in a cyclic way to the motion profile generator (``generate_profile_velocity``) that calculates the immediate velocity setpoint (``target_velocity``) that is used as input for the velocity controller on the slave side (is sent over EtherCAT by the ``set_velocity_rpm`` function call). 
+   #. For the computed number of steps at each step in a cyclic way we generate a new velocity setpoint (``target_velocity``) by calling the profile generator (``generate_profile_velocity``)  function. The new computed velocity setpoint is then used as input for the velocity controller on the slave side (is sent over EtherCAT by the ``set_velocity_rpm`` function call). 
 
    #. To get the velocity, position, and torque feedback from the controller the ``get_velocity_actual_rpm``, ``get_position_actual_ticks``, and ``get_torque_actual_mNm`` functions are used respectively.
 
-   #. As an example for the state machine the methods as ``quick_stop_position``, ``renable_ctrl_quick_stop``, ``set_operation_mode``, ``enable_operation``, and ``shutdown_operation`` are included in the software, and the master application will properly exit and disable the motor after the velocity target value is reached. Please refer to the state machine diagram to include them properly when developing your custom application.
+   #. As an example for the state machine the methods as ``quick_stop_velocity``, ``renable_ctrl_quick_stop``, ``set_operation_mode``, ``enable_operation``, and ``shutdown_operation`` are included in the software, and the master application will properly exit and disable the motor when the ``Ctrl + C`` interrupt sequence is executed. Please refer to the state machine diagram to include them properly when developing your custom application.
 
 
