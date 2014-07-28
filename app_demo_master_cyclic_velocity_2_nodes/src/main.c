@@ -106,6 +106,11 @@ int main()
 	/* catch interrupt signal */
 	signal(SIGINT, INThandler);
 
+    /* Just for better printing result */
+    printf("\n");
+    system("setterm -cursor off");
+
+
 	while(1)
 	{
 		/* Update the process data (EtherCat packets) sent/received from the node */
