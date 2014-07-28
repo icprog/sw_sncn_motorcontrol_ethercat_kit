@@ -114,20 +114,17 @@ int main()
 
                 /* Read Actual Position from the node for initialization */
                 if (!absolute_position_taken) {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        zero_position_drive_1 = get_position_actual_ticks(ECAT_SLAVE_0, slv_handles);
-                        zero_position_drive_2 = get_position_actual_ticks(ECAT_SLAVE_1, slv_handles);
-                        pdo_handle_ecat(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
-                        printf("taking abs position\n");
-                    }
+                    printf("taking abs position\n");
+                    zero_position_drive_1 = get_position_actual_ticks(ECAT_SLAVE_0, slv_handles);
+                    zero_position_drive_2 = get_position_actual_ticks(ECAT_SLAVE_1, slv_handles);
+                    pdo_handle_ecat(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
                     absolute_position_taken = true;
                     printf("abs positions are taken: \n%i\n%i\n", zero_position_drive_1, zero_position_drive_2);
                 }
 
                 /* Setup Target Position */
                 target_position_drive_1 =  zero_position_drive_1 + one_rotation * 5;
-                target_position_drive_2 =  zero_position_drive_1 + one_rotation * 5;
+                target_position_drive_2 =  zero_position_drive_2 + one_rotation * 5;
 
                 /* Read Actual Position */
                 actual_position_drive_1 = get_position_actual_ticks(ECAT_SLAVE_0, slv_handles);
