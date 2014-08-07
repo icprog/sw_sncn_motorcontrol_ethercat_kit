@@ -43,7 +43,7 @@ void xscope_initialise_1()
 /* Test Profile Torque Function */
 void profile_torque_test(chanend c_torque_ctrl)
 {
-	int target_torque = 1000; 	//(desired torque/torque_constant)  * IFM resolution
+	int target_torque = 100; 	//(desired torque/torque_constant)  * IFM resolution
 	int torque_slope  = 100;  	//(desired torque_slope/torque_constant)  * IFM resolution
 	cst_par cst_params; int actual_torque; timer t; unsigned int time;
 	init_cst_param(cst_params);
