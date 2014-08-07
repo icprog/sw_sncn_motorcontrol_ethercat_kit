@@ -30,7 +30,7 @@
 
 /* Position Sensor Types (select your sensor type here)
  * (HALL/ QEI_INDEX/ QEI_NO_INDEX) */
-#define SENSOR_SELECTION_CODE_3         QEI_INDEX
+#define SENSOR_SELECTION_CODE_3         QEI_NO_INDEX
 
 /* Polarity is used to keep all position sensors to count ticks in the same direction
  *  (QEI_POLARITY_NORMAL/QEI_POLARITY_INVERTED) */
@@ -60,7 +60,7 @@
 #define MAX_ACCELERATION_3              5000    // rpm/s
 #define PROFILE_ACCELERATION_3          2000    // rpm/s
 #define PROFILE_DECELERATION_3          2000    // rpm/s
-#define QUICK_STOP_DECELERATION_3       2000    // rpm/s
+#define QUICK_STOP_DECELERATION_3       1000    // rpm/s
 #define MAX_TORQUE_3                    MOTOR_TORQUE_CONSTANT_3 * IFM_RESOLUTION_3 * MAX_NOMINAL_CURRENT_3 // calculated
 #define TORQUE_SLOPE_3                  66      // mNm/s
 
