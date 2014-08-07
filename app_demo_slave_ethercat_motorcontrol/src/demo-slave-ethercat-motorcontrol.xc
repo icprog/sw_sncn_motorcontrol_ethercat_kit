@@ -18,6 +18,7 @@
 #include <torque_ctrl_server.h>
 #include <ecat_motor_drive.h>
 #include <bldc_motor_config.h>
+#include <ethercat.h>
 #include <flash_somanet.h>
 #include <gpio_server.h>
 #include <comm.h>
