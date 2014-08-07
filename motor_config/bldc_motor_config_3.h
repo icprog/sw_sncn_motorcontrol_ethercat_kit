@@ -30,7 +30,7 @@
 
 /* Position Sensor Types (select your sensor type here)
  * (HALL/ QEI_INDEX/ QEI_NO_INDEX) */
-#define SENSOR_SELECTION_CODE_3         QEI_NO_INDEX
+#define SENSOR_SELECTION_CODE_3         QEI_INDEX
 
 /* Polarity is used to keep all position sensors to count ticks in the same direction
  *  (QEI_POLARITY_NORMAL/QEI_POLARITY_INVERTED) */
@@ -79,10 +79,10 @@
     /* Velocity Control (Mandatory if Velocity control used)
      * possible range of gains Kp/Ki/Kd: 1/65536 to 32760
      * Note: gains are calculated as NUMERATOR/DENOMINATOR to give ranges */
-#define VELOCITY_Kp_NUMERATOR_3       5
-#define VELOCITY_Kp_DENOMINATOR_3     10
-#define VELOCITY_Ki_NUMERATOR_3       5
-#define VELOCITY_Ki_DENOMINATOR_3     100
+#define VELOCITY_Kp_NUMERATOR_3       1
+#define VELOCITY_Kp_DENOMINATOR_3     20
+#define VELOCITY_Ki_NUMERATOR_3       1
+#define VELOCITY_Ki_DENOMINATOR_3     300
 #define VELOCITY_Kd_NUMERATOR_3       0
 #define VELOCITY_Kd_DENOMINATOR_3     1
 
