@@ -16,4 +16,4 @@ DOXYGEN_DIRS=$(REPO)/doc_hw_quickstart
 DOXYGEN_DIRS+=$(REPO)/app_demo_bldc_position
 SOURCE_INCLUDE_DIRS=$(REPO)
 XDOC_DIR ?= ../xdoc
-include $(XDOC_DIR)/Makefile.inc
+-include $(XDOC_DIR)/Makefile.inc
