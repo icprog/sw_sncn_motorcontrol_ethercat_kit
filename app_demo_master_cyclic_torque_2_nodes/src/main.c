@@ -105,13 +105,16 @@ int main()
     /* Compute steps needed for the target torque */
     for (int i = 0; i < TOTAL_NUM_OF_SLAVES; i++ )
     {
-        printf("slave %d SP:  %d\n", i+1, *(p + i));
+        printf("DRIVE %d TORQUE SP:  %d\n", i+1, *(p + i));
         final_target_torque = *(p + i);
         steps[i] = init_linear_profile_params(final_target_torque, actual_torque_drive_1, torque_slope, i, slv_handles);
     }
 
 	/* catch interrupt signal */
 	signal(SIGINT, INThandler);
+
+    /* Just for better printing result */
+    system("setterm -cursor off");
 
 	while(1)
 	{
@@ -124,22 +127,9 @@ int main()
 			{
 				/* Generate target torque steps */
 				target_torque_drive_1 = generate_profile_linear(inc_drive_1, ECAT_SLAVE_0, slv_handles);
-				printf("\ntarget_torque slave 1: %f \n",target_torque_drive_1);
+
 				/* Send target torque for the node specified by slave_number */
 				set_torque_mNm(target_torque_drive_1, ECAT_SLAVE_0, slv_handles);
-
-				/* Read actual node sensor values */
-				actual_torque_drive_1 = get_torque_actual_mNm(ECAT_SLAVE_0, slv_handles);
-				actual_position_drive_1 = get_position_actual_ticks(ECAT_SLAVE_0, slv_handles);
-				actual_velocity_drive_1 = get_velocity_actual_rpm(ECAT_SLAVE_0, slv_handles);
-				printf("actual_torque slave 1: %f actual_position slave 1: %d actual_velocity slave 1: %d\n",
-				        actual_torque_drive_1, actual_position_drive_1, actual_velocity_drive_1);
-
-                /* Trigger emergency stop if max velocity is reached*/
-                if (actual_velocity_drive_1 > MAX_VELOCITY){
-                    printf("\nDanger! Max velocity is reached\n");
-                    break_loop = true;
-                }
 
 				inc_drive_1++;
 			}
@@ -148,22 +138,9 @@ int main()
             {
                 /* Generate target torque steps */
                 target_torque_drive_2 = generate_profile_linear(inc_drive_2, ECAT_SLAVE_1, slv_handles);
-                printf("\ntarget_torque slave 2: %f \n",target_torque_drive_2);
+
                 /* Send target torque for the node specified by slave_number */
                 set_torque_mNm(target_torque_drive_2, ECAT_SLAVE_1, slv_handles);
-
-                /* Read actual node sensor values */
-                actual_torque_drive_2 = get_torque_actual_mNm(ECAT_SLAVE_1, slv_handles);
-                actual_position_drive_2 = get_position_actual_ticks(ECAT_SLAVE_1, slv_handles);
-                actual_velocity_drive_2 = get_velocity_actual_rpm(ECAT_SLAVE_1, slv_handles);
-                printf("actual_torque slave 2: %f actual_position slave 2: %d actual_velocity slave 2: %d\n",
-                        actual_torque_drive_2, actual_position_drive_2, actual_velocity_drive_2);
-
-                /* Trigger emergency stop if max velocity is reached*/
-                if (actual_velocity_drive_2 > MAX_VELOCITY){
-                    printf("\nDanger! Max velocity is reached\n");
-                    break_loop = true;
-                }
 
                 inc_drive_2++;
             }
@@ -172,16 +149,37 @@ int main()
 			{
 			    actual_torque_drive_1 = get_torque_actual_mNm(ECAT_SLAVE_0, slv_handles);
 			    actual_torque_drive_2 = get_torque_actual_mNm(ECAT_SLAVE_1, slv_handles);
+                actual_velocity_drive_1 = get_velocity_actual_rpm(ECAT_SLAVE_0, slv_handles);
+                actual_velocity_drive_2 = get_velocity_actual_rpm(ECAT_SLAVE_1, slv_handles);
+			    actual_position_drive_1 = get_position_actual_ticks(ECAT_SLAVE_0, slv_handles);
+			    actual_position_drive_2 = get_position_actual_ticks(ECAT_SLAVE_1, slv_handles);
+
 				printf("Target torques are reached. ");
-				printf("slave 1: %4.2f     slave 2: %4.2f     \r", actual_torque_drive_1, actual_torque_drive_2);
+				printf("DRIVE 1: tq:%6.2f vel:%5.d pos:%8.d  |  DRIVE 2: tq:%6.2f vel:%5.d pos:%8.d    \r",
+				        actual_torque_drive_1, actual_velocity_drive_1, actual_position_drive_1,
+				        actual_torque_drive_2, actual_velocity_drive_2, actual_position_drive_2);
 			}
+			else{
+	            /* Read actual node sensor values */
+	            actual_torque_drive_1 = get_torque_actual_mNm(ECAT_SLAVE_0, slv_handles);
+	            actual_torque_drive_2 = get_torque_actual_mNm(ECAT_SLAVE_1, slv_handles);
+	            printf("target tq DRIVE 1: %6.2f actual torque DRIVE 1: %6.2f | target tq DRIVE 2: %6.2f actual torque DRIVE 2: %6.2f \r",
+	                    target_torque_drive_1, actual_torque_drive_1, target_torque_drive_2, actual_torque_drive_2);
+			}
+
+            /* Trigger emergency stop if max velocity is reached*/
+            actual_velocity_drive_1 = get_velocity_actual_rpm(ECAT_SLAVE_0, slv_handles);
+            actual_velocity_drive_2 = get_velocity_actual_rpm(ECAT_SLAVE_1, slv_handles);
+            if (actual_velocity_drive_1 > MAX_VELOCITY || actual_velocity_drive_2 > MAX_VELOCITY){
+                printf("\nDanger! Max velocity is reached\n");
+                break_loop = true;
+            }
+
 		}
 		else if (break_loop){
 		    break;
 		}
 	}
-
-
 
 	/* Quick stop torque mode (for emergency) */
 	quick_stop_torque(ECAT_SLAVE_0, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
@@ -200,6 +198,9 @@ int main()
 	/* Shutdown node operations */
 	shutdown_operation(CST, ECAT_SLAVE_0, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 	shutdown_operation(CST, ECAT_SLAVE_1, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
+
+    /* Just for better printing result */
+    system("setterm -cursor on");
 
 	return 0;
 }
