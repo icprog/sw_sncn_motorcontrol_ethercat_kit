@@ -65,15 +65,15 @@ int main()
 {
 	int flag = 0;
 
-	int final_target_velocity = 2000;			//rpm
-	int acceleration= 500;						//rpm/s
-	int deceleration = 500;					    //rpm/s
+	int final_target_velocity = 2000;			     //rpm
+	int acceleration= 500;					    	 //rpm/s
+	int deceleration = 500;			       		     //rpm/s
 	int steps[TOTAL_NUM_OF_SLAVES];
 	int inc[TOTAL_NUM_OF_SLAVES];
-	int target_velocity = 0;					// rpm
-	int actual_velocity = 0;					// rpm
-	int actual_position;						// ticks
-	float actual_torque;						// mNm
+	int target_velocity = 0;					     // rpm
+	int actual_velocity[TOTAL_NUM_OF_SLAVES] = {0,0};// rpm
+	int actual_position[TOTAL_NUM_OF_SLAVES];        // ticks
+	float actual_torque[TOTAL_NUM_OF_SLAVES];	     // mNm
 
 	int *p;
 	p = read_user_input();
@@ -97,9 +97,9 @@ int main()
     /* Compute steps needed to execute velocity profile */
     for (int i = 0; i < TOTAL_NUM_OF_SLAVES; i++ )
     {
-        printf("slave %d SP:  %d\n", i+1, *(p + i));
+        printf("DRIVE %d VELOCITY SP:  %d\n", i+1, *(p + i));
         final_target_velocity = *(p + i);
-        steps[i] = init_velocity_profile_params(final_target_velocity, actual_velocity, acceleration, deceleration, i, slv_handles);
+        steps[i] = init_velocity_profile_params(final_target_velocity, actual_velocity[i], acceleration, deceleration, i, slv_handles);
         inc[i] = 1;
     }
 
@@ -127,12 +127,6 @@ int main()
 				/* Send target velocity for the node specified by slave_number */
 				set_velocity_rpm(target_velocity, ECAT_SLAVE_0, slv_handles);
 
-				/* Read actual node sensor values */
-				actual_velocity = get_velocity_actual_rpm(ECAT_SLAVE_0, slv_handles);
-				actual_position = get_position_actual_ticks(ECAT_SLAVE_0, slv_handles);
-				actual_torque = get_torque_actual_mNm(ECAT_SLAVE_0, slv_handles);
-				printf("\nVelocity drive 1: %d Position drive 1: %d Torque drive 1: %4.2f\n",
-				        actual_velocity, actual_position, actual_torque);
 				inc[ECAT_SLAVE_0]++;
 			}
 
@@ -145,23 +139,28 @@ int main()
                 /* Send target velocity for the node specified by slave_number */
                 set_velocity_rpm(target_velocity, ECAT_SLAVE_1, slv_handles);
 
-                /* Read actual node sensor values */
-                actual_velocity = get_velocity_actual_rpm(ECAT_SLAVE_1, slv_handles);
-                actual_position = get_position_actual_ticks(ECAT_SLAVE_1, slv_handles);
-                actual_torque = get_torque_actual_mNm(ECAT_SLAVE_1, slv_handles);
-                printf("Velocity drive 2: %d Position slave 2: %d Torque slave 2: %4.2f\n",
-                        actual_velocity, actual_position, actual_torque);
                 inc[ECAT_SLAVE_1]++;
             }
-
 
             if(inc[ECAT_SLAVE_0] >= steps[ECAT_SLAVE_0] && inc[ECAT_SLAVE_1] >= steps[ECAT_SLAVE_1])
 			{
                 printf("Target velocities are reached. Press 'Ctrl + C' to quit! |  ");
-                printf("slave 1: %4d   slave 2: %4d     \r",
+                printf("DRIVE 1: %4d   DRIVE 2: %4d     \r",
                         get_velocity_actual_rpm(ECAT_SLAVE_0, slv_handles),
                         get_velocity_actual_rpm(ECAT_SLAVE_1, slv_handles));
 			}
+            else{
+                /* Read actual node sensor values */
+                actual_velocity[ECAT_SLAVE_0] = get_velocity_actual_rpm(ECAT_SLAVE_0, slv_handles);
+                actual_velocity[ECAT_SLAVE_1] = get_velocity_actual_rpm(ECAT_SLAVE_1, slv_handles);
+                actual_position[ECAT_SLAVE_0] = get_position_actual_ticks(ECAT_SLAVE_0, slv_handles);
+                actual_position[ECAT_SLAVE_1] = get_position_actual_ticks(ECAT_SLAVE_1, slv_handles);
+                actual_torque[ECAT_SLAVE_0] = get_torque_actual_mNm(ECAT_SLAVE_0, slv_handles);
+                actual_torque[ECAT_SLAVE_1] = get_torque_actual_mNm(ECAT_SLAVE_1, slv_handles);
+                printf("DRIVE 1: vel:%5.d pos:%8.d tq:%6.2f  |  DRIVE 2: vel:%5.d pos:%8.d tq:%6.2f     \r",
+                        actual_velocity[ECAT_SLAVE_0], actual_position[ECAT_SLAVE_0], actual_torque[ECAT_SLAVE_0],
+                        actual_velocity[ECAT_SLAVE_1], actual_position[ECAT_SLAVE_1], actual_torque[ECAT_SLAVE_1]);
+            }
 		}
 		else if (break_loop){
             break;
@@ -185,6 +184,9 @@ int main()
 	/* Shutdown node operations */
 	shutdown_operation(CSV, ECAT_SLAVE_0, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 	shutdown_operation(CSV, ECAT_SLAVE_1, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
+
+    /* Just for better printing result */
+    system("setterm -cursor on");
 
 	return 0;
 }
