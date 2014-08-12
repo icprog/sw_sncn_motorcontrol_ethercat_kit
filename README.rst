@@ -37,3 +37,9 @@ Required software (dependencies)
   * sc_sncn_ethercat (git@github.com:synapticon/sc_sncn_ethercat.git)
   * sc_sncn_ctrlproto (https://github.com/synapticon/sc_sncn_ctrlproto.git)
 
+Documentation
+=============
+`Extensive documentation`_
+
+.. _Extensive documentation: http://85.214.233.250:90/codedocs/develop/sw_sncn_motorcontrol_ethercat_kit/index.html
+
