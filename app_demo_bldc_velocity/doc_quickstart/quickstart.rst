@@ -1,10 +1,7 @@
-.. _SOMANET_IFM_Drive_Velocity_Control_Demo_Quickstart:
+.. _SOMANET_Standalone_Velocity_Control_Demo_Quickstart:
 
 SOMANET Standalone Profile Velocity Control Demo Quick Start Guide
 ==================================================================
-
-sw_sncn_motorcontrol_ethercat_kit : Quick Start Guide
------------------------------------------------------
 
 This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do a velocity control of a brushless DC motor. The velocity control loop is closed with a velocity feedback calculated from either a Hall or Incremental Encoder (QEI) sensor. 
 

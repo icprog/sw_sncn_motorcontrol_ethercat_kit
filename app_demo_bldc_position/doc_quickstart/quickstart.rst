@@ -1,10 +1,7 @@
-.. _SOMANET_IFM_Drive_Positioning_Control_Demo_Quickstart:
+.. _SOMANET_Standalone_Position_Control_Demo_Quickstart:
 
 SOMANET Standalone Position Control Demo Quick Start Guide
 ==========================================================
-
-sw_sncn_motorcontrol_ethercat_kit : Quick Start Guide
------------------------------------------------------
 
 This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brush-less DC motor. Position loop can be closed with a positioning feedback either from a HALL or QEI Sensor.
 

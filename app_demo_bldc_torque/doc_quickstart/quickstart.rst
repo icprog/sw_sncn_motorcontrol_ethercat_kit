@@ -1,10 +1,7 @@
-.. _SOMANET_IFM_Drive_Torque_Control_Demo_Quickstart:
+.. _SOMANET_Standalone_Torque_Control_Demo_Quickstart:
 
 SOMANET Standalone Profile Torque Control Demo Quick Start Guide
 ================================================================
-
-sw_sncn_motorcontrol_ethercat_kit : Quick Start Guide
------------------------------------------------------
 
 This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do a torque control of a brushless DC motor. Torque control loop is closed with a current feedback measured on phases B and C. 
 
