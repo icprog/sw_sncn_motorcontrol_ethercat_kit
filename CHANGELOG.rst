@@ -1,6 +1,12 @@
 sw_sncn_motorcontrol_ethercat_kit Change Log
 ============================================
 
+1.2.0
+-----
+
+  * Fixed parameters initialization over EtherCAT
+  * Improved console print out in linux master applications
+
 1.1.0
 -----
 
