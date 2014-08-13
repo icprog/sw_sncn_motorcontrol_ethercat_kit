@@ -53,7 +53,7 @@ int main(void)
     chan foe_out;             // File from consumer to module_ethercat
     chan pdo_in;
     chan pdo_out;
-    chan c_nodes[1], c_flash_data, c_sig_1; // Firmware channels
+    chan c_nodes[1], c_flash_data; // Firmware channels
 
     par
     {
@@ -72,8 +72,7 @@ int main(void)
         /* Firmware Update Loop over Ethercat */
         on tile[COM_TILE] :
         {
-            firmware_update_loop(p_spi_flash, foe_out, foe_in, c_flash_data,\
-                                 c_nodes, c_sig_1);
+            firmware_update_loop(p_spi_flash, foe_out, foe_in, c_flash_data, c_nodes, null);
         }
 
         /* Ethercat Motor Drive Loop */
