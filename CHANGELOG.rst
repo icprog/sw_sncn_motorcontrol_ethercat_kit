@@ -1,7 +1,7 @@
 sw_sncn_motorcontrol_ethercat_kit Change Log
 ============================================
 
-1.2.0
+1.1.1
 -----
 
   * Fixed parameters initialization over EtherCAT
