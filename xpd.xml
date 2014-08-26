@@ -151,9 +151,9 @@
     </components>
     <dependency repo = "sc_sncn_motorcontrol">
         <gitbranch>release</gitbranch>
-        <githash>84f2e59edf4072bedeeb779acb5ccb4686992463</githash>
+        <githash>a785478bb69ca7fe2c6e00143d56fa9903a84859</githash>
         <uri>https://github.com/synapticon/sc_sncn_motorcontrol.git</uri>
-        <version>1.0.2beta1</version>
+        <version>1.0.2rc0</version>
     </dependency>
     <dependency repo = "sc_pwm">
         <gitbranch>release</gitbranch>
@@ -163,21 +163,21 @@
     </dependency>
     <dependency repo = "sc_somanet-base">
         <gitbranch>release</gitbranch>
-        <githash>2d7968dfae1a4569deca2560da75966c18decc16</githash>
+        <githash>1ff3ee41cfc78749b523af62c7f073c3968d433a</githash>
         <uri>git@github.com:djpwilk/sc_somanet-base.git</uri>
-        <version>1.0.2beta2</version>
+        <version>1.0.2rc0</version>
     </dependency>
     <dependency repo = "sc_sncn_ethercat">
         <gitbranch>release</gitbranch>
-        <githash>45776bdfb7b5601861d74b950bf4b8cb273ecdb3</githash>
+        <githash>af821f6bde2b1fb793d9c7bef019a067f6c73df0</githash>
         <uri>git@github.com:synapticon/sc_sncn_ethercat.git</uri>
-        <version>1.0.1beta1</version>
+        <version>1.0.1rc0</version>
     </dependency>
     <dependency repo = "sc_sncn_ctrlproto">
         <gitbranch>release</gitbranch>
-        <githash>894abaceea64d7755d2278065b16748bea6792d9</githash>
+        <githash>2e24a1badcb05d38fc14bbdaa6bb30617a382731</githash>
         <uri>https://github.com/synapticon/sc_sncn_ctrlproto.git</uri>
-        <version>1.0.1beta1</version>
+        <version>1.0.1rc0</version>
     </dependency>
     <description>Top level applications and demonstrations for the SOMANET Motion Control Kit</description>
     <docdir>doc_hw_quickstart</docdir>
@@ -206,7 +206,7 @@
     <release parenthash = "c90bf0478cd9e78574d1feb122a0bedeec4f533d" version = "1.1.0rc2" githash = "2c6f5789771ca386c0bdde2dbc3c7919526367dd"></release>
     <release parenthash = "0815778c485346b5a047febf03d6f5d4548be2ae" version = "1.1.0rc3" githash = "fd948a096210be87b36362ef2ba1ffd00afb2fc9"></release>
     <release parenthash = "008d3e8b2bdade499396fd4eab0a7dea6739489f" version = "1.1.1beta0" githash = "15d437585b26cba80b18e818070282bca24f0082"></release>
-    <release parenthash = "15d437585b26cba80b18e818070282bca24f0082" version = "1.1.1beta1"></release>
+    <release parenthash = "15d437585b26cba80b18e818070282bca24f0082" version = "1.1.1beta1" githash = "bdfc5190f7c0ded69dd1fafde0a4ef653d966050"></release>
     <subpartnumber>XM-005844-SM</subpartnumber>
     <vendor>XMOS</vendor>
     <version_defines></version_defines>
