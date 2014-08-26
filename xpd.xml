@@ -17,7 +17,8 @@
     <release parenthash = "c90bf0478cd9e78574d1feb122a0bedeec4f533d" version = "1.1.0rc2" githash = "2c6f5789771ca386c0bdde2dbc3c7919526367dd"></release>
     <release parenthash = "0815778c485346b5a047febf03d6f5d4548be2ae" version = "1.1.0rc3" githash = "fd948a096210be87b36362ef2ba1ffd00afb2fc9"></release>
     <release parenthash = "008d3e8b2bdade499396fd4eab0a7dea6739489f" version = "1.1.1beta0" githash = "15d437585b26cba80b18e818070282bca24f0082"></release>
-    <release parenthash = "15d437585b26cba80b18e818070282bca24f0082" version = "1.1.1beta1"></release>
+    <release parenthash = "15d437585b26cba80b18e818070282bca24f0082" version = "1.1.1beta1" githash = "bdfc5190f7c0ded69dd1fafde0a4ef653d966050"></release>
+    <release parenthash = "5b9ab2485ab95e33a8d7b7550a1202098adae618" version = "1.1.1rc0"></release>
     <version_defines></version_defines>
     <xpd_version>1.0</xpd_version>
 </xpd>
