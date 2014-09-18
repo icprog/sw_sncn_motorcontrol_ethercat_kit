@@ -1,13 +1,15 @@
+/* PLEASE REPLACE "CORE_BOARD_REQUIRED" AND "IMF_BOARD_REQUIRED" WIT A APPROPRIATE BOARD SUPPORT FILE FROM module_board-support */
+#include <CORE_C22-rev-a.inc>
+#include <COM_ECAT-rev-a.inc>
+#include <IFM_DC100-rev-b.inc>
+
 /**
  * @file test_ethercat-mode.xc
  * @brief Test illustrates usage of Motor Control with Ethercat
  * @author Synapticon GmbH (www.synapticon.com)
  */
 
-#include <xs1.h>
-#include <platform.h>
 #include <print.h>
-#include <ioports.h>
 #include <pwm_service_inv.h>
 #include <commutation_server.h>
 #include <qei_server.h>
@@ -22,9 +24,6 @@
 #include <flash_somanet.h>
 #include <gpio_server.h>
 #include <comm.h>
-
-#define COM_TILE    0
-#define IFM_TILE    3
 
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
