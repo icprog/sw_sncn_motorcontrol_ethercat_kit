@@ -6,7 +6,7 @@ TARGET = SOMANET-C22-Motor_control-XScope_v13.xn
 # The APP_NAME variable determines the name of the final .xe file. It should
 # not include the .xe postfix. If left blank the name will default to
 # the project name
-APP_NAME = 
+APP_NAME = demo-slave-ethercat-motorcontrol
 
 # The USED_MODULES variable lists other module used by the application.
 USED_MODULES = module_adc module_blocks module_communication module_commutation module_ctrl_loops module_ctrlproto module_ecat_drive module_ethercat module_ethercat_fwupdate module_gpio module_hall module_motor module_motorcontrol_common module_board-support module_profile module_pwm_symmetrical module_qei module_statemachine module_xscope-wrapper
