@@ -194,6 +194,9 @@
     <docdir>app_demo_master_cyclic_position/doc_quickstart</docdir>
     <docdir>app_demo_master_cyclic_velocity/doc_quickstart</docdir>
     <docdir>app_demo_master_cyclic_torque/doc_quickstart</docdir>
+    <docdir>app_demo_master_cyclic_position_2_nodes/doc_quickstart</docdir>
+    <docdir>app_demo_master_cyclic_velocity_2_nodes/doc_quickstart</docdir>
+    <docdir>app_demo_master_cyclic_torque_2_nodes/doc_quickstart</docdir>
     <docdir>app_demo_slave_ethercat_motorcontrol/doc_quickstart</docdir>
     <docdir>app_demo_bldc_position/doc_quickstart</docdir>
     <docdir>app_demo_bldc_torque/doc_quickstart</docdir>
@@ -203,6 +206,11 @@
     <maintainer>Synapticon</maintainer>
     <non_xmos_project>motor_config</non_xmos_project>
     <non_xmos_project>app_demo_master_cyclic_position</non_xmos_project>
+    <non_xmos_project>app_demo_master_cyclic_velocity</non_xmos_project>
+    <non_xmos_project>app_demo_master_cyclic_torque</non_xmos_project>
+    <non_xmos_project>app_demo_master_cyclic_position_2_nodes</non_xmos_project>
+    <non_xmos_project>app_demo_master_cyclic_velocity_2_nodes</non_xmos_project>
+    <non_xmos_project>app_demo_master_cyclic_torque_2_nodes</non_xmos_project>
     <partnumber>XM-005843-DH</partnumber>
     <release parenthash = "3ddf986102651794a82be6a75398b0264edce62e" version = "1.0.0beta0" githash = "1f0af54e95188c316fe898da3be0dc2a26b80ff9"></release>
     <release parenthash = "cc4d6f3f45f33712817a4f1c6a5e93afcc60e61f" version = "1.0.0beta1" githash = "08661237a70a537e3cc97fec8f7b5799b7a822f4"></release>
