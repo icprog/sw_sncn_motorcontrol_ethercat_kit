@@ -1,8 +1,7 @@
 /**
  * @file main.c
  * @brief Example Master App for Cyclic Synchronous Velocity (on PC)
- * @author Pavan Kanajar <pkanajar@synapticon.com>
- * @author Christian Holl <choll@synapticon.com>
+ * @author Synapticon GmbH <support@synapticon.com>
  */
 
 #include <ctrlproto_m.h>
