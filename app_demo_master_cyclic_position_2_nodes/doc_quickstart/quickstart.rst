@@ -55,12 +55,12 @@ When the application has been compiled, the next step is to run it on the Linux 
 
    #. Make sure your SOMANET node is accessible by the EtherCAT master by typing: ::
 
-       ethercat slave 
+        ethercat slave 
        
-   The output should indicate a presence of the SOMANET node and pre-operational state if the slave side software is running: ::
+      The output should indicate a presence of the SOMANET node and pre-operational state if the slave side software is running: ::
 
-       0  0:0  PREOP  +  SNCN SOMANET COM ECAT
-       1  0:1  PREOP  +  SNCN SOMANET COM ECAT
+        0  0:0  PREOP  +  SNCN SOMANET COM ECAT
+        1  0:1  PREOP  +  SNCN SOMANET COM ECAT
 
    #. Navigate with the terminal to your compiled application binary on the hard disk. Then execute the application with super user rights: ::
 
@@ -90,13 +90,13 @@ Examine the code
 
    #. Note, that positioning control uses Hall or Encoder sensor ticks to close the loop. The Hall sensors provide a discrete feedback and the values between are interpolated based on the velocity. One magnetic rotation results in 4096 Hall sensor ticks. To perform one complete rotation the magnetic rotation setpoint value should be multiplied by the number of magnetic poles. In the kit the motor has 3 pole pairs, therefore the desired setpoint for that would be 4096 X 3 = 12288. That calculation is therefore shown to initialize the ``one_rotation`` variable.
 
-   #. Before starting the main control routine you are required to initialise a set of parameters and to follow a motor starting state machine as defined in the CiA 402 directive (see the image bellow). These routines are performed for all connected nodes, except for the ``init_nodes`` function.
+   #. Before starting the main control routine you are required to initialise a set of parameters and to follow a motor starting state machine as defined in the CiA 402 directive (see the image below). These routines are performed for all connected nodes, except for the ``init_nodes`` function.
 
-.. figure:: images/statemachine.png
-   :width: 100%
-   :align: center
+      .. figure:: images/statemachine.png
+         :width: 95%
+         :align: center
 
-   Motor Control state machine
+         Motor Control state machine
 
    #. ``init_master`` takes care of the EtherCAT communication initialization. In case of the multi-node system the EtherCAT nodes are configured from the ``ethercat_setup.h`` in the ``src`` directory. The default configuration allows you to get started with a two nodes setup without making any changes.
 

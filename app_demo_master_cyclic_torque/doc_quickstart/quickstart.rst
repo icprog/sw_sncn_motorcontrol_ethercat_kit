@@ -15,6 +15,8 @@ A minimal requirement for this application to run is having the complete SOMANET
 
    Hardware Setup for SOMANET Cyclic Torque Control with EtherCAT Demo
 
+|newpage|
+
 To setup the system:
 
    #. If you don't have the stack assembled, assemble it as shown in the image above. Make sure to connect the IFM side of the *SOMANET Core* module to the IFM-DC100 board and COM side to the Core Debug Adapter (see markings on the Core module)
@@ -22,7 +24,7 @@ To setup the system:
    #. Connect the xTAG-2 to host PC. 
    #. Connect the motor supplied with the kit as shown in the image bellow.
    #. Connect the *IFM-DC100* board to a 24 V DC power supply
-   #. Connect one side of the Ethernet cable to the node and plug the RS-45 connector to your PC.
+   #. Connect one side of the Ethernet cable to the node and plug the RJ-45 connector to your PC.
    #. Switch on the power supply. If everything is connected properly, the drained current should not exceed 100mA. 
 
 .. figure:: images/stack_and_motor.jpg
@@ -54,11 +56,11 @@ When the application has been compiled, the next step is to run it on the Linux 
 
    #. Make sure your SOMANET node is accessible by the EtherCAT master by typing: ::
 
-       ethercat slave 
+        ethercat slave 
 
-   The output should indicate a presence of the SOMANET node and pre-operational state if the slave side software is running: ::
+      The output should indicate a presence of the SOMANET node and pre-operational state if the slave side software is running: ::
 
-       0  0:0  PREOP  +  SNCN SOMANET COM ECAT
+        0  0:0  PREOP  +  SNCN SOMANET COM ECAT
 
    #. Navigate with the terminal to your compiled application binary on the hard disk. Then execute the application with super user rights: ::
 
@@ -86,11 +88,11 @@ Examine the code
 
    #. Before starting the main control routine you are required to initialise a set of parameters and to follow a motor starting state machine as defined in the CiA 402 directive (see the image bellow).
 
-.. figure:: images/statemachine.png
-   :width: 100%
-   :align: center
+      .. figure:: images/statemachine.png
+         :width: 100%
+         :align: center
 
-   Motor Control state machine
+         Motor Control state machine
 
    #. ``init_master`` is taking care of the EtherCAT communication initialization. In case of the multi-node system the EtherCAT nodes can be configured from the ``ethercat_setup.h`` in the ``src`` directory. The default configuration allows you to get started with a single node setup without making any changes.
 
