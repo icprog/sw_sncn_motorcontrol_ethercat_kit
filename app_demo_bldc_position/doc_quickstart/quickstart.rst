@@ -1,7 +1,7 @@
 .. _SOMANET_Standalone_Position_Control_Demo_Quickstart:
 
-SOMANET Standalone Position Control Demo Quick Start Guide
-==========================================================
+SOMANET Standalone Profile Position Control Demo Quick Start Guide
+==================================================================
 
 This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brush-less DC motor. Position loop can be closed with a positioning feedback either from a HALL or QEI Sensor.
 
