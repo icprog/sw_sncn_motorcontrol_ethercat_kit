@@ -1,4 +1,4 @@
-/* PLEASE REPLACE "CORE_BOARD_REQUIRED" AND "IMF_BOARD_REQUIRED" WIT A APPROPRIATE BOARD SUPPORT FILE FROM module_board-support */
+/* INCLUDE BOARD SUPPORT FILES FROM module_board-support */
 #include <CORE_C22-rev-a.inc>
 #include <IFM_DC100-rev-b.inc>
 
