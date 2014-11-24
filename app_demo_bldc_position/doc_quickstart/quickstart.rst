@@ -1,14 +1,14 @@
 .. _SOMANET_Standalone_Position_Control_Demo_Quickstart:
 
-SOMANET Standalone Position Control Demo Quick Start Guide
-==========================================================
+SOMANET Standalone Profile Position Control Demo Quick Start Guide
+==================================================================
 
 This demonstrative application illustrates usage of ``module_ctrl_loops`` and dependent modules to do position control of a brush-less DC motor. Position loop can be closed with a positioning feedback either from a HALL or QEI Sensor.
 
 Hardware setup
 ++++++++++++++
 
-A minimal requirement for this application to run is having the complete *SOMANET* stack assembled consisting of a *SOMANET Core-C22*, *SOMANET Core* to xTAG-2 Debug Adapter, and a *SOMANET IFM-Drive-DC100/300* modules. The stack should be powered via the* SOMANET IFM* board. An example of an assembled stack is shown in the image below. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
+A minimal requirement for this application to run is having the complete *SOMANET* stack assembled consisting of a *SOMANET Core-C22*, *SOMANET Core* to xTAG-2 Debug Adapter, and a *SOMANET IFM-Drive-DC100/300* modules. The stack should be powered via the *SOMANET IFM* board. An example of an assembled stack is shown in the image below. For the motor supplied with the kit the required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
 .. figure:: images/assembly_p9.jpg
    :align: center

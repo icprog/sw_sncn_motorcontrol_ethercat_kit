@@ -31,6 +31,7 @@ To setup the system:
 
    Connecting the motor and cables to your kit
 
+|newpage|
 
 Import and build the application
 ++++++++++++++++++++++++++++++++
@@ -43,6 +44,7 @@ For help in using *xTIMEcomposer*, try the *xTIMEcomposer* tutorial, which you c
 
 Note that the Developer Column in *xTIMEcomposer* Studio on the right hand side of your screen provides information on the *xSOFTip* components you are using. Select one of the imported components in the Project Explorer, and you will see their description together with API documentation. Having done this, click the `back` icon until you return to this Quick Start Guide within the Developer Column.
 
+|newpage|
 
 Run the application
 +++++++++++++++++++
@@ -55,12 +57,12 @@ When the application has been compiled, the next step is to run it on the Linux 
 
    #. Make sure your SOMANET nodes are accessible by the EtherCAT master by typing: ::
 
-       ethercat slave 
+        ethercat slave 
 
-   The output should indicate a presence of the SOMANET node and pre-operational state if the slave side software is running: ::
+      The output should indicate a presence of the SOMANET node and pre-operational state if the slave side software is running: ::
 
-       0  0:0  PREOP  +  SNCN SOMANET COM ECAT
-       1  0:1  PREOP  +  SNCN SOMANET COM ECAT
+        0  0:0  PREOP  +  SNCN SOMANET COM ECAT
+        1  0:1  PREOP  +  SNCN SOMANET COM ECAT
 
    #. Navigate with the terminal to your compiled application binary on the hard disk. Then execute the application with super user rights: ::
 
@@ -81,6 +83,7 @@ When the application has been compiled, the next step is to run it on the Linux 
 
    #. The debug console window in *xTIMEcomposer* will not display any message because the demo application is written to work with an EtherCAT master application and feedback is therefore provided via EtherCAT communication.
 
+|newpage|
 
 Next steps
 ++++++++++
@@ -100,17 +103,17 @@ Examine the code
 
    #. Before starting the main control routine you are required to initialize the EtherCAT master and to follow a motor starting state machine as defined in the CiA 402 directive (see the image bellow). These routines are performed for all connected nodes, except for the ``init_nodes`` function.
 
-.. figure:: images/statemachine.png
-   :width: 100%
-   :align: center
+      .. figure:: images/statemachine.png
+         :width: 100%
+         :align: center
 
-   Motor Control state machine
+         Motor Control state machine
 
    #. ``init_master`` takes care of the EtherCAT communication initialization. In case of the multi-node system the EtherCAT nodes are configured from the ``ethercat_setup.h`` in the ``src`` directory. The default configuration allows you to get started with a two nodes setup without making any changes.
 
    #. The ``init_nodes`` routine will take care of loading your motor configurations into the slaves via EtherCAT. All slave nodes are running the same software and can be configured for using different motors from the master side. The motor configurations are included in the ``motor_config`` folder, and the config files there have ``_N`` extensions to differentiate between various motors (N is a number starting from 1, e.g., ``bldc_motor_config_1.h``). When you specify a CONFIG_NUMBER in the ``SOMANET_C22_CTRLPROTO_SLAVE_HANDLES_ENTRY`` (defined in the ``ethercat_setup.h`` in your ``src`` folder), all corresponding configurations are being loaded to all the nodes. In case of this demo ``bldc_motor_config_1.h`` and ``bldc_motor_config_2.h`` configuration files are used.
 
-   #. ``set_operation_mode`` defines the control mode to be used. In this example we are using the Cyclic Synchronous Torque mode (CST) for both nodes.
+   #. ``set_operation_mode`` defines the control mode to be used. In this example we are using the Cyclic Synchronous velocity mode (CSV) for both nodes.
 
    #. ``enable_operation`` is a part of the state machine control sequence as described above.
 

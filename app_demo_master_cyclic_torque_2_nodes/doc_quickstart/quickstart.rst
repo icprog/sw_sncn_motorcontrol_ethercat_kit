@@ -3,7 +3,7 @@
 EtherCAT Master Cyclic Torque Control with Two Nodes Demo Quick Start Guide
 ===========================================================================
 
-This simple demonstration shows how to control multiple motors using SOMANET EtherCAT Motor Control Kit from a Linux PC. This demo features the Cyclic Synchronous Velocity control mode with a simple linear profile generator. The CSV control mode is designed to follow a desired motion trajectory by using various motion profiles or cascaded control approach with closing the control loop over EtherCAT. The slave controller in its turn is taking the generated at a fixed time interval (1ms) target velocity set-points as a controller input and will be following them. That means that for the CSV the velocity control loop (PID loop) is closed on the slave and is not limited by any parameter. All the configurations are done from the master side.
+This simple demonstration shows how to control multiple motors using SOMANET EtherCAT Motor Control Kit from a Linux PC. This demo features the Cyclic Synchronous Torque control mode with a simple linear profile generator. The CST control mode is designed to follow a desired motion trajectory by using various motion profiles or cascaded control approach with closing the control loop over EtherCAT. The slave controller in its turn is taking the generated at a fixed time interval (1ms) target torque set-points as a controller input and will be following them. That means that for the CST the torque control loop (PID loop) is closed on the slave and is not limited by any parameter. All the configurations are done from the master side.
 
 Hardware setup
 ++++++++++++++
@@ -14,6 +14,8 @@ A minimal requirement for running this application is a complete SOMANET nodes a
    :align: center
 
    Required hardware setup for this demo
+
+|newpage|
 
 To setup the system:
 
@@ -55,16 +57,16 @@ When the application has been compiled, the next step is to run it on the Linux 
 
    #. Make sure your SOMANET nodes are accessible by the EtherCAT master by typing: ::
 
-       ethercat slave 
+        ethercat slave 
 
-   The output should indicate a presence of the SOMANET node and pre-operational state if the slave side software is running: ::
+      The output should indicate a presence of the SOMANET node and pre-operational state if the slave side software is running: ::
 
-       0  0:0  PREOP  +  SNCN SOMANET COM ECAT
-       1  0:1  PREOP  +  SNCN SOMANET COM ECAT
+        0  0:0  PREOP  +  SNCN SOMANET COM ECAT
+        1  0:1  PREOP  +  SNCN SOMANET COM ECAT
 
    #. Navigate with the terminal to your compiled application binary on the hard disk. Then execute the application with super user rights: ::
 
-       sudo ./app_demo_master_cyclic_position_2_nodes 
+       sudo ./app_demo_master_cyclic_torque_2_nodes 
 
    #. The application first will prompt to enter target torque values for the two slaves in the system one by one. Complete the entry by pressing Enter. Please try first some small values if running the motor without a load. The application will stop the motors if maximum motor velocity is reached. ::
        
@@ -103,11 +105,11 @@ Examine the code
 
    #. Before starting the main control routine you are required to initialize the EtherCAT master and to follow a motor starting state machine as defined in the CiA 402 directive (see the image bellow). These routines are performed for all connected nodes, except for the ``init_nodes`` function.
 
-.. figure:: images/statemachine.png
-   :width: 100%
-   :align: center
+      .. figure:: images/statemachine.png
+         :width: 100%
+         :align: center
 
-   Motor Control state machine
+         Motor Control state machine
 
    #. ``init_master`` takes care of the EtherCAT communication initialization. In case of the multi-node system the EtherCAT nodes are configured from the ``ethercat_setup.h`` in the ``src`` directory. The default configuration allows you to get started with a two nodes setup without making any changes.
 
