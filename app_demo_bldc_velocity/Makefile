@@ -9,7 +9,7 @@ TARGET = SOMANET-C22_Motor-Control_xSCOPE_v13
 APP_NAME = demo-bldc-velocity
 
 # The USED_MODULES variable lists other module used by the application.
-USED_MODULES = module_adc module_blocks module_motorcontrol_common module_commutation module_ctrl_loops module_hall module_profile module_pwm_symmetrical module_qei module_statemachine module_motor module_board-support module_xscope-wrapper
+USED_MODULES = motor_config module_adc module_blocks module_motorcontrol_common module_commutation module_ctrl_loops module_hall module_profile module_pwm_symmetrical module_qei module_statemachine module_motor module_board-support module_xscope-wrapper
 
 # The flags passed to xcc when building the application
 # You can also set the following to override flags for a particular language:

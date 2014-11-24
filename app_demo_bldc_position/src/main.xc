@@ -23,8 +23,9 @@
 #include <drive_modes.h>
 #include <position_ctrl_client.h>
 #include <internal_config.h>
-//configure your motor parameters here:
+//Configure your motor parameters in motor_config/bldc_motor_config.h
 #include <bldc_motor_config.h>
+
 
 //#define ENABLE_xscope
 

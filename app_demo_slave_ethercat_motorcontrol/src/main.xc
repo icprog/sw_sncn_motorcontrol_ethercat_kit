@@ -24,6 +24,8 @@
 #include <flash_somanet.h>
 #include <gpio_server.h>
 #include <comm.h>
+ //Configure your default motor parameters in motor_config/bldc_motor_config.h
+#include <bldc_motor_config.h>
 
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
