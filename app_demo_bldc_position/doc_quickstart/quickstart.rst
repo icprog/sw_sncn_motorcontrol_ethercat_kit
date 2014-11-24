@@ -54,9 +54,9 @@ When the application has been compiled, the next step is to run it on the *SOMAN
 Next steps
 ++++++++++
 
-As a next step you can try changing the target position in the ``demo-bldc-position.xc`` file located in the ``src`` folder of the app. In the function ``position_profile_test`` change the variable ``target_position`` to some other value within the defined in the motor configuration file limit. The configuration file can be found in the ``module_motor`` and is common for all standalone motor control applications. The parameter ``MAX_POSITION_LIMIT`` in the ``bldc_motor_config.h`` defines the positioning control limit. 
+As a next step you can try changing the target position in the ``demo-bldc-position.xc`` file located in the ``src`` folder of the app. In the function ``position_profile_test`` change the variable ``target_position`` to some other value within the defined limit in the motor configuration file. The configuration file can be found in the ``motor_config`` directory and is common for all standalone motor control applications. The parameter ``MAX_POSITION_LIMIT`` in the ``bldc_motor_config.h`` defines the positioning control limit. 
 
-You might also try varying accelerations and decelerations as well as profile velocity (``acceleration``, ``deceleration``, ``velocity``). The maximum setpoint values of those variables are also defined in the ``bldc_motor_config.h``.
+You might also try varying accelerations and decelerations as well as profile velocity (``acceleration``, ``deceleration``, ``velocity``). The maximum set-point values of those variables are also defined in the ``bldc_motor_config.h``.
 
 
 Examine the code
