@@ -118,7 +118,7 @@ This setup is useful if software debugging or xSCOPE functionality is not requir
 You will require the following items:
 
    #. 1 x *SOMANET IFM-Drive-DC100* board.
-   #. 1 x *SOMANET Core C2* module.
+   #. 1 x *SOMANET Core C22* module.
    #. 1 x *SOMANET COM-EtherCAT*
    #. 2 x 25mm M2 screws
    #. 4 x 4mm metal spacers
