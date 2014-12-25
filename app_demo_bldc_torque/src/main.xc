@@ -23,7 +23,7 @@
 #include <torque_ctrl_client.h>
 #include <profile.h>
 #include <internal_config.h>
-//Configure your motor parameters in motor_config/bldc_motor_config.h
+//Configure your motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
 
 //#define ENABLE_xscope

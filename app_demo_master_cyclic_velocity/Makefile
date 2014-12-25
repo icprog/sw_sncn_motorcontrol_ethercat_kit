@@ -19,7 +19,7 @@ ifneq (,$(wildcard ../../sc_sncn_ctrlproto/.))
 endif
 
 INCLUDE_DIRS += -I $(ETHERCAT_MASTER_INSTALLDIR)/include
-INCLUDE_DIRS += -I ../motor_config
+INCLUDE_DIRS += -I ../config
 
 INCLUDE_DIRS += -I $(CTRL_PROTO_PATH)/inc_ctrlproto-common
 INCLUDE_DIRS += -I $(CTRL_PROTO_PATH)/lib_linux_ctrlproto/include

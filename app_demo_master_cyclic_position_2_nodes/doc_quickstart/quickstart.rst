@@ -102,7 +102,7 @@ Examine the code
 
    #. ``initialize_torque`` is required to have a torque feedback, even if you are not using the torque control.
 
-   #. The ``init_nodes`` routine will take care of loading your motor configurations into the slaves via EtherCAT. All slave nodes are running the same software and can be configured for using different motors from the master side. The motor configurations are included in the ``motor_config`` folder, and the config files there have ``_N`` extensions to differentiate between various motors. When you specify a CONFIG_NUMBER in the ``SOMANET_C22_CTRLPROTO_SLAVE_HANDLES_ENTRY`` (defined in the ``ethercat_setup.h``), all corresponding configurations are being loaded to all the nodes. In case of this demo ``bldc_motor_config_1.h`` and ``bldc_motor_config_2.h`` configuration files are used.
+   #. The ``init_nodes`` routine will take care of loading your motor configurations into the slaves via EtherCAT. All slave nodes are running the same software and can be configured for using different motors from the master side. The motor configurations are included in the ``config`` folder, and the config files there have ``_N`` extensions to differentiate between various motors. When you specify a CONFIG_NUMBER in the ``SOMANET_C22_CTRLPROTO_SLAVE_HANDLES_ENTRY`` (defined in the ``ethercat_setup.h``), all corresponding configurations are being loaded to all the nodes. In case of this demo ``bldc_motor_config_1.h`` and ``bldc_motor_config_2.h`` configuration files are used.
 
    #. ``set_operation_mode`` defines the control mode to be used. In this example we are using the Cyclic Synchronous Positioning mode (CSP) fo both nodes.
 

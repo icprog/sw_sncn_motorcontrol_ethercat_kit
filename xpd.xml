@@ -148,7 +148,7 @@
             <keyword>Motor Control</keyword>
             <keyword>EtherCAT master</keyword>
         </component>
-        <component description = "Configuration files containing motor and controller specific parameters" type = "demoCode" scope = "General Use" path = "motor_config" local = "false" id = "motor_config" name = "SOMANET Motor and Controller Configuration Files">
+        <component description = "Configuration files containing motor and controller specific parameters" type = "demoCode" scope = "General Use" path = "config" local = "false" id = "config" name = "SOMANET Motor and Controller Configuration Files">
             <board>XK-SN-1BH12-E</board>
             <board>XK-SN-1BQ12-E</board>
             <board>SOMANET COM-EtherCAT</board>
@@ -204,7 +204,7 @@
     <location>https://github.com/synapticon/sw_sncn_motorcontrol_ethercat_kit.git</location>
     <name>sw_sncn_motorcontrol_ethercat_kit</name>
     <maintainer>Synapticon</maintainer>
-    <non_xmos_project>motor_config</non_xmos_project>
+    <non_xmos_project>config</non_xmos_project>
     <non_xmos_project>app_demo_master_cyclic_position</non_xmos_project>
     <partnumber>XM-005843-DH</partnumber>
     <release parenthash = "3ddf986102651794a82be6a75398b0264edce62e" version = "1.0.0beta0" githash = "1f0af54e95188c316fe898da3be0dc2a26b80ff9"></release>

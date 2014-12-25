@@ -23,7 +23,7 @@
 #include <drive_modes.h>
 #include <position_ctrl_client.h>
 #include <internal_config.h>
-//Configure your motor parameters in motor_config/bldc_motor_config.h
+//Configure your motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
 
 

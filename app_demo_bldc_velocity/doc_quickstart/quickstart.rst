@@ -55,7 +55,7 @@ When the application has been compiled, the next step is to run it on the *SOMAN
 Next steps
 ++++++++++
 
-As a next step you can try changing the target velocity in the ``demo-bldc-velocity.xc`` file located in the ``src`` folder of the app. In the function ``profile_velocity_test`` change the variable ``target_velocity`` to some other value within the defined limit in the motor configuration file. The configuration file can be found in the ``motor_config`` directory and is common for all standalone motor control applications. The parameter ``MAX_PROFILE_VELOCITY`` in the ``bldc_motor_config.h`` defines the velocity control limit. 
+As a next step you can try changing the target velocity in the ``demo-bldc-velocity.xc`` file located in the ``src`` folder of the app. In the function ``profile_velocity_test`` change the variable ``target_velocity`` to some other value within the defined limit in the motor configuration file. The configuration file can be found in the ``config`` directory and is common for all standalone motor control applications. The parameter ``MAX_PROFILE_VELOCITY`` in the ``bldc_motor_config.h`` defines the velocity control limit. 
 
 You might also try varying accelerations and decelerations (``acceleration``, ``deceleration``). The maximum set-point values for the acceleration and deceleration are equal and defined by the ``MAX_ACCELERATION`` parameter in the ``bldc_motor_config.h``.
 
