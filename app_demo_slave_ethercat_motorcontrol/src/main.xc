@@ -30,6 +30,8 @@
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
 
+ethercat_interface_t ethercat_interface = SOMANET_COM_ETHERCAT_PORTS;
+
 int main(void)
 {
     /* Motor control channels */
@@ -65,9 +67,9 @@ int main(void)
         /* Ethercat Communication Handler Loop */
         on tile[COM_TILE] :
         {
-            ecat_init();
+            ecat_init(ethercat_interface);
             ecat_handler(coe_out, coe_in, eoe_out, eoe_in, eoe_sig, foe_out,
-                         foe_in, pdo_out, pdo_in);
+                         foe_in, pdo_out, pdo_in, ethercat_interface);
         }
 
         /* Firmware Update Loop over Ethercat */
