@@ -1,6 +1,11 @@
 sw_sncn_motorcontrol_ethercat_kit Change Log
 ============================================
 
+1.1.2
+-----
+  * Switch to sc_somanet-base 2.0.0
+  * Rename motor_config fir to config (now contains all config files)
+
 1.1.1
 -----
 
