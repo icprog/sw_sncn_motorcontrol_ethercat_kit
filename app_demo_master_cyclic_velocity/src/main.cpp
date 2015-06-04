@@ -14,9 +14,28 @@
 #include "CEtherCATdrive.h"
 #include "ethercat_setup.h"
 
+#include <iostream>
+#include <cstdlib>
+#include <pthread.h>
+using namespace std;
+
+#define NUM_THREADS     1
 
 /* Only here for interrupt signaling */
 bool break_loop = false;
+
+struct control_values{
+   int thread_id;
+   int target_velocity; //rpm
+   int acceleration; //rpm/s
+   int deceleration; //rpm/s
+
+   int actual_velocity; // rpm
+   int actual_position; // ticks
+   float actual_torque; // mNm
+   int steps;
+   int velocity_ramp; // rpm
+};
 
 /* Interrupt signal handler */
 
@@ -27,18 +46,12 @@ void  INThandler(int sig)
      signal(SIGINT, INThandler);
 }
 
+void *run_velocity_control(void *threadarg)
+{
+    struct control_values *my_control_values;
+    my_control_values = (struct control_values *) threadarg;
 
-int main() {
-
-    int target_velocity = 2000; //rpm
-    int acceleration = 200; //rpm/s
-    int deceleration = 200; //rpm/s
-
-    int actual_velocity = 0; // rpm
-    int actual_position; // ticks
-    float actual_torque; // mNm
-    int steps = 0;
-    int velocity_ramp = 0; // rpm
+    cout << "Thread ID : " << my_control_values->thread_id << endl;
 
 
     C_EtherCAT_drive o_EtherCAT;
@@ -51,7 +64,8 @@ int main() {
     /* Enable operation of node in CSV mode */
     o_EtherCAT.enable_operation_(o_EtherCAT.ECAT_SLAVE_0, &master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
-    steps = o_EtherCAT.calculate_profile_steps_(target_velocity, actual_velocity, acceleration, deceleration, o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+    my_control_values->steps = o_EtherCAT.calculate_profile_steps_(my_control_values->target_velocity, my_control_values->actual_velocity,
+                                my_control_values->acceleration, my_control_values->deceleration, o_EtherCAT.ECAT_SLAVE_0, slv_handles);
 
 
     /* catch interrupt signal */
@@ -63,26 +77,26 @@ int main() {
 
     while(1)
     {
-        if (master_setup.op_flag && actual_velocity == 0) /*Check if the master is active and we haven't started moving yet*/
+        if (master_setup.op_flag && my_control_values->actual_velocity == 0) /*Check if the master is active and we haven't started moving yet*/
         {
-            for (int step = 1; step < steps + 1; step++) {
+            for (int step = 1; step < my_control_values->steps + 1; step++) {
 
                 /* Update the process data (EtherCat packets) sent/received from the node */
                 o_EtherCAT.update_PDOs(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
 
                 /* Generate target velocity steps */
-                velocity_ramp = o_EtherCAT.calculate_next_setpoint(step, o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+                my_control_values->velocity_ramp = o_EtherCAT.calculate_next_setpoint(step, o_EtherCAT.ECAT_SLAVE_0, slv_handles);
 
                 /* Send target velocity for the node specified by ECAT_SLAVE_0 */
-                o_EtherCAT.set_velocity(velocity_ramp, o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+                o_EtherCAT.set_velocity(my_control_values->velocity_ramp, o_EtherCAT.ECAT_SLAVE_0, slv_handles);
 
                 /* Read actual node sensor values */
-                actual_velocity = o_EtherCAT.get_velocity(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
-                actual_position = o_EtherCAT.get_position(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
-                actual_torque = o_EtherCAT.get_torque(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+                my_control_values->actual_velocity = o_EtherCAT.get_velocity(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+                my_control_values->actual_position = o_EtherCAT.get_position(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+                my_control_values->actual_torque = o_EtherCAT.get_torque(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
 
                 printf("\r    Velocity: %d    Position: %d    Torque: %f        ",
-                        actual_velocity, actual_position, actual_torque);
+                        my_control_values->actual_velocity, my_control_values->actual_position, my_control_values->actual_torque);
             }
         }
         else if (break_loop){
@@ -92,13 +106,14 @@ int main() {
             /* Update the process data (EtherCat packets) sent/received from the node */
             pdo_handle_ecat(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
             /* Read actual node sensor values */
-            actual_velocity = o_EtherCAT.get_velocity(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
-            actual_position = o_EtherCAT.get_position(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
-            actual_torque = o_EtherCAT.get_torque(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+            my_control_values->actual_velocity = o_EtherCAT.get_velocity(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+            my_control_values->actual_position = o_EtherCAT.get_position(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
+            my_control_values->actual_torque = o_EtherCAT.get_torque(o_EtherCAT.ECAT_SLAVE_0, slv_handles);
 
             printf("\r    Velocity: %d    Position: %d    Torque: %f        ",
-                    actual_velocity, actual_position, actual_torque);
+                    my_control_values->actual_velocity, my_control_values->actual_position, my_control_values->actual_torque);
         }
+
     }
     printf("\n");
 
@@ -110,6 +125,37 @@ int main() {
 
     /* Just for better printing result */
     system("setterm -cursor on");
+
+    pthread_exit(NULL);
+}
+
+
+int main() {
+
+    pthread_t threads[NUM_THREADS];
+    struct control_values task_data;
+    int rc;
+
+    cout <<"main() : creating thread, " << endl;
+    task_data.thread_id = 42;
+    task_data.target_velocity = 2000; //rpm
+    task_data.acceleration = 200; //rpm/s
+    task_data.deceleration = 200; //rpm/s
+
+    task_data.actual_velocity = 0; // rpm
+    task_data.actual_position = 0; // ticks
+    task_data.actual_torque = 0; // mNm
+    task_data.steps = 0;
+    task_data.velocity_ramp = 0; // rpm
+
+
+    rc = pthread_create(&threads[0], NULL, run_velocity_control, (void *)&task_data);
+    if (rc){
+     cout << "Error:unable to create thread," << rc << endl;
+     exit(-1);
+    }
+
+    pthread_exit(NULL);
 
     return 0;
 }

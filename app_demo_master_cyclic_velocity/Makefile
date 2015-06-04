@@ -3,6 +3,7 @@ FLAGS = -static
 
 LIBS += -lsncn_ctrlproto -lsncn_motor_drive
 LIBS += -lethercat -lm
+LIBS += -lpthread
 
 SOURCES  := $(wildcard src/*.cpp)
 

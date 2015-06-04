@@ -12,7 +12,6 @@
 
 C_EtherCAT_drive::C_EtherCAT_drive() {
     // TODO Auto-generated constructor stub
-
 }
 
 C_EtherCAT_drive::~C_EtherCAT_drive() {
