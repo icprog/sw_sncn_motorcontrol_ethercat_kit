@@ -1,8 +1,10 @@
 FLAGS = -static
-FLAGS += -std=c99
+#FLAGS += -std=c99
 
 LIBS += -lsncn_ctrlproto -lsncn_motor_drive
 LIBS += -lethercat -lm
+
+SOURCES  := $(wildcard src/*.cpp)
 
 # Installation directory of the  EtherCAT Master by IgH EtherLAB
 ETHERCAT_MASTER_INSTALLDIR := /opt/etherlab
@@ -54,7 +56,7 @@ else
 		@if test -d $(ETHERCAT_MASTER_INSTALLDIR); \
 		then \
 		mkdir bin -p;\
-		gcc src/main.c  $(LIBS) $(INCLUDE_DIRS) $(LIB_DIRS) $(FLAGS) -o bin/$(notdir $(shell pwd)); \
+		g++ $(SOURCES) $(LIBS) $(INCLUDE_DIRS) $(LIB_DIRS) $(FLAGS) -o bin/$(notdir $(shell pwd)); \
 		echo ;\
 		echo "Run your application by typing: sudo bin/$(notdir $(shell pwd))" ;\
 		echo ;\
