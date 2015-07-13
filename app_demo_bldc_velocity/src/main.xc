@@ -111,8 +111,9 @@ int main(void)
 			par
 			{
 				/* PWM Loop */
-#ifdef DC1K
 			    {
+#ifdef DC1K
+
 			        // Turning off all MOSFETs for for initialization
                     p_ifm_motor_hi[0] <: 0;
                     p_ifm_motor_hi[1] <: 0;
