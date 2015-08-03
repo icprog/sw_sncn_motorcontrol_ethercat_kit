@@ -16,5 +16,5 @@ In Cyclic Synchronous Velocity (CSV) mode a user can set a new target velocity p
 The motor configuration and control parameters for each node connected to the motor must be specified at config/bldc_motor_config_N.h
 
 NOTE: The application requires EtherCAT Driver for Linux from IgH EtherLAB to be installed on your PC (`EtherLab EtherCAT Linux Driver <http://www.etherlab.org/en/ethercat/>`_
-). You can also refer to the `Synapticon installation documentation <http://doc.synapticon.com/wiki/index.php/EtherCAT_Master_Software>`_ for a simplified EtherCAT driver installation procedure.
+). You can also refer to the `Synapticon installation documentation <http://doc.synapticon.com/index.php/EtherCAT_Master_Software>`_ for a simplified EtherCAT driver installation procedure.
 
