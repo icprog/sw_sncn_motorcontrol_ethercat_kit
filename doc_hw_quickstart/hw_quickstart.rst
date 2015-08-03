@@ -118,7 +118,7 @@ This setup is useful if software debugging or xSCOPE functionality is not requir
 You will require the following items:
 
    #. 1 x *SOMANET IFM-Drive-DC100* board.
-   #. 1 x *SOMANET Core C2* module.
+   #. 1 x *SOMANET Core C22* module.
    #. 1 x *SOMANET COM-EtherCAT*
    #. 2 x 25mm M2 screws
    #. 4 x 4mm metal spacers
@@ -296,7 +296,7 @@ Importing the EtherCAT application
 
 If you have not done so already you need to install the IgH EtherCAT Master for Linux.
 
-   #. Download the EtherCAT master software and associated makefiles from `<http://doc.synapticon.com/wiki/index.php/File:IgHEthercatLinuxMaster.zip>`_. Do not try and get the software from the EtherLab site.
+   #. Download the EtherCAT master software and associated makefiles from `<http://doc.synapticon.com/index.php/File:IgHEthercatLinuxMaster.zip>`_. Do not try and get the software from the EtherLab site.
    #. Unpack the file and navigate into the folder
    #. Be sure to have Linux kernel headers and build-essential installed in order to avoid compilation errors. They can be installed following this command:
 
