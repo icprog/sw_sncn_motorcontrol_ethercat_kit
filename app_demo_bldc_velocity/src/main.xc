@@ -59,24 +59,24 @@ void profile_velocity_test(chanend c_velocity_ctrl)
 int main(void)
 {
 	// Motor control channels
-	chan c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_hall_p6, c_qei_p6;		// qei channels
-	chan c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5;				// hall channels
-	chan c_commutation_p1, c_commutation_p2, c_commutation_p3, c_signal;	// commutation channels
-	chan c_pwm_ctrl, c_adctrig;												// pwm channels
-	chan c_velocity_ctrl;													// velocity control channel
-	chan c_watchdog; 														// watchdog channel
+	chan c_qei_p1, c_qei_p2;		                    // qei channels
+	chan c_hall_p1, c_hall_p2;				            // hall channels
+	chan c_commutation_p2;	                            // commutation channels
+	chan c_pwm_ctrl, c_adctrig;							// pwm channels
+	chan c_velocity_ctrl;								// velocity control channel
+	chan c_watchdog; 									// watchdog channel
 
 	par
 	{
 
 		/* Test Profile Velocity function */
-		on tile[APP_TILE]:
+		on tile[APP_TILE_1]:
 		{
 			profile_velocity_test(c_velocity_ctrl);			// test PVM on node
 		//	velocity_ctrl_unit_test(c_velocity_ctrl, c_qei_p3, c_hall_p3);
 		}
 
-		on tile[APP_TILE]:
+		on tile[APP_TILE_1]:
 		{
 
 			/* Velocity Control Loop */
@@ -113,18 +113,8 @@ int main(void)
 				/* PWM Loop */
 			    {
 #ifdef DC1K
-
 			        // Turning off all MOSFETs for for initialization
-                    p_ifm_motor_hi[0] <: 0;
-                    p_ifm_motor_hi[1] <: 0;
-                    p_ifm_motor_hi[2] <: 0;
-                    p_ifm_motor_hi[3] <: 0;
-                    p_ifm_motor_lo[0] <: 0;
-                    p_ifm_motor_lo[1] <: 0;
-                    p_ifm_motor_lo[2] <: 0;
-                    p_ifm_motor_lo[3] <: 0;
-
-                    delay_milliseconds(1);
+                    disable_fets(p_ifm_motor_hi, p_ifm_motor_lo, 4);
 #endif
 				    do_pwm_inv_triggered(c_pwm_ctrl, c_adctrig, p_ifm_dummy_port, p_ifm_motor_hi, p_ifm_motor_lo, clk_pwm);
 			    }
@@ -137,8 +127,8 @@ int main(void)
 					int init_state;
 					init_hall_param(hall_params);
 					init_qei_param(qei_params);
-					commutation_sinusoidal(c_hall_p1,  c_qei_p1, c_signal, c_watchdog,
-							c_commutation_p1, c_commutation_p2, c_commutation_p3, c_pwm_ctrl,
+					commutation_sinusoidal(c_hall_p1,  c_qei_p1, null, c_watchdog,
+							null, c_commutation_p2, null, c_pwm_ctrl,
 #ifdef DC1K
                             null, null, null, null,
 #else
@@ -155,17 +145,14 @@ int main(void)
 #endif
 
 				/* Hall Server */
-
 				{
 					hall_par hall_params;
 #ifdef DC1K
 					//connector 1 is configured as hall
 					p_ifm_encoder_hall_select_ext_d4to5 <: 0b0010;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
-					run_hall(c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5, c_hall_p6, p_ifm_encoder_hall_1, hall_params); // channel priority 1,2..6
-
-#else
-					run_hall(c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5, c_hall_p6, p_ifm_hall, hall_params); // channel priority 1,2..5
 #endif
+					run_hall(c_hall_p1, c_hall_p2, null, null, null, null, p_ifm_hall, hall_params); // channel priority 1,2..5
+
 				}
 
 				/* QEI Server */
@@ -173,12 +160,9 @@ int main(void)
 				{
 					qei_par qei_params;
 					init_qei_param(qei_params);
-#ifdef DC1K
-                    //connector 2 is configured as QEI
-					run_qei(c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6, p_ifm_encoder_hall_2, qei_params);          // channel priority 1,2..5
-#else
-					run_qei(c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6, p_ifm_encoder, qei_params);  		 // channel priority 1,2..5
-#endif
+
+					run_qei(c_qei_p1, c_qei_p2, null, null, null, null, p_ifm_encoder, qei_params);  		 // channel priority 1,2..5
+
 				}
 
 			}
