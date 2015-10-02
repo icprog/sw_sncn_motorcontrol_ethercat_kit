@@ -22,7 +22,7 @@ Hardware setup
 
 A minimal requirement for this application to run is having the complete *SOMANET* stack assembled consisting of a *SOMANET Core-C22*, *SOMANET COM-EtherCAT*, *SOMANET* Core to xTAG-2 Debug Adapter, and a *SOMANET IFM Drive-DC100* modules.
 
-.. note::  Once the application has been flashed, the *SOMANET Core* to xTAG-2 Debug Adapter will not be required.NOTE:
+.. note::  Once the application has been flashed, the *SOMANET Core* to xTAG-2 Debug Adapter will not be required.
 
 The stack should be powered via the *SOMANET IFM* board. An example of a stack consisting of the *SOMANET* COM-EtherCAT, Core-C22, Core to xTAG-2 Debug Adapter, and *IFM-Drive-DC100* boards is shown below. For the motor supplied with the kit required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
@@ -56,7 +56,7 @@ Import and build the application
 
 For help in using *xTIMEcomposer*, try the *xTIMEcomposer* tutorial, which you can find by selecting Help->Tutorials from the *xTIMEcomposer* menu.
 
-Note that the Developer Column in *xTIMEcomposer* Studio on the right hand side of your screen provides information on the *xSOFTip* components you are using. Select the ``sw_sncn_motorcontrol_EtherCAT_kit`` component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this Quick Start Guide within the Developer Column.
+.. note:: The Developer Column in *xTIMEcomposer* Studio on the right hand side of your screen provides information on the *xSOFTip* components you are using. Select the ``sw_sncn_motorcontrol_EtherCAT_kit`` component in the Project Explorer, and you will see its description together with API documentation. Having done this, click the `back` icon until you return to this Quick Start Guide within the Developer Column.
 
 
 Run the application
@@ -87,84 +87,84 @@ Examine the code
 
 #. Core 1: EtherCAT Communication Handler. This core must be run on COM_TILE since this is only tile accessing the EtherCAT communication module (COM).
 
-   ::
+   .. code-block:: C
     
      ecat_handler(coe_out, coe_in, eoe_out, eoe_in, eoe_sig, foe_out, foe_in, pdo_out, pdo_in);
 
 #. Core 2: Firmware update. This core must be run on COM_TILE since it has access to the flash SPI ports.
 
-   ::
+   .. code-block:: C
 
      firmware_update_loop(p_spi_flash, foe_out, foe_in, c_flash_data, c_nodes, c_sig_1);
 
 #. Core 3: EtherCAT Motor Drive Loop. This core can run on any tile as it doesn't need access to any ports of the XMOS chip. The application acts as a bridge between the EtherCAT communication and the actual controllers allowing the user to freely select a desired control mode. It also takes care of updating the motor configurations via EtherCAT (using SDOs) for proper control functionality.
 
-   ::
+   .. code-block:: C
 
      ecat_motor_drive(pdo_out, pdo_in, coe_out, c_signal, c_hall_p5, c_qei_p5, c_torque_ctrl, c_velocity_ctrl, c_position_ctrl, c_gpio_p1);
 
 #. Core 4: Position Control Loop. This is the main position control loop server for cyclic positioning control mode. Some parameters have to be initialized prior starting the controller.
 
-   ::
+   .. code-block:: C
   
      position_control(position_ctrl_params, hall_params, qei_params, SENSOR_USED, c_hall_p4, c_qei_p4, c_position_ctrl, c_commutation_p3);
 
 #. Core 5: Velocity Control Loop. This is the main velocity control loop server for cyclic velocity control mode. Some parameters have to be initialized prior starting the controller.
 
-   ::
+   .. code-block:: C
 
      velocity_control(velocity_ctrl_params, sensor_filter_params, hall_params, qei_params, SENSOR_USED, c_hall_p3, c_qei_p3, c_velocity_ctrl, c_commutation_p2);
 
 #. Core 6: Torque Control Loop. This is the main torque control loop server for cyclic torque control mode. Some parameters have to be initialized prior starting the controller.
 
-   ::
+   .. code-block:: C
 
      torque_control( torque_ctrl_params, hall_params, qei_params, SENSOR_USED, c_adc, c_commutation_p1, c_hall_p2,c_qei_p2, c_torque_ctrl);
 
 #. Core 7: ADC loop. It implements the ADC server for the AD7949 ADC used on the *SOMANET IFM Drive* boards.
 
-   ::
+   .. code-block:: C
 
      adc_ad7949_triggered(c_adc, c_adctrig, clk_adc, p_ifm_adc_sclk_conv_mosib_mosia, p_ifm_adc_misoa, p_ifm_adc_misob);
 
 #. Core 8: PWM Loop. It implements the PWM Server.
 
-   ::
+   .. code-block:: C
 
      do_pwm_inv_triggered(c_pwm_ctrl, c_adctrig, p_ifm_dummy_port, p_ifm_motor_hi, p_ifm_motor_lo, clk_pwm);
 
 #. Core 8: Motor Commutation loop. The main commutation loop that implements sinusoidal commutation. Some parameters have to be initialized prior starting the loop.
 
-   ::
+   .. code-block:: C
   
      commutation_sinusoidal(c_hall_p1,  c_qei_p1, c_signal, c_watchdog, c_commutation_p1, c_commutation_p2, c_commutation_p3, c_pwm_ctrl, p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,     hall_params, qei_params, commutation_params);
 
 
 #. Core 9: Watchdog Server. In case of application crash to prevent the hardware damages this server is required to constantly run. If the server is not running, the motor phases are disabled and no motor commutation is possible.
 
-   ::
+   .. code-block:: C
 
      run_watchdog(c_watchdog, p_ifm_wd_tick, p_ifm_shared_leds_wden);
 
 #. Core 10: GPIO Digital Server. The server provides a possibility to read states of four GPIOs available on the *SOMANET IFM Drive* boards connectors.
 
-   ::
+   .. code-block:: C
 
      gpio_digital_server(p_ifm_ext_d, c_gpio_p1, c_gpio_p2);
 
 
 #. Core 11: Hall Server. Reads states of the motor Hall feedback sensor and calculates velocity and incremental position. Some parameters have to be initialized prior starting the server.
 
-   ::
+   .. code-block:: C
 
      run_hall(c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5, c_hall_p6, p_ifm_hall, hall_params); 
 
 #. Core 12: QEI Server. Reads states of an incremental encoder feedback sensor in a quadrature mode and calculates velocity and incremental position. Some parameters have to be initialized prior starting the server.
 
-   ::
+   .. code-block:: C
 
      run_qei(c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6, p_ifm_encoder, qei_params);  
 
-NOTE: The user is not intended to change this application to use various EtherCAT-based controls as all configuration and controllers selection are performed form the master side.
+.. note:: The user is not intended to change this application to use various EtherCAT-based controls as all configuration and controllers selection are performed form the master side.
 
 
