@@ -1,6 +1,6 @@
 /* INCLUDE BOARD SUPPORT FILES FROM module_board-support */
 #include <CORE_C22-rev-a.inc>
-#include <IFM_DC100-rev-b.inc>
+#include <IFM_DC1K-rev-c.inc>
 
 /**
  * @file test_velocity-ctrl.xc
@@ -25,8 +25,37 @@
 #include <internal_config.h>
 //Configure your motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
+#include <rotary_sensor.h>
 
-//#define ENABLE_xscope_main
+//#define ENABLE_xscope
+
+on tile[IFM_TILE]: sensor_spi_interface pRotarySensor =
+{
+        {
+            XS1_CLKBLK_3,
+            XS1_CLKBLK_4,
+            XS1_PORT_1I, //D0,    //mosi
+            XS1_PORT_1J, //D1,    //sclk
+            XS1_PORT_1F  //D2     //miso
+        },
+
+        XS1_PORT_1E //D3         //slave select
+};
+
+#define AMS_INIT_SETTINGS1  1    // Factory Setting 1
+                                // NOISESET 0
+                                // DIR      1   (CCW)
+                                // UVW_ABI  0
+                                // DAECDIS  0
+                                // ABIBIN   0
+                                // Dataselect 0
+                                // PWMon    0
+
+#define AMS_INIT_SETTINGS2  4    //UVWPP     001 (5)
+                                //HYS       0
+                                //ABIRES    0
+
+#define ENABLE_XSCOPE
 
 on stdcore[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on stdcore[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
@@ -38,22 +67,23 @@ void xscope_initialise_1()
             XSCOPE_CONTINUOUS, "1 target_velocity", XSCOPE_INT, "n");
 }
 
-
 /* Test Profile Velocity function */
 void profile_velocity_test(chanend c_velocity_ctrl)
 {
-	int target_velocity =-1000;	 		// rpm
-	int acceleration 	= 100;			// rpm/s
-	int deceleration 	= 100;			// rpm/s
+	int target_velocity = 1000;	 		// rpm
+	int acceleration 	= 1000;			// rpm/s
+	int deceleration 	= 1000;			// rpm/s
 
-#ifdef ENABLE_xscope_main
+#ifdef ENABLE_XSCOPE
 	xscope_initialise_1();
 #endif
 
-	set_profile_velocity( target_velocity, acceleration, deceleration, MAX_PROFILE_VELOCITY, c_velocity_ctrl);
+	while(1){
 
-	target_velocity = 0;				// rpm
-	set_profile_velocity( target_velocity, acceleration, deceleration, MAX_PROFILE_VELOCITY, c_velocity_ctrl);
+	    set_profile_velocity( target_velocity, acceleration, deceleration, MAX_PROFILE_VELOCITY, c_velocity_ctrl);
+	    delay_seconds(5);
+        target_velocity *= -1;
+	}
 }
 
 int main(void)
@@ -73,7 +103,7 @@ int main(void)
 		on tile[APP_TILE_1]:
 		{
 			profile_velocity_test(c_velocity_ctrl);			// test PVM on node
-		//	velocity_ctrl_unit_test(c_velocity_ctrl, c_qei_p3, c_hall_p3);
+
 		}
 
 		on tile[APP_TILE_1]:
@@ -108,8 +138,12 @@ int main(void)
 		 ************************************************************/
 		on tile[IFM_TILE]:
 		{
+
+		    initRotarySensor(pRotarySensor,  AMS_INIT_SETTINGS1,  AMS_INIT_SETTINGS2, 6250);
+
 			par
 			{
+
 				/* PWM Loop */
 			    {
 #ifdef DC1K
@@ -147,16 +181,16 @@ int main(void)
 				/* Hall Server */
 				{
 					hall_par hall_params;
+
 #ifdef DC1K
 					//connector 1 is configured as hall
-					p_ifm_encoder_hall_select_ext_d4to5 <: 0b0010;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
+					p_ifm_encoder_hall_select_ext_d4to5 <: SET_PORT1_AS_HALL_PORT2_AS_QEI;
 #endif
 					run_hall(c_hall_p1, c_hall_p2, null, null, null, null, p_ifm_hall, hall_params); // channel priority 1,2..5
 
 				}
 
 				/* QEI Server */
-
 				{
 					qei_par qei_params;
 					init_qei_param(qei_params);
