@@ -26,8 +26,8 @@ A minimal requirement for this application to run is having the complete *SOMANE
 
 The stack should be powered via the *SOMANET IFM* board. An example of a stack consisting of the *SOMANET* COM-EtherCAT, Core-C22, Core to xTAG-2 Debug Adapter, and *IFM-Drive-DC100* boards is shown below. For the motor supplied with the kit required power supply voltage should be 24 Volts. For the best experience please make sure that your stabilized DC power supply is capable of delivering more that 2 Amperes of power. Please mind that at high motor accelerations starting current may be as high as 10 times the nominal.     
 
-.. figure:: images/ethercat_stack.jpg
-   :align: center
+.. figure:: images/ethercat_stack.png
+   :width: 60%
 
    Hardware Setup for SOMANET EtherCAT Slave Motor Control Demo
 
