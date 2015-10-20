@@ -1,5 +1,5 @@
-SOMANET Motor Control EtherCAT Examples
-========================================
+SOMANET EtherCAT Drive
+=======================
 
 This repository includes all the software needed to explore the possibilities of your SOMANET Motor Control EtherCAT Kit. Flash your *SOMANET* node with slave firmware and have a go with the Cyclic modes over EtherCAT or check out some of the standalone slave applications.
 
