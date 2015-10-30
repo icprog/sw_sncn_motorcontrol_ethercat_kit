@@ -13,7 +13,7 @@
 #include <pwm_service_inv.h>
 #include <commutation_server.h>
 #include <refclk.h>
-#include <xscope_wrapper.h>
+#include <xscope.h>
 #include <qei_server.h>
 #include <profile.h>
 #include <position_ctrl_server.h>
@@ -27,19 +27,8 @@
 #include <bldc_motor_config.h>
 
 
-//#define ENABLE_xscope
-
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
-
-
-void xscope_initialise_1()
-{
-	xscope_register(3,
-	        XSCOPE_CONTINUOUS, "0 actual_position", XSCOPE_INT,	"n",
-			XSCOPE_CONTINUOUS, "1 target_position", XSCOPE_INT, "n",
-			XSCOPE_CONTINUOUS, "2 follow_error"   , XSCOPE_INT, "n");
-}
 
 
 /* Test Profile Position function */
@@ -61,9 +50,6 @@ void position_profile_test(chanend c_position_ctrl, chanend c_qei, chanend c_hal
 	init_position_profile_limits(MAX_ACCELERATION, MAX_PROFILE_VELOCITY, qei_params, hall_params, \
 			SENSOR_USED, MAX_POSITION_LIMIT, MIN_POSITION_LIMIT);
 
-#ifdef ENABLE_xscope
-	xscope_initialise_1();
-#endif
 
 	/* Set new target position for profile position control */
 	set_profile_position(target_position, velocity, acceleration, deceleration, SENSOR_USED, c_position_ctrl);
@@ -75,11 +61,11 @@ void position_profile_test(chanend c_position_ctrl, chanend c_qei, chanend c_hal
 	{
 		actual_position = get_position(c_position_ctrl);
 		follow_error = target_position - actual_position;
-#ifdef ENABLE_xscope
-		xscope_int(0, actual_position);
-		xscope_int(1, target_position);
-		xscope_int(2, follow_error);
-#endif
+
+		xscope_int(ACTUAL_POSITION, actual_position);
+		xscope_int(TARGET_POSITION, target_position);
+		xscope_int(FOLLOW_ERROR, follow_error);
+
 		wait_ms(1, 1, t);  /* 1 ms wait */
 	}
 }
