@@ -58,6 +58,7 @@ As a next step you can try changing the target position in the ``demo-bldc-posit
 
 You might also try varying accelerations and decelerations as well as profile velocity (``acceleration``, ``deceleration``, ``velocity``). The maximum set-point values of those variables are also defined in the ``bldc_motor_config.h``.
 
+To get xscope display, enable XScope Real-Time Mode in ``Run Configurations``. You will get ``actual position``, ``target position`` and ``follow error`` displayed in xscope.
 
 Examine the code
 ................

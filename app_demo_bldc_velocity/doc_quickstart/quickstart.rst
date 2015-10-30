@@ -50,7 +50,7 @@ When the application has been compiled, the next step is to run it on the *SOMAN
    #. Select the file ``app_demo_bldc_velocity.xe`` in the ``app_demo_bldc_velocity`` project from the Project Explorer.
    #. Click on the ``Run`` icon (the white arrow in the green circle). 
    #. At the ``Select Device`` dialog, select ``XMOS xTAG-2 connect to L1[0..3]`` and click ``OK``.
-   #. The debug console window in *xTIMEcomposer* will not display any message. With the non modified application the rotor of the motor should slowly accelerate reaching 1000 RPM velocity value and then decelerate to zero velocity value. After finishing executing the velocity profile the controller will continue keeping the last commanded velocity, i.e. zero in our case. 
+   #. The debug console window in *xTIMEcomposer* will not display any message. With the non modified application the rotor of the motor should slowly accelerate reaching 1000 RPM velocity value and continue keeping it. 
    
 Next steps
 ++++++++++
@@ -58,6 +58,9 @@ Next steps
 As a next step you can try changing the target velocity in the ``demo-bldc-velocity.xc`` file located in the ``src`` folder of the app. In the function ``profile_velocity_test`` change the variable ``target_velocity`` to some other value within the defined limit in the motor configuration file. The configuration file can be found in the ``config`` directory and is common for all standalone motor control applications. The parameter ``MAX_PROFILE_VELOCITY`` in the ``bldc_motor_config.h`` defines the velocity control limit. 
 
 You might also try varying accelerations and decelerations (``acceleration``, ``deceleration``). The maximum set-point values for the acceleration and deceleration are equal and defined by the ``MAX_ACCELERATION`` parameter in the ``bldc_motor_config.h``.
+
+To get xscope display, enable XScope Real-Time Mode in ``Run Configurations``. You will get ``actual velocity`` and ``target velocity`` displayed in xscope.
+
 
 Examine the code
 ................

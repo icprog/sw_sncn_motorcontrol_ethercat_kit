@@ -58,6 +58,8 @@ As a next step you can try changing the target torque in the ``demo-bldc-torque.
 
 You might also try varying the ``torque_slope`` parameter. That parameter influencing how fast the target torque value is reached.
 
+To get xscope display, enable XScope Real-Time Mode in ``Run Configurations``. You will get ``actual torque`` and ``target torque`` displayed in xscope.
+
 Examine the code
 ................
 
