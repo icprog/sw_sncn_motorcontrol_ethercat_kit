@@ -15,7 +15,7 @@
 #include <adc_server_ad7949.h>
 #include <commutation_server.h>
 #include <refclk.h>
-#include <xscope_wrapper.h>
+#include <xscope.h>
 #include <torque_ctrl_server.h>
 #include <profile_control.h>
 #include <drive_modes.h>
@@ -26,17 +26,10 @@
 //Configure your motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
 
-//#define ENABLE_xscope
 
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
 
-void xscope_initialise_1()
-{
-	xscope_register(2,
-	        XSCOPE_CONTINUOUS, "0 target_torque", XSCOPE_INT, "n",
-			XSCOPE_CONTINUOUS, "1 actual_torque", XSCOPE_INT, "n");
-}
 
 /* Test Profile Torque Function */
 void profile_torque_test(chanend c_torque_ctrl)
@@ -45,27 +38,27 @@ void profile_torque_test(chanend c_torque_ctrl)
 	int torque_slope  = 30;  	//(desired torque_slope/torque_constant)  * IFM resolution
 	cst_par cst_params; int actual_torque; timer t; unsigned int time;
 	init_cst_param(cst_params);
-
-#ifdef ENABLE_xscope
-	xscope_initialise_1();
-#endif
+    xscope_int(TARGET_TORQUE, target_torque);
 
 	/* Set new target torque for profile torque control */
 	set_profile_torque( target_torque, torque_slope, cst_params, c_torque_ctrl);
 
 	target_torque = 0;
+	xscope_int(TARGET_TORQUE, target_torque);
 	set_profile_torque( target_torque, torque_slope, cst_params, c_torque_ctrl);
 
 	target_torque = -200;
+	xscope_int(TARGET_TORQUE, target_torque);
 	set_profile_torque( target_torque, torque_slope, cst_params, c_torque_ctrl);
 	t:>time;
 	while(1)
 	{
 		actual_torque = get_torque(c_torque_ctrl)*cst_params.polarity;
+
+        xscope_int(ACTUAL_TORQUE, actual_torque);
+        xscope_int(TARGET_TORQUE, target_torque);
+
 		t when timerafter(time + MSEC_STD) :> time;
-#ifdef ENABLE_xscope
-		xscope_int(0, actual_torque);
-#endif
 	}
 }
 
