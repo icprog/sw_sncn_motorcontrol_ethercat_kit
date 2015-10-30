@@ -54,11 +54,9 @@ void position_profile_test(chanend c_position_ctrl, chanend c_qei, chanend c_hal
 	/* Set new target position for profile position control */
 	set_profile_position(target_position, velocity, acceleration, deceleration, SENSOR_USED, c_position_ctrl);
 
-	/* Read actual position from the Position Control Server */
-	actual_position = get_position(c_position_ctrl);
-
 	while(1)
 	{
+	    /* Read actual position from the Position Control Server */
 		actual_position = get_position(c_position_ctrl);
 		follow_error = target_position - actual_position;
 
