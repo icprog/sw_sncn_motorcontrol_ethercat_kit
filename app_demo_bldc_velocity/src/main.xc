@@ -16,7 +16,7 @@
 #include <refclk.h>
 #include <velocity_ctrl_client.h>
 #include <velocity_ctrl_server.h>
-#include <xscope_wrapper.h>
+#include <xscope.h>
 #include <profile.h>
 #include <drive_modes.h>
 #include <statemachine.h>
@@ -26,17 +26,9 @@
 //Configure your motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
 
-//#define ENABLE_xscope_main
 
 on stdcore[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on stdcore[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
-
-void xscope_initialise_1()
-{
-    xscope_register(2,
-            XSCOPE_CONTINUOUS, "0 actual_velocity", XSCOPE_INT,	"n",
-            XSCOPE_CONTINUOUS, "1 target_velocity", XSCOPE_INT, "n");
-}
 
 
 /* Test Profile Velocity function */
@@ -45,15 +37,19 @@ void profile_velocity_test(chanend c_velocity_ctrl)
 	int target_velocity =-1000;	 		// rpm
 	int acceleration 	= 100;			// rpm/s
 	int deceleration 	= 100;			// rpm/s
-
-#ifdef ENABLE_xscope_main
-	xscope_initialise_1();
-#endif
+	int actual_velocity;
+	xscope_int(TARGET_VELOCITY, target_velocity);
 
 	set_profile_velocity( target_velocity, acceleration, deceleration, MAX_PROFILE_VELOCITY, c_velocity_ctrl);
 
-	target_velocity = 0;				// rpm
-	set_profile_velocity( target_velocity, acceleration, deceleration, MAX_PROFILE_VELOCITY, c_velocity_ctrl);
+	while(1) {
+	    actual_velocity = get_velocity(c_velocity_ctrl);
+
+	    xscope_int(TARGET_VELOCITY, target_velocity);
+	    xscope_int(ACTUAL_VELOCITY, actual_velocity);
+
+	    delay_microseconds(1);
+	}
 }
 
 int main(void)
