@@ -1,7 +1,7 @@
 /* INCLUDE BOARD SUPPORT FILES FROM module_board-support */
-#include <CORE_C22-rev-a.inc>
 #include <COM_ECAT-rev-a.inc>
-#include <IFM_DC100-rev-b.inc>
+#include <CORE_C22-rev-a.inc>
+#include <IFM_DC100_workaround-rev-b.inc>
 
 /**
  * @file test_ethercat-mode.xc
