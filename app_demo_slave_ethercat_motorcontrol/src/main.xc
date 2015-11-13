@@ -1,7 +1,7 @@
 /* INCLUDE BOARD SUPPORT FILES FROM module_board-support */
 #include <COM_ECAT-rev-a.inc>
 #include <CORE_C22-rev-a.inc>
-#include <IFM_DC100_workaround-rev-b.inc>
+#include <IFM_DC100-rev-b.inc>
 
 /**
  * @file test_ethercat-mode.xc
@@ -31,6 +31,8 @@ on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
 
 ethercat_interface_t ethercat_interface = SOMANET_COM_ETHERCAT_PORTS;
+
+port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
 
 int main(void)
 {
