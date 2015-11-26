@@ -89,7 +89,7 @@
     /* Position Control (Mandatory if Position control used)
      * possible range of gains Kp/Ki/Kd: 1/65536 to 32760
      * Note: gains are calculated as NUMERATOR/DENOMINATOR to give ranges */
-#if(SENSOR_SELECTION_CODE_3 == QEI_INDEX || SENSOR_SELECTION_CODE_3 == QEI_NO_INDEX) // PID gains for position control with Incremental Encoder
+#if(SENSOR_SELECTION_CODE_3 == QEI_INDEX || SENSOR_SELECTION_CODE_3 == QEI_NO_INDEX || SENSOR_SELECTION_CODE_3 == BISS) // PID gains for position control with Incremental Encoder
     #define POSITION_Kp_NUMERATOR_3         160
     #define POSITION_Kp_DENOMINATOR_3       1000
     #define POSITION_Ki_NUMERATOR_3         1

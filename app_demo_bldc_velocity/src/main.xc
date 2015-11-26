@@ -11,6 +11,7 @@
 #include <print.h>
 #include <hall_server.h>
 #include <qei_server.h>
+#include <biss_server.h>
 #include <pwm_service_inv.h>
 #include <commutation_server.h>
 #include <refclk.h>
@@ -29,6 +30,7 @@
 
 on stdcore[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on stdcore[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
+on tile[IFM_TILE]:   clock clk_biss = XS1_CLKBLK_2 ;
 
 
 /* Test Profile Velocity function */
@@ -39,6 +41,7 @@ void profile_velocity_test(chanend c_velocity_ctrl)
 	int deceleration 	= 100;			// rpm/s
 	int actual_velocity;
 	xscope_int(TARGET_VELOCITY, target_velocity);
+	init_velocity_control(c_velocity_ctrl);
 
 	set_profile_velocity( target_velocity, acceleration, deceleration, MAX_PROFILE_VELOCITY, c_velocity_ctrl);
 
@@ -52,6 +55,7 @@ void profile_velocity_test(chanend c_velocity_ctrl)
 	}
 }
 
+
 int main(void)
 {
 	// Motor control channels
@@ -61,6 +65,7 @@ int main(void)
 	chan c_pwm_ctrl, c_adctrig;							// pwm channels
 	chan c_velocity_ctrl;								// velocity control channel
 	chan c_watchdog; 									// watchdog channel
+	interface i_biss i_biss[2]; //array of interfaces for biss server
 
 	par
 	{
@@ -94,7 +99,7 @@ int main(void)
 
 				/* Control Loop */
 				velocity_control(velocity_ctrl_params, sensor_filter_params, hall_params, \
-					 qei_params, SENSOR_USED, c_hall_p2, c_qei_p2, c_velocity_ctrl, c_commutation_p2);
+					 qei_params, SENSOR_USED, c_hall_p2, c_qei_p2, i_biss[1], c_velocity_ctrl, c_commutation_p2);
 			}
 
 		}
@@ -123,14 +128,14 @@ int main(void)
 					int init_state;
 					init_hall_param(hall_params);
 					init_qei_param(qei_params);
-					commutation_sinusoidal(c_hall_p1,  c_qei_p1, null, c_watchdog,
-							null, c_commutation_p2, null, c_pwm_ctrl,
+					commutation_sinusoidal(c_hall_p1,  c_qei_p1, i_biss[0], null, c_watchdog,
+					        null , c_commutation_p2, null, c_pwm_ctrl,
 #ifdef DC1K
                             null, null, null, null,
 #else
 							p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,
 #endif
-							hall_params, qei_params, commutation_params);
+							hall_params, qei_params, commutation_params, HALL);
 				}
 
 				/* Watchdog Server */
@@ -151,6 +156,7 @@ int main(void)
 
 				}
 
+#if (SENSOR_USED != BISS)
 				/* QEI Server */
 
 				{
@@ -160,6 +166,13 @@ int main(void)
 					run_qei(c_qei_p1, c_qei_p2, null, null, null, null, p_ifm_encoder, qei_params);  		 // channel priority 1,2..5
 
 				}
+#else
+                /* biss server */
+                {
+                    biss_par biss_params;
+                    run_biss(i_biss, 2, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, 2);
+                }
+#endif
 
 			}
 		}

@@ -14,6 +14,7 @@
 #include <commutation_server.h>
 #include <qei_server.h>
 #include <hall_server.h>
+#include <biss_server.h>
 #include <adc_server_ad7949.h>
 #include <velocity_ctrl_server.h>
 #include <position_ctrl_server.h>
@@ -29,10 +30,11 @@
 
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
+on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
 
 ethercat_interface_t ethercat_interface = SOMANET_COM_ETHERCAT_PORTS;
 
-port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
+//port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
 
 int main(void)
 {
@@ -59,6 +61,7 @@ int main(void)
     chan pdo_in;
     chan pdo_out;
     chan c_nodes[1], c_flash_data; // Firmware channels
+    interface i_biss i_biss[5];     //biss interfaces
 
     par
     {
@@ -83,8 +86,13 @@ int main(void)
         /* Ethercat Motor Drive Loop */
         on tile[1] :
         {
-            ecat_motor_drive(pdo_out, pdo_in, coe_out, c_signal, c_hall_p5, c_qei_p5,\
+#if (SENSOR_USED != BISS)
+            ecat_motor_drive(pdo_out, pdo_in, coe_out, c_signal, c_hall_p5, c_qei_p5, null,\
                              c_torque_ctrl, c_velocity_ctrl, c_position_ctrl, c_gpio_p1);
+#else
+            ecat_motor_drive(pdo_out, pdo_in, coe_out, c_signal, c_hall_p5, null, i_biss[3],\
+                             c_torque_ctrl, c_velocity_ctrl, c_position_ctrl, null);
+#endif
         }
 
         on tile[2]:
@@ -102,7 +110,7 @@ int main(void)
                     init_qei_param(qei_params);
 
                     position_control(position_ctrl_params, hall_params, qei_params,\
-                                     SENSOR_USED, c_hall_p4, c_qei_p4, c_position_ctrl, c_commutation_p3);
+                                     SENSOR_USED, c_hall_p4, c_qei_p4, i_biss[2], c_position_ctrl, c_commutation_p3);
                 }
 
                 /* Velocity Control Loop */
@@ -118,7 +126,7 @@ int main(void)
                     init_qei_param(qei_params);
 
                     velocity_control(velocity_ctrl_params, sensor_filter_params, hall_params,\
-                                     qei_params, SENSOR_USED, c_hall_p3, c_qei_p3, c_velocity_ctrl, c_commutation_p2);
+                                     qei_params, SENSOR_USED, c_hall_p3, c_qei_p3, i_biss[1], c_velocity_ctrl, c_commutation_p2);
                 }
 
                 /* Torque Control Loop */
@@ -132,7 +140,7 @@ int main(void)
                     init_torque_control_param(torque_ctrl_params);
 
                     torque_control( torque_ctrl_params, hall_params, qei_params,\
-                                    SENSOR_USED, c_adc, c_commutation_p1, c_hall_p2,c_qei_p2,\
+                                    SENSOR_USED, c_adc, c_commutation_p1, c_hall_p2, c_qei_p2, i_biss[4], \
                                     c_torque_ctrl);
                 }
 
@@ -160,17 +168,16 @@ int main(void)
                     hall_par hall_params;
                     qei_par qei_params;
                     commutation_par commutation_params;
-                    commutation_sinusoidal(c_hall_p1,  c_qei_p1, c_signal, c_watchdog,\
+                    commutation_sinusoidal(c_hall_p1,  c_qei_p1, i_biss[0], c_signal, c_watchdog,\
                                            c_commutation_p1, c_commutation_p2, c_commutation_p3, c_pwm_ctrl,\
                                            p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,\
-                                           hall_params, qei_params, commutation_params);   // channel priority 1,2,3
+                                           hall_params, qei_params, commutation_params, HALL);   // channel priority 1,2,3
                 }
 
                 /* Watchdog Server */
                 run_watchdog(c_watchdog, p_ifm_wd_tick, p_ifm_shared_leds_wden);
 
-                /* GPIO Digital Server */
-                gpio_digital_server(p_ifm_ext_d, c_gpio_p1, c_gpio_p2);
+
 
                 /* Hall Server */
                 {
@@ -179,12 +186,24 @@ int main(void)
                              c_hall_p6, p_ifm_hall, hall_params);    // channel priority 1,2..6
                 }
 
+#if (SENSOR_USED != BISS)
                 /* QEI Server */
                 {
                     qei_par qei_params;
                     run_qei(c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6,\
                             p_ifm_encoder, qei_params);             // channel priority 1,2..6
                 }
+
+                /* GPIO Digital Server */
+                gpio_digital_server(p_ifm_ext_d, c_gpio_p1, c_gpio_p2);
+
+#else
+                /* biss server */
+                {
+                    biss_par biss_params;
+                    run_biss(i_biss, 5, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, 2);
+                }
+#endif
 
             }
         }

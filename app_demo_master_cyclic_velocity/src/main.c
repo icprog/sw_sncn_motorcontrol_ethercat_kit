@@ -70,6 +70,8 @@ int main() {
 
     while(1)
     {
+        if (break_loop)
+            break;
         if (master_setup.op_flag && actual_velocity == 0) /*Check if the master is active and we haven't started moving yet*/
         {
             for (int step = 1; step < steps + 1; step++) {
@@ -93,11 +95,7 @@ int main() {
                 printf("\r    Velocity: %d    Position: %d    Torque: %f        ",
                         actual_velocity, actual_position, actual_torque);
             }
-        }
-        else if (break_loop){
-            break;
-        }
-        else {
+        } else {
             /* Update the process data (EtherCat packets) sent/received from the node */
             pdo_handle_ecat(&master_setup, slv_handles, TOTAL_NUM_OF_SLAVES);
             /* Read actual node sensor values */

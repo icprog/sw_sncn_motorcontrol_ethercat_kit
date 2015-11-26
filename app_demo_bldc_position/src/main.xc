@@ -23,28 +23,32 @@
 #include <drive_modes.h>
 #include <position_ctrl_client.h>
 #include <internal_config.h>
+#include <biss_server.h>
 //Configure your motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
 
 
+
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
+on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
 
 
 /* Test Profile Position function */
-void position_profile_test(chanend c_position_ctrl, chanend c_qei, chanend c_hall)
+void position_profile_test(chanend c_position_ctrl)
 {
 	int actual_position = 0;			// ticks
 	int target_position = 4096*3;		// HALL: 4096 extrapolated ticks x nr. pole pairs = one rotation; QEI: your encoder documented resolution x 4 = one rotation
 	int velocity 		= 100;			// rpm
 	int acceleration 	= 100;			// rpm/s
-	int deceleration 	= 100;     	// rpm/s
+	int deceleration 	= 100;     	    // rpm/s
 	int follow_error;
 	timer t;
 	hall_par hall_params;
 	qei_par qei_params;
 	init_qei_param(qei_params);
 	init_hall_param(hall_params);
+
 
 	/* Initialise Profile Limits for position profile generator and select position sensor */
 	init_position_profile_limits(MAX_ACCELERATION, MAX_PROFILE_VELOCITY, qei_params, hall_params, \
@@ -68,22 +72,24 @@ void position_profile_test(chanend c_position_ctrl, chanend c_qei, chanend c_hal
 	}
 }
 
+
 int main(void)
 {
 	// Motor control channels
-	chan c_qei_p1, c_qei_p2, c_qei_p5;		// qei channels
-	chan c_hall_p1, c_hall_p2, c_hall_p5;	// hall channels
-	chan c_commutation_p3;	                // commutation channels
-	chan c_pwm_ctrl, c_adctrig;				// pwm channels
-	chan c_position_ctrl;					// position control channel
-	chan c_watchdog; 						// watchdog channel
+	chan c_qei_p1, c_qei_p2, c_qei_p5;		    // qei channels
+	chan c_hall_p1, c_hall_p2, c_hall_p5;	    // hall channels
+	chan c_commutation_p3;	                    // commutation channels
+	chan c_pwm_ctrl, c_adctrig;				    // pwm channels
+	chan c_position_ctrl;					    // position control channel
+	chan c_watchdog; 						    // watchdog channel
+	interface i_biss i_biss[2];                 // biss interfaces
 
 	par
 	{
 		/* Test Profile Position Client function*/
 		on tile[APP_TILE_1]:
 		{
-			position_profile_test(c_position_ctrl, c_qei_p5, c_hall_p5);		// test PPM on slave side
+			position_profile_test(c_position_ctrl);		// test PPM on slave side
 			//position_ctrl_unit_test(c_position_ctrl, c_qei_p5, c_hall_p5); 	// Unit test controller
 		}
 
@@ -105,7 +111,7 @@ int main(void)
 
 				 /* Control Loop */
 				 position_control(position_ctrl_params, hall_params, qei_params, SENSOR_USED, c_hall_p2,\
-						 c_qei_p2, c_position_ctrl, c_commutation_p3);
+						 c_qei_p2, i_biss[1], c_position_ctrl, c_commutation_p3);
 			}
 
 		}
@@ -133,14 +139,14 @@ int main(void)
 					commutation_par commutation_params;
 					init_hall_param(hall_params);
 					init_qei_param(qei_params);
-					commutation_sinusoidal(c_hall_p1,  c_qei_p1, null, c_watchdog,
+					commutation_sinusoidal(c_hall_p1,  c_qei_p1, i_biss[0], null, c_watchdog,
 							null, null, c_commutation_p3, c_pwm_ctrl,
 #ifdef DC1K
                             null, null, null, null,
 #else
 							p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,
 #endif
-							hall_params, qei_params, commutation_params);
+							hall_params, qei_params, commutation_params, HALL);
 				}
 
 				/* Watchdog Server */
@@ -160,6 +166,7 @@ int main(void)
                     run_hall(c_hall_p1, c_hall_p2, null, null, c_hall_p5,null, p_ifm_hall, hall_params); // channel priority 1,2..6
 				}
 
+#if (SENSOR_USED != BISS)
 				/* QEI Server */
 				{
 					qei_par qei_params;
@@ -167,6 +174,13 @@ int main(void)
 					//connector 2 is configured as QEI
                     run_qei(c_qei_p1, c_qei_p2, null, null, c_qei_p5, null, p_ifm_encoder, qei_params);          // channel priority 1,2..5
 				}
+#else
+				/* biss server */
+				{
+				    biss_par biss_params;
+				    run_biss(i_biss, 2, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, 2);
+				}
+#endif
 			}
 		}
 

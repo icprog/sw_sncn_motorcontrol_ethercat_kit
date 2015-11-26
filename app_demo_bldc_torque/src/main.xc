@@ -11,6 +11,7 @@
 #include <print.h>
 #include <hall_server.h>
 #include <qei_server.h>
+#include <biss_server.h>
 #include <pwm_service_inv.h>
 #include <adc_server_ad7949.h>
 #include <commutation_server.h>
@@ -29,6 +30,7 @@
 
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
+on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
 
 
 /* Test Profile Torque Function */
@@ -68,10 +70,11 @@ int main(void)
 	chan c_adc, c_adctrig;													// adc channels
 	chan c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6 ; 		// qei channels
 	chan c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5, c_hall_p6;	// hall channels
-	chan c_commutation_p1, c_commutation_p2, c_commutation_p3, c_signal;	// commutation channels
+	chan c_commutation_p1, c_signal;	                                    // commutation channels
 	chan c_pwm_ctrl;														// pwm channel
 	chan c_torque_ctrl,c_velocity_ctrl, c_position_ctrl;					// torque control channel
 	chan c_watchdog; 														// watchdog channel
+	interface i_biss i_biss[2];                                             // biss interfaces
 
 	par
 	{
@@ -102,7 +105,7 @@ int main(void)
 
 					/* Control Loop */
 					torque_control( torque_ctrl_params, hall_params, qei_params, SENSOR_USED,
-							c_adc, c_commutation_p1,  c_hall_p3,  c_qei_p3, c_torque_ctrl);
+							c_adc, c_commutation_p1,  c_hall_p3,  c_qei_p3, i_biss[1], c_torque_ctrl);
 				}
 			}
 		}
@@ -130,10 +133,10 @@ int main(void)
 					commutation_par commutation_params;
 					init_hall_param(hall_params);
 					init_qei_param(qei_params);
-					commutation_sinusoidal(c_hall_p1,  c_qei_p1, c_signal, c_watchdog, 	\
-							c_commutation_p1, c_commutation_p2, c_commutation_p3, c_pwm_ctrl,\
+					commutation_sinusoidal(c_hall_p1,  c_qei_p1, i_biss[0], c_signal, c_watchdog, 	\
+							c_commutation_p1, null, null, c_pwm_ctrl,\
 							p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,\
-							hall_params, qei_params, commutation_params);
+							hall_params, qei_params, commutation_params, HALL);
 				}
 
 				/* Watchdog Server */
@@ -144,13 +147,20 @@ int main(void)
 					hall_par hall_params;
 					run_hall(c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5, c_hall_p6, p_ifm_hall, hall_params); // channel priority 1,2..4
 				}
-
+#if (SENSOR_USED != BISS)
 				/* QEI Server */
 				{
 					qei_par qei_params;
 					init_qei_param(qei_params);
 					run_qei(c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6, p_ifm_encoder, qei_params);  // channel priority 1,2..4
 				}
+#else
+				/* biss server */
+				{
+				    biss_par biss_params;
+				    run_biss(i_biss, 2, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, 2);
+				}
+#endif
 			}
 		}
 
