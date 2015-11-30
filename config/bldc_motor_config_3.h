@@ -89,16 +89,6 @@
     /* Position Control (Mandatory if Position control used)
      * possible range of gains Kp/Ki/Kd: 1/65536 to 32760
      * Note: gains are calculated as NUMERATOR/DENOMINATOR to give ranges */
-#if(SENSOR_SELECTION_CODE_3 == QEI_INDEX || SENSOR_SELECTION_CODE_3 == QEI_NO_INDEX || SENSOR_SELECTION_CODE_3 == BISS) // PID gains for position control with Incremental Encoder
-    #define POSITION_Kp_NUMERATOR_3         160
-    #define POSITION_Kp_DENOMINATOR_3       1000
-    #define POSITION_Ki_NUMERATOR_3         1
-    #define POSITION_Ki_DENOMINATOR_3       10000
-    #define POSITION_Kd_NUMERATOR_3         1
-    #define POSITION_Kd_DENOMINATOR_3       1000
-    #define MAX_POSITION_LIMIT_3            GEAR_RATIO_3*ENCODER_RESOLUTION_3 * 100    // ticks (max range: 2^30, limited for safe operation)
-    #define MIN_POSITION_LIMIT_3            -GEAR_RATIO_3*ENCODER_RESOLUTION_3 * 100     // ticks (min range: -2^30, limited for safe operation)
-#endif
 #if(SENSOR_SELECTION_CODE_3 == HALL)        // PID gains for position control with Hall Sensor
     #define POSITION_Kp_NUMERATOR_3         100
     #define POSITION_Kp_DENOMINATOR_3       1000
@@ -108,6 +98,15 @@
     #define POSITION_Kd_DENOMINATOR_3       1000
     #define MAX_POSITION_LIMIT_3            POLE_PAIRS_3*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO_3 * 10     // ticks (max range: 2^30, limited for safe operation) qei/hall/any position sensor
     #define MIN_POSITION_LIMIT_3            -POLE_PAIRS_3*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO_3 * 10    // ticks (min range: -2^30, limited for safe operation) qei/hall/any position sensor
+#else // PID gains for position control with other Encoders
+    #define POSITION_Kp_NUMERATOR_3         160
+    #define POSITION_Kp_DENOMINATOR_3       1000
+    #define POSITION_Ki_NUMERATOR_3         1
+    #define POSITION_Ki_DENOMINATOR_3       10000
+    #define POSITION_Kd_NUMERATOR_3         1
+    #define POSITION_Kd_DENOMINATOR_3       1000
+    #define MAX_POSITION_LIMIT_3            GEAR_RATIO_3*ENCODER_RESOLUTION_3 * 100    // ticks (max range: 2^30, limited for safe operation)
+    #define MIN_POSITION_LIMIT_3            -GEAR_RATIO_3*ENCODER_RESOLUTION_3 * 100     // ticks (min range: -2^30, limited for safe operation)
 #endif
 
 #endif
