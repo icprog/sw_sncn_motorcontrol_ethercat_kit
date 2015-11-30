@@ -32,7 +32,7 @@
 on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
 on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
-port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
+port out p_ifm_biss_clk = GPIO_D0;
 
 
 /* Test Profile Position function */
@@ -179,7 +179,7 @@ int main(void)
 				/* biss server */
 				{
 				    biss_par biss_params;
-				    run_biss(i_biss, 2, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, 2);
+				    run_biss(i_biss, 2, p_ifm_biss_clk, p_ifm_encoder, clk_biss, biss_params, 2);
 				}
 #endif
 			}
