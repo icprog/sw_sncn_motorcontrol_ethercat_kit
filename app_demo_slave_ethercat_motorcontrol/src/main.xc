@@ -34,7 +34,7 @@ on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
 
 ethercat_interface_t ethercat_interface = SOMANET_COM_ETHERCAT_PORTS;
 
-//port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
+port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
 
 int main(void)
 {
