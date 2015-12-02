@@ -10,45 +10,66 @@
  */
 
 #include <print.h>
-#include <pwm_service_inv.h>
-#include <commutation_server.h>
-#include <qei_server.h>
-#include <hall_server.h>
-#include <biss_server.h>
+
+#include <qei_service.h>
+#include <hall_service.h>
+#include <pwm_service.h>
+#include <commutation_service.h>
+#include <gpio_server.h>
 #include <adc_server_ad7949.h>
-#include <velocity_ctrl_server.h>
-#include <position_ctrl_server.h>
-#include <torque_ctrl_server.h>
+
+#include <velocity_ctrl_service.h>
+#include <position_ctrl_service.h>
+#include <torque_ctrl_service.h>
+
 #include <ecat_motor_drive.h>
-#include <bldc_motor_config.h>
+
 #include <ethercat.h>
 #include <flash_somanet.h>
-#include <gpio_server.h>
 #include <comm.h>
+
+
  //Configure your default motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
+#include <qei_config.h>
+#include <hall_config.h>
+#include <commutation_config.h>
+#include <control_config.h>
 
-on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
-on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
-on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
+
+
+//on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
+//on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
+//on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
 
 ethercat_interface_t ethercat_interface = SOMANET_COM_ETHERCAT_PORTS;
 
 port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
 
+
+PwmPorts pwm_ports = PWM_PORTS;
+WatchdogPorts wd_ports = WATCHDOG_PORTS;
+ADCPorts adc_ports = ADC_PORTS;
+FetDriverPorts fet_driver_ports = FET_DRIVER_PORTS;
+HallPorts hall_ports = HALL_PORTS;
+QEIPorts encoder_ports = ENCODER_PORTS;
+
 int main(void)
 {
     /* Motor control channels */
-    chan c_adc, c_adctrig;      // adc channels
-    chan c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6 ; // qei channels
-    chan c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5, c_hall_p6; // hall channels
-    chan c_commutation_p1, c_commutation_p2, c_commutation_p3, c_signal; // commutation channels
-    chan c_pwm_ctrl;            // pwm channels
-    chan c_velocity_ctrl;       // velocity control channel
-    chan c_torque_ctrl;         // torque control channel
-    chan c_position_ctrl;       // position control channel
-    chan c_watchdog;            // watchdog channel
+    chan c_adctrig, c_pwm_ctrl;
+
+    interface WatchdogInterface i_watchdog;
+    interface CommutationInterface i_commutation[5];
+    interface ADCInterface i_adc;
+    interface HallInterface i_hall[5];
+    interface QEIInterface i_qei[5];
+
     chan c_gpio_p1, c_gpio_p2;  // gpio digital channels
+
+    interface TorqueControlInterface i_torque_control;
+    interface PositionControlInterface i_position_control;
+    interface VelocityControlInterface i_velocity_control;
 
     /* EtherCat Communication channels */
     chan coe_in;          // CAN from module_ethercat to consumer
@@ -61,7 +82,7 @@ int main(void)
     chan pdo_in;
     chan pdo_out;
     chan c_nodes[1], c_flash_data; // Firmware channels
-    interface i_biss i_biss[5];     //biss interfaces
+
 
     par
     {
@@ -86,13 +107,8 @@ int main(void)
         /* Ethercat Motor Drive Loop */
         on tile[1] :
         {
-#if (SENSOR_USED != BISS)
-            ecat_motor_drive(pdo_out, pdo_in, coe_out, c_signal, c_hall_p5, c_qei_p5, null,\
-                             c_torque_ctrl, c_velocity_ctrl, c_position_ctrl, c_gpio_p1);
-#else
-            ecat_motor_drive(pdo_out, pdo_in, coe_out, c_signal, c_hall_p5, null, i_biss[3],\
-                             c_torque_ctrl, c_velocity_ctrl, c_position_ctrl, null);
-#endif
+            ecat_motor_drive(pdo_out, pdo_in, coe_out, i_commutation[3], i_hall[4], i_qei[4],
+                    i_torque_control, i_velocity_control, i_position_control, c_gpio_p1);
         }
 
         on tile[2]:
@@ -101,47 +117,31 @@ int main(void)
             {
                 /* Position Control Loop */
                 {
-                    ctrl_par position_ctrl_params;
-                    hall_par hall_params;
-                    qei_par qei_params;
+                     ControlConfig position_ctrl_params;
+                     init_position_control_config(position_ctrl_params); // Initialize PID parameters for Position Control
 
-                    init_position_control_param(position_ctrl_params);
-                    init_hall_param(hall_params);
-                    init_qei_param(qei_params);
-
-                    position_control(position_ctrl_params, hall_params, qei_params,\
-                                     SENSOR_USED, c_hall_p4, c_qei_p4, i_biss[2], c_position_ctrl, c_commutation_p3);
+                     /* Control Loop */
+                     position_control_service(position_ctrl_params, i_hall[1], i_qei[1], i_position_control, i_commutation[0]);
                 }
 
                 /* Velocity Control Loop */
                 {
-                    ctrl_par velocity_ctrl_params;
-                    filter_par sensor_filter_params;
-                    hall_par hall_params;
-                    qei_par qei_params;
+                    ControlConfig velocity_ctrl_params;
+                    /* Initialize PID parameters for Velocity Control (defined in config/motor/bldc_motor_config.h) */
+                    init_velocity_control_config(velocity_ctrl_params);
 
-                    init_velocity_control_param(velocity_ctrl_params);
-                    init_sensor_filter_param(sensor_filter_params);
-                    init_hall_param(hall_params);
-                    init_qei_param(qei_params);
-
-                    velocity_control(velocity_ctrl_params, sensor_filter_params, hall_params,\
-                                     qei_params, SENSOR_USED, c_hall_p3, c_qei_p3, i_biss[1], c_velocity_ctrl, c_commutation_p2);
+                    /* Control Loop */
+                    velocity_control_service(velocity_ctrl_params, i_hall[2], i_qei[2], i_velocity_control, i_commutation[1]);
                 }
 
                 /* Torque Control Loop */
                 {
-                    ctrl_par torque_ctrl_params;
-                    hall_par hall_params;
-                    qei_par qei_params;
+                    /* Torque Control Loop */
+                    ControlConfig torque_ctrl_params;
+                    init_torque_control_config(torque_ctrl_params);  // Initialize PID parameters for Torque Control
 
-                    init_qei_param(qei_params);
-                    init_hall_param(hall_params);
-                    init_torque_control_param(torque_ctrl_params);
-
-                    torque_control( torque_ctrl_params, hall_params, qei_params,\
-                                    SENSOR_USED, c_adc, c_commutation_p1, c_hall_p2, c_qei_p2, i_biss[4], \
-                                    c_torque_ctrl);
+                    /* Control Loop */
+                    torque_control_service( torque_ctrl_params, i_adc, i_commutation[2], i_hall[3], i_qei[3], i_torque_control);
                 }
 
             }
@@ -154,56 +154,42 @@ int main(void)
         {
             par
             {
-                /* ADC loop */
-                adc_ad7949_triggered(c_adc, c_adctrig, clk_adc,
-                                     p_ifm_adc_sclk_conv_mosib_mosia, p_ifm_adc_misoa,
-                                     p_ifm_adc_misob);
+                /* ADC Loop */
+                adc_service(i_adc, adc_ports, c_adctrig);
 
                 /* PWM Loop */
-                do_pwm_inv_triggered(c_pwm_ctrl, c_adctrig, p_ifm_dummy_port,
-                                     p_ifm_motor_hi, p_ifm_motor_lo, clk_pwm);
-
-                /* Motor Commutation loop */
-                {
-                    hall_par hall_params;
-                    qei_par qei_params;
-                    commutation_par commutation_params;
-                    commutation_sinusoidal(c_hall_p1,  c_qei_p1, i_biss[0], c_signal, c_watchdog,\
-                                           c_commutation_p1, c_commutation_p2, c_commutation_p3, c_pwm_ctrl,\
-                                           p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,\
-                                           hall_params, qei_params, commutation_params, HALL);   // channel priority 1,2,3
-                }
+                pwm_triggered_service(c_pwm_ctrl, c_adctrig, pwm_ports);
 
                 /* Watchdog Server */
-                run_watchdog(c_watchdog, p_ifm_wd_tick, p_ifm_shared_leds_wden);
-
-
+                 watchdog_service(i_watchdog, wd_ports);
 
                 /* Hall Server */
                 {
-                    hall_par hall_params;
-                    run_hall(c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5,\
-                             c_hall_p6, p_ifm_hall, hall_params);    // channel priority 1,2..6
+                    HallConfig hall_config;
+                    init_hall_config(hall_config);
+
+                    hall_service(i_hall, hall_ports, hall_config);
                 }
 
-#if (SENSOR_USED != BISS)
                 /* QEI Server */
                 {
-                    qei_par qei_params;
-                    run_qei(c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6,\
-                            p_ifm_encoder, qei_params);             // channel priority 1,2..6
+                    QEIConfig qei_config;
+                    init_qei_config(qei_config);
+
+                    qei_service(i_qei, encoder_ports, qei_config);
                 }
+
+                /* Motor Commutation loop */
+                 {
+                     CommutationConfig commutation_config;
+                     init_commutation_config(commutation_config);
+
+                     commutation_service(i_hall[0], i_qei[0], null, i_watchdog, i_commutation,
+                             c_pwm_ctrl, fet_driver_ports, commutation_config);
+                 }
 
                 /* GPIO Digital Server */
                 gpio_digital_server(p_ifm_ext_d, c_gpio_p1, c_gpio_p2);
-
-#else
-                /* biss server */
-                {
-                    biss_par biss_params;
-                    run_biss(i_biss, 5, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, 2);
-                }
-#endif
 
             }
         }
