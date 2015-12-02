@@ -9,14 +9,12 @@
  * @author Synapticon GmbH (www.synapticon.com)
  */
 
-#include <print.h>
-
 #include <qei_service.h>
 #include <hall_service.h>
 #include <pwm_service.h>
+#include <adc_service.h>
 #include <commutation_service.h>
 #include <gpio_server.h>
-#include <adc_server_ad7949.h>
 
 #include <velocity_ctrl_service.h>
 #include <position_ctrl_service.h>
@@ -26,8 +24,6 @@
 
 #include <ethercat.h>
 #include <flash_somanet.h>
-#include <comm.h>
-
 
  //Configure your default motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
@@ -36,23 +32,15 @@
 #include <commutation_config.h>
 #include <control_config.h>
 
-
-
-//on tile[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
-//on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
-//on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
-
-ethercat_interface_t ethercat_interface = SOMANET_COM_ETHERCAT_PORTS;
-
 port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
 
-
-PwmPorts pwm_ports = PWM_PORTS;
-WatchdogPorts wd_ports = WATCHDOG_PORTS;
-ADCPorts adc_ports = ADC_PORTS;
-FetDriverPorts fet_driver_ports = FET_DRIVER_PORTS;
-HallPorts hall_ports = HALL_PORTS;
-QEIPorts encoder_ports = ENCODER_PORTS;
+EthercatPorts ethercat_ports = SOMANET_COM_ETHERCAT_PORTS;
+PwmPorts pwm_ports = SOMANET_IFM_PWM_PORTS;
+WatchdogPorts wd_ports = SOMANET_IFM_WATCHDOG_PORTS;
+ADCPorts adc_ports = SOMANET_IFM_ADC_PORTS;
+FetDriverPorts fet_driver_ports = SOMANET_IFM_FET_DRIVER_PORTS;
+HallPorts hall_ports = SOMANET_IFM_HALL_PORTS;
+QEIPorts qei_ports = SOMANET_IFM_QEI_PORTS;
 
 int main(void)
 {
@@ -93,9 +81,9 @@ int main(void)
         /* Ethercat Communication Handler Loop */
         on tile[COM_TILE] :
         {
-            ecat_init(ethercat_interface);
+            ecat_init(ethercat_ports);
             ecat_handler(coe_out, coe_in, eoe_out, eoe_in, eoe_sig, foe_out,
-                         foe_in, pdo_out, pdo_in, ethercat_interface);
+                         foe_in, pdo_out, pdo_in, ethercat_ports);
         }
 
         /* Firmware Update Loop over Ethercat */
@@ -105,13 +93,13 @@ int main(void)
         }
 
         /* Ethercat Motor Drive Loop */
-        on tile[1] :
+        on tile[APP_TILE_1] :
         {
             ecat_motor_drive(pdo_out, pdo_in, coe_out, i_commutation[3], i_hall[4], i_qei[4],
                     i_torque_control, i_velocity_control, i_position_control, c_gpio_p1);
         }
 
-        on tile[2]:
+        on tile[APP_TILE_2]:
         {
             par
             {
@@ -176,7 +164,7 @@ int main(void)
                     QEIConfig qei_config;
                     init_qei_config(qei_config);
 
-                    qei_service(i_qei, encoder_ports, qei_config);
+                    qei_service(i_qei, qei_ports, qei_config);
                 }
 
                 /* Motor Commutation loop */
@@ -184,7 +172,7 @@ int main(void)
                      CommutationConfig commutation_config;
                      init_commutation_config(commutation_config);
 
-                     commutation_service(i_hall[0], i_qei[0], null, i_watchdog, i_commutation,
+                     commutation_service(i_hall[0], i_qei[0], i_watchdog, i_commutation,
                              c_pwm_ctrl, fet_driver_ports, commutation_config);
                  }
 
