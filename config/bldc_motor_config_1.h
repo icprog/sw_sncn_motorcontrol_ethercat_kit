@@ -12,7 +12,7 @@
  * Define Motor Specific Constants (found in motor specification sheet)
  * Mandatory constants to be set
  */
-#define POLE_PAIRS_1  				4	 	// Number of pole pairs
+#define POLE_PAIRS_1  					3	 	// Number of pole pairs
 #define MAX_NOMINAL_SPEED_1  			4000	// rpm
 #define MAX_NOMINAL_CURRENT_1  			2		// A
 #define MOTOR_TORQUE_CONSTANT_1			72		// mNm/A
@@ -21,16 +21,16 @@
  * If you have any gears added, specify gear-ratio
  * and any additional encoders attached specify encoder resolution here (Mandatory)
  */
-#define GEAR_RATIO_1 				1		// if no gears are attached - set to gear ratio to 1
-#define ENCODER_RESOLUTION_1 			16000	// 4 x Max count of Incremental Encoder (4X decoding - quadrature mode)
+#define GEAR_RATIO_1 					1		// if no gears are attached - set to gear ratio to 1
+#define ENCODER_RESOLUTION_1 			16384	// 4 x Max count of Incremental Encoder (4X decoding - quadrature mode)
 
 /* Somanet IFM Internal Configuration:  Specifies the current sensor resolution per Ampere
  *  (DC300_RESOLUTION / DC100_RESOLUTION / OLD_DC300_RESOLUTION) */
 #define IFM_RESOLUTION_1				DC100_RESOLUTION
 
 /* Position Sensor Types (select your sensor type here)
- * (HALL/ QEI_INDEX/ QEI_NO_INDEX) */
-#define SENSOR_SELECTION_CODE_1         	QEI
+ * (HALL/ QEI_WITH_INDEX/ QEI_NO_INDEX) */
+#define SENSOR_SELECTION_CODE_1          QEI_WITH_INDEX
 
 /* Polarity is used to keep all position sensors to count ticks in the same direction
  *  (QEI_POLARITY_NORMAL/QEI_POLARITY_INVERTED) */
@@ -41,7 +41,7 @@
 #define COMMUTATION_OFFSET_CCLK_1		2460
 
 /* Motor Winding type (STAR_WINDING/DELTA_WINDING) */
-#define WINDING_TYPE_1				DELTA_WINDING
+#define WINDING_TYPE_1					DELTA_WINDING
 
 /* Specify Switch Types (ACTIVE_HIGH/ACTIVE_LOW) when switch is closed
  * (Only if you have any limit switches in the system for safety/homing ) */
@@ -49,7 +49,7 @@
 
 /* Define Homing method (HOMING_POSITIVE_SWITCH/HOMING_NEGATIVE_SWITCH)
  * this specifies direction for the motor to find the home switch */
-#define HOMING_METHOD_1                 HOMING_POSITIVE_SWITCH
+#define HOMING_METHOD_1                 HOMING_NEGATIVE_SWITCH
 
 /* Changes direction of the motor drive  (1 /-1) */
 #define POLARITY_1 						1
