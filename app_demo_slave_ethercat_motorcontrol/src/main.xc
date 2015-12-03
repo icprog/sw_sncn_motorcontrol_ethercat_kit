@@ -20,10 +20,10 @@
 #include <position_ctrl_service.h>
 #include <torque_ctrl_service.h>
 
-#include <ecat_motor_drive.h>
+#include <ethercat_drive_service.h>
 
-#include <ethercat.h>
-#include <flash_somanet.h>
+#include <ethercat_service.h>
+#include <fw_update_service.h>
 
  //Configure your default motor parameters in config/bldc_motor_config.h
 #include <bldc_motor_config.h>
@@ -82,21 +82,20 @@ int main(void)
         /* Ethercat Communication Handler Loop */
         on tile[COM_TILE] :
         {
-            ecat_init(ethercat_ports);
-            ecat_handler(coe_out, coe_in, eoe_out, eoe_in, eoe_sig, foe_out,
-                         foe_in, pdo_out, pdo_in, ethercat_ports);
+            ethercat_service(coe_out, coe_in, eoe_out, eoe_in, eoe_sig,
+                                foe_out, foe_in, pdo_out, pdo_in, ethercat_ports);
         }
 
         /* Firmware Update Loop over Ethercat */
         on tile[COM_TILE] :
         {
-            firmware_update_loop(p_spi_flash, foe_out, foe_in, c_flash_data, c_nodes, null);
+            fw_update_service(p_spi_flash, foe_out, foe_in, c_flash_data, c_nodes, null);
         }
 
         /* Ethercat Motor Drive Loop */
         on tile[APP_TILE_1] :
         {
-            ecat_motor_drive(pdo_out, pdo_in, coe_out, i_commutation[3], i_hall[4], i_qei[4],
+            ethercat_drive_service(pdo_out, pdo_in, coe_out, i_commutation[3], i_hall[4], i_qei[4],
                     i_torque_control, i_velocity_control, i_position_control, i_gpio[0]);
         }
 
@@ -116,8 +115,7 @@ int main(void)
                 /* Velocity Control Loop */
                 {
                     ControlConfig velocity_ctrl_params;
-                    /* Initialize PID parameters for Velocity Control (defined in config/motor/bldc_motor_config.h) */
-                    init_velocity_control_config(velocity_ctrl_params);
+                    init_velocity_control_config(velocity_ctrl_params); // Initialize PID parameters for Velocity Control
 
                     /* Control Loop */
                     velocity_control_service(velocity_ctrl_params, i_hall[2], i_qei[2], i_velocity_control, i_commutation[1]);
