@@ -14,7 +14,7 @@
 #include <pwm_service.h>
 #include <adc_service.h>
 #include <commutation_service.h>
-#include <gpio_server.h>
+#include <gpio_service.h>
 
 #include <velocity_ctrl_service.h>
 #include <position_ctrl_service.h>
@@ -32,8 +32,6 @@
 #include <commutation_config.h>
 #include <control_config.h>
 
-port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
-
 EthercatPorts ethercat_ports = SOMANET_COM_ETHERCAT_PORTS;
 PwmPorts pwm_ports = SOMANET_IFM_PWM_PORTS;
 WatchdogPorts wd_ports = SOMANET_IFM_WATCHDOG_PORTS;
@@ -41,6 +39,10 @@ ADCPorts adc_ports = SOMANET_IFM_ADC_PORTS;
 FetDriverPorts fet_driver_ports = SOMANET_IFM_FET_DRIVER_PORTS;
 HallPorts hall_ports = SOMANET_IFM_HALL_PORTS;
 QEIPorts qei_ports = SOMANET_IFM_QEI_PORTS;
+port gpio_ports[4] = {  SOMANET_IFM_GPIO_D0,
+                        SOMANET_IFM_GPIO_D1,
+                        SOMANET_IFM_GPIO_D2,
+                        SOMANET_IFM_GPIO_D3 };
 
 int main(void)
 {
@@ -52,8 +54,7 @@ int main(void)
     interface ADCInterface i_adc;
     interface HallInterface i_hall[5];
     interface QEIInterface i_qei[5];
-
-    chan c_gpio_p1, c_gpio_p2;  // gpio digital channels
+    interface GPIOInterface i_gpio[2];
 
     interface TorqueControlInterface i_torque_control;
     interface PositionControlInterface i_position_control;
@@ -96,7 +97,7 @@ int main(void)
         on tile[APP_TILE_1] :
         {
             ecat_motor_drive(pdo_out, pdo_in, coe_out, i_commutation[3], i_hall[4], i_qei[4],
-                    i_torque_control, i_velocity_control, i_position_control, c_gpio_p1);
+                    i_torque_control, i_velocity_control, i_position_control, i_gpio[0]);
         }
 
         on tile[APP_TILE_2]:
@@ -177,7 +178,7 @@ int main(void)
                  }
 
                 /* GPIO Digital Server */
-                gpio_digital_server(p_ifm_ext_d, c_gpio_p1, c_gpio_p2);
+                gpio_service(gpio_ports, i_gpio);
 
             }
         }
