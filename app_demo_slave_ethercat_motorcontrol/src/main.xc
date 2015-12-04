@@ -13,7 +13,7 @@
 #include <hall_service.h>
 #include <pwm_service.h>
 #include <adc_service.h>
-#include <commutation_service.h>
+#include <motorcontrol_service.h>
 #include <gpio_service.h>
 
 #include <velocity_ctrl_service.h>
@@ -26,7 +26,6 @@
 #include <fw_update_service.h>
 
  //Configure your default motor parameters in config/bldc_motor_config.h
-#include <bldc_motor_config.h>
 #include <qei_config.h>
 #include <hall_config.h>
 #include <commutation_config.h>
@@ -50,7 +49,7 @@ int main(void)
     chan c_adctrig, c_pwm_ctrl;
 
     interface WatchdogInterface i_watchdog;
-    interface CommutationInterface i_commutation[5];
+    interface MotorcontrolInterface i_motorcontrol[5];
     interface ADCInterface i_adc;
     interface HallInterface i_hall[5];
     interface QEIInterface i_qei[5];
@@ -95,7 +94,7 @@ int main(void)
         /* Ethercat Motor Drive Loop */
         on tile[APP_TILE_1] :
         {
-            ethercat_drive_service(pdo_out, pdo_in, coe_out, i_commutation[3], i_hall[4], i_qei[4],
+            ethercat_drive_service(pdo_out, pdo_in, coe_out, i_motorcontrol[3], i_hall[4], i_qei[4],
                     i_torque_control, i_velocity_control, i_position_control, i_gpio[0]);
         }
 
@@ -109,7 +108,7 @@ int main(void)
                      init_position_control_config(position_ctrl_params); // Initialize PID parameters for Position Control
 
                      /* Control Loop */
-                     position_control_service(position_ctrl_params, i_hall[1], i_qei[1], i_position_control, i_commutation[0]);
+                     position_control_service(position_ctrl_params, i_hall[1], i_qei[1], i_position_control, i_motorcontrol[0]);
                 }
 
                 /* Velocity Control Loop */
@@ -118,7 +117,7 @@ int main(void)
                     init_velocity_control_config(velocity_ctrl_params); // Initialize PID parameters for Velocity Control
 
                     /* Control Loop */
-                    velocity_control_service(velocity_ctrl_params, i_hall[2], i_qei[2], i_velocity_control, i_commutation[1]);
+                    velocity_control_service(velocity_ctrl_params, i_hall[2], i_qei[2], i_velocity_control, i_motorcontrol[1]);
                 }
 
                 /* Torque Control Loop */
@@ -128,7 +127,7 @@ int main(void)
                     init_torque_control_config(torque_ctrl_params);  // Initialize PID parameters for Torque Control
 
                     /* Control Loop */
-                    torque_control_service( torque_ctrl_params, i_adc, i_commutation[2], i_hall[3], i_qei[3], i_torque_control);
+                    torque_control_service( torque_ctrl_params, i_adc, i_motorcontrol[2], i_hall[3], i_qei[3], i_torque_control);
                 }
 
             }
@@ -167,13 +166,13 @@ int main(void)
                 }
 
                 /* Motor Commutation loop */
-                 {
-                     CommutationConfig commutation_config;
-                     init_commutation_config(commutation_config);
+                {
+                    MotorcontrolConfig commutation_config;
+                    init_commutation_config(commutation_config);
 
-                     commutation_service(i_hall[0], i_qei[0], i_watchdog, i_commutation,
-                             c_pwm_ctrl, fet_driver_ports, commutation_config);
-                 }
+                    motorcontrol_service(i_hall[0], i_qei[0], i_watchdog, i_motorcontrol,
+                            c_pwm_ctrl, fet_driver_ports, commutation_config);
+                }
 
                 /* GPIO Digital Server */
                 gpio_service(gpio_ports, i_gpio);
