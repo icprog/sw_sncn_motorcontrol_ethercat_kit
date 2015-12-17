@@ -1,6 +1,7 @@
 /* INCLUDE BOARD SUPPORT FILES FROM module_board-support */
 #include <CORE_C22-rev-a.inc>
-#include <IFM_DC100-rev-b.inc>
+//#include <IFM_DC100-rev-b.inc>
+#include <IFM_DC1K-rev-c1.inc>
 
 /**
  * @file test_velocity-ctrl.xc
@@ -33,11 +34,44 @@ on stdcore[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
 on tile[IFM_TILE]:   clock clk_biss = XS1_CLKBLK_2 ;
 port out p_ifm_biss_clk = GPIO_D0;
 
+void pwm_output(buffered out port:32 p_pwm, buffered out port:32 p_pwm_inv, int duty, int period, int msec) {
+    const unsigned delay = 5*USEC_FAST;
+    timer t;
+    unsigned int ts;
+    if (msec) {
+        t :> ts;
+        msec = ts + msec*MSEC_FAST;
+    }
+
+    while(1) {
+        p_pwm <: 0xffffffff;
+        delay_ticks(period*duty);
+        p_pwm <: 0x00000000;
+        delay_ticks(delay);
+        p_pwm_inv<: 0xffffffff;
+        delay_ticks(period*(100-duty) + 2*delay);
+        p_pwm_inv <: 0x00000000;
+        delay_ticks(delay);
+
+        if (msec) {
+            t :> ts;
+            if (timeafter(ts, msec))
+                break;
+        }
+    }
+}
+void brake_release(buffered out port:32 p_pwm,  buffered out port:32 p_pwm_inv) {
+    printf("*************************************\n        BRAKE RELEASE\n*************************************\n");
+    p_pwm <: 0;
+    p_pwm_inv <: 0;
+    pwm_output(p_pwm, p_pwm_inv, 100, 100, 100);
+    pwm_output(p_pwm, p_pwm_inv, 22, 10, 0);
+}
 
 /* Test Profile Velocity function */
 void profile_velocity_test(chanend c_velocity_ctrl)
 {
-	int target_velocity =-1000;	 		// rpm
+	int target_velocity = -500;	 		// rpm
 	int acceleration 	= 100;			// rpm/s
 	int deceleration 	= 100;			// rpm/s
 	int actual_velocity;
@@ -52,7 +86,7 @@ void profile_velocity_test(chanend c_velocity_ctrl)
 	    xscope_int(TARGET_VELOCITY, target_velocity);
 	    xscope_int(ACTUAL_VELOCITY, actual_velocity);
 
-	    delay_microseconds(1);
+	    delay_milliseconds(1);
 	}
 }
 
@@ -116,10 +150,13 @@ int main(void)
 			    {
 #ifdef DC1K
 			        // Turning off all MOSFETs for for initialization
-                    disable_fets(p_ifm_motor_hi, p_ifm_motor_lo, 4);
+                    disable_fets(p_ifm_motor_hi, p_ifm_motor_lo, 3);
 #endif
 				    do_pwm_inv_triggered(c_pwm_ctrl, c_adctrig, p_ifm_dummy_port, p_ifm_motor_hi, p_ifm_motor_lo, clk_pwm);
 			    }
+
+			    /* Brake release */
+			    brake_release(p_ifm_motor_hi_d, p_ifm_motor_lo_d);
 
 				/* Motor Commutation loop */
 				{
@@ -136,7 +173,7 @@ int main(void)
 #else
 							p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,
 #endif
-							hall_params, qei_params, commutation_params, HALL);
+							hall_params, qei_params, commutation_params, BISS);
 				}
 
 				/* Watchdog Server */
@@ -151,7 +188,7 @@ int main(void)
 					hall_par hall_params;
 #ifdef DC1K
 					//connector 1 is configured as hall
-					p_ifm_encoder_hall_select_ext_d4to5 <: 0b0010;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
+					p_ifm_encoder_hall_select_ext_d4to5 <: SET_PORT1_AS_QEI_PORT2_AS_HALL;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
 #endif
 					run_hall(c_hall_p1, c_hall_p2, null, null, null, null, p_ifm_hall, hall_params); // channel priority 1,2..5
 
@@ -171,7 +208,7 @@ int main(void)
                 /* biss server */
                 {
                     biss_par biss_params;
-                    run_biss(i_biss, 2, p_ifm_biss_clk, p_ifm_encoder, clk_biss, biss_params, 2);
+                    run_biss(i_biss, 2, p_ifm_biss_clk, p_ifm_encoder, clk_biss, biss_params, BISS_FRAME_BYTES);
                 }
 #endif
 

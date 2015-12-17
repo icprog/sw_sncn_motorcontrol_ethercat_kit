@@ -1,7 +1,8 @@
 /* INCLUDE BOARD SUPPORT FILES FROM module_board-support */
 #include <COM_ECAT-rev-a.inc>
 #include <CORE_C22-rev-a.inc>
-#include <IFM_DC100-rev-b.inc>
+//#include <IFM_DC100-rev-b.inc>
+#include <IFM_DC1K-rev-c1.inc>
 
 /**
  * @file test_ethercat-mode.xc
@@ -10,6 +11,7 @@
  */
 
 #include <print.h>
+#include <stdio.h>
 #include <pwm_service_inv.h>
 #include <commutation_server.h>
 #include <qei_server.h>
@@ -35,6 +37,54 @@ on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
 ethercat_interface_t ethercat_interface = SOMANET_COM_ETHERCAT_PORTS;
 
 port p_ifm_ext_d[4] = { GPIO_D0, GPIO_D1, GPIO_D2, GPIO_D3 };
+
+void pwm_output(buffered out port:32 p_pwm, buffered out port:32 p_pwm_inv, int duty, int period, int msec) {
+    const unsigned delay = 5*USEC_FAST;
+    timer t;
+    unsigned int ts;
+    if (msec) {
+        t :> ts;
+        msec = ts + msec*MSEC_FAST;
+    }
+
+    while(1) {
+        p_pwm <: 0xffffffff;
+        delay_ticks(period*duty);
+        p_pwm <: 0x00000000;
+        delay_ticks(delay);
+        p_pwm_inv<: 0xffffffff;
+        delay_ticks(period*(100-duty) + 2*delay);
+        p_pwm_inv <: 0x00000000;
+        delay_ticks(delay);
+
+        if (msec) {
+            t :> ts;
+            if (timeafter(ts, msec))
+                break;
+        }
+    }
+}
+void brake_release(buffered out port:32 p_pwm,  buffered out port:32 p_pwm_inv) {
+    printf("*************************************\n        BRAKE RELEASE\n*************************************\n");
+    p_pwm <: 0;
+    p_pwm_inv <: 0;
+    pwm_output(p_pwm, p_pwm_inv, 100, 100, 100);
+    pwm_output(p_pwm, p_pwm_inv, 22, 10, 0);
+}
+
+void adc_dummy(chanend c_adc) {
+    while(1) {
+        int dummy;
+        select {
+        case c_adc :> dummy:
+            master {
+                c_adc <: 1;
+                c_adc <: 1;
+            }
+            break;
+        }
+    }
+}
 
 int main(void)
 {
@@ -155,13 +205,23 @@ int main(void)
             par
             {
                 /* ADC loop */
-                adc_ad7949_triggered(c_adc, c_adctrig, clk_adc,
-                                     p_ifm_adc_sclk_conv_mosib_mosia, p_ifm_adc_misoa,
-                                     p_ifm_adc_misob);
+//                adc_ad7949_triggered(c_adc, c_adctrig, clk_adc,
+//                                     p_ifm_adc_sclk_conv_mosib_mosia, p_ifm_adc_misoa,
+//                                     p_ifm_adc_misob);
+                adc_dummy(c_adc);
 
                 /* PWM Loop */
-                do_pwm_inv_triggered(c_pwm_ctrl, c_adctrig, p_ifm_dummy_port,
-                                     p_ifm_motor_hi, p_ifm_motor_lo, clk_pwm);
+                {
+#ifdef DC1K
+                    // Turning off all MOSFETs for for initialization
+                    disable_fets(p_ifm_motor_hi, p_ifm_motor_lo, 3);
+#endif
+                    do_pwm_inv_triggered(c_pwm_ctrl, c_adctrig, p_ifm_dummy_port,
+                            p_ifm_motor_hi, p_ifm_motor_lo, clk_pwm);
+                }
+
+                /* Brake release */
+                brake_release(p_ifm_motor_hi_d, p_ifm_motor_lo_d);
 
                 /* Motor Commutation loop */
                 {
@@ -169,21 +229,33 @@ int main(void)
                     qei_par qei_params;
                     commutation_par commutation_params;
                     commutation_sinusoidal(c_hall_p1,  c_qei_p1, i_biss[0], c_signal, c_watchdog,\
-                                           c_commutation_p1, c_commutation_p2, c_commutation_p3, c_pwm_ctrl,\
-                                           p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,\
-                                           hall_params, qei_params, commutation_params, HALL);   // channel priority 1,2,3
+                            c_commutation_p1, c_commutation_p2, c_commutation_p3, c_pwm_ctrl,
+#ifdef DC1K
+                            null, null, null, null,
+#else
+                            p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,
+#endif
+                            hall_params, qei_params, commutation_params, BISS);   // channel priority 1,2,3
                 }
 
                 /* Watchdog Server */
+#ifdef DC1K
+                run_watchdog(c_watchdog, null, p_ifm_led_moton_wdtick_wden);
+#else
                 run_watchdog(c_watchdog, p_ifm_wd_tick, p_ifm_shared_leds_wden);
+#endif
 
 
 
                 /* Hall Server */
                 {
                     hall_par hall_params;
+#ifdef DC1K
+                    //connector 1 is configured as hall
+                    p_ifm_encoder_hall_select_ext_d4to5 <: SET_PORT1_AS_QEI_PORT2_AS_HALL;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
+#endif
                     run_hall(c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5,\
-                             c_hall_p6, p_ifm_hall, hall_params);    // channel priority 1,2..6
+                            c_hall_p6, p_ifm_hall, hall_params);    // channel priority 1,2..6
                 }
 
 #if (SENSOR_USED != BISS)
@@ -201,7 +273,7 @@ int main(void)
                 /* biss server */
                 {
                     biss_par biss_params;
-                    run_biss(i_biss, 5, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, 2);
+                    run_biss(i_biss, 5, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, BISS_FRAME_BYTES);
                 }
 #endif
 

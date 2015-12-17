@@ -7,6 +7,7 @@
 #include <ctrlproto_m.h>
 #include <ecrt.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <profile.h>
 #include <drive_function.h>
@@ -30,11 +31,14 @@ void  INThandler(int sig)
 }
 
 
-int main() {
+int main(int argc, char *argv[]) {
 
-    int target_velocity = 2000; //rpm
+    int target_velocity = -500; //rpm
     int acceleration = 1000; //rpm/s
     int deceleration = 1000; //rpm/s
+
+    if (argc > 1)
+        target_velocity = strtol(argv[1], NULL, 10);
 
     int actual_velocity = 0; // rpm
     int actual_position; // ticks

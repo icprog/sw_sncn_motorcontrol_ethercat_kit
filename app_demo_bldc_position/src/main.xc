@@ -1,6 +1,7 @@
 /* INCLUDE BOARD SUPPORT FILES FROM module_board-support */
 #include <CORE_C22-rev-a.inc>
-#include <IFM_DC100-rev-b.inc>
+//#include <IFM_DC100-rev-b.inc>
+#include <IFM_DC1K-rev-c1.inc>
 
 /**
  * @file test_position-ctrl.xc
@@ -34,13 +35,46 @@ on tile[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
 on tile[IFM_TILE]: clock clk_biss = XS1_CLKBLK_2 ;
 port out p_ifm_biss_clk = GPIO_D0;
 
+void pwm_output(buffered out port:32 p_pwm, buffered out port:32 p_pwm_inv, int duty, int period, int msec) {
+    const unsigned delay = 5*USEC_FAST;
+    timer t;
+    unsigned int ts;
+    if (msec) {
+        t :> ts;
+        msec = ts + msec*MSEC_FAST;
+    }
+
+    while(1) {
+        p_pwm <: 0xffffffff;
+        delay_ticks(period*duty);
+        p_pwm <: 0x00000000;
+        delay_ticks(delay);
+        p_pwm_inv<: 0xffffffff;
+        delay_ticks(period*(100-duty) + 2*delay);
+        p_pwm_inv <: 0x00000000;
+        delay_ticks(delay);
+
+        if (msec) {
+            t :> ts;
+            if (timeafter(ts, msec))
+                break;
+        }
+    }
+}
+void brake_release(buffered out port:32 p_pwm,  buffered out port:32 p_pwm_inv) {
+    printf("*************************************\n        BRAKE RELEASE\n*************************************\n");
+    p_pwm <: 0;
+    p_pwm_inv <: 0;
+    pwm_output(p_pwm, p_pwm_inv, 100, 100, 100);
+    pwm_output(p_pwm, p_pwm_inv, 22, 10, 0);
+}
 
 /* Test Profile Position function */
 void position_profile_test(chanend c_position_ctrl)
 {
 	int actual_position = 0;			// ticks
-	int target_position = 4096*3;		// HALL: 4096 extrapolated ticks x nr. pole pairs = one rotation; QEI: your encoder documented resolution x 4 = one rotation
-	int velocity 		= 100;			// rpm
+	int target_position = ENCODER_RESOLUTION*3;		// HALL: 4096 extrapolated ticks x nr. pole pairs = one rotation; QEI: your encoder documented resolution x 4 = one rotation
+	int velocity 		= 700;			// rpm
 	int acceleration 	= 100;			// rpm/s
 	int deceleration 	= 100;     	    // rpm/s
 	int follow_error;
@@ -50,11 +84,12 @@ void position_profile_test(chanend c_position_ctrl)
 	init_qei_param(qei_params);
 	init_hall_param(hall_params);
 
-
 	/* Initialise Profile Limits for position profile generator and select position sensor */
 	init_position_profile_limits(MAX_ACCELERATION, MAX_PROFILE_VELOCITY, qei_params, hall_params, \
 			SENSOR_USED, MAX_POSITION_LIMIT, MIN_POSITION_LIMIT);
 
+	actual_position = get_position(c_position_ctrl);
+	target_position += actual_position;
 
 	/* Set new target position for profile position control */
 	set_profile_position(target_position, velocity, acceleration, deceleration, SENSOR_USED, c_position_ctrl);
@@ -128,10 +163,13 @@ int main(void)
                 {
 #ifdef DC1K
                     // Turning off all MOSFETs for for initialization
-                    disable_fets(p_ifm_motor_hi, p_ifm_motor_lo, 4);
+                    disable_fets(p_ifm_motor_hi, p_ifm_motor_lo, 3);
 #endif
                     do_pwm_inv_triggered(c_pwm_ctrl, c_adctrig, p_ifm_dummy_port, p_ifm_motor_hi, p_ifm_motor_lo, clk_pwm);
                 }
+
+                /* Brake release */
+                brake_release(p_ifm_motor_hi_d, p_ifm_motor_lo_d);
 
 				/* Motor Commutation loop */
 				{
@@ -147,7 +185,7 @@ int main(void)
 #else
 							p_ifm_esf_rstn_pwml_pwmh, p_ifm_coastn, p_ifm_ff1, p_ifm_ff2,
 #endif
-							hall_params, qei_params, commutation_params, HALL);
+							hall_params, qei_params, commutation_params, BISS);
 				}
 
 				/* Watchdog Server */
@@ -162,7 +200,7 @@ int main(void)
 					hall_par hall_params;
 #ifdef DC1K
                     //connector 1 is configured as hall
-                    p_ifm_encoder_hall_select_ext_d4to5 <: 0b0010;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
+                    p_ifm_encoder_hall_select_ext_d4to5 <: SET_PORT1_AS_QEI_PORT2_AS_HALL;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
 #endif
                     run_hall(c_hall_p1, c_hall_p2, null, null, c_hall_p5,null, p_ifm_hall, hall_params); // channel priority 1,2..6
 				}
@@ -179,7 +217,7 @@ int main(void)
 				/* biss server */
 				{
 				    biss_par biss_params;
-				    run_biss(i_biss, 2, p_ifm_biss_clk, p_ifm_encoder, clk_biss, biss_params, 2);
+				    run_biss(i_biss, 2, p_ifm_biss_clk, p_ifm_encoder, clk_biss, biss_params, BISS_FRAME_BYTES);
 				}
 #endif
 			}
