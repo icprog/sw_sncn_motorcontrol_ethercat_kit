@@ -32,7 +32,6 @@
 on stdcore[IFM_TILE]: clock clk_adc = XS1_CLKBLK_1;
 on stdcore[IFM_TILE]: clock clk_pwm = XS1_CLKBLK_REF;
 on tile[IFM_TILE]:   clock clk_biss = XS1_CLKBLK_2 ;
-port out p_ifm_biss_clk = GPIO_D0;
 
 void pwm_output(buffered out port:32 p_pwm, buffered out port:32 p_pwm_inv, int duty, int period, int msec) {
     const unsigned delay = 5*USEC_FAST;
@@ -188,7 +187,7 @@ int main(void)
 					hall_par hall_params;
 #ifdef DC1K
 					//connector 1 is configured as hall
-					p_ifm_encoder_hall_select_ext_d4to5 <: SET_PORT1_AS_QEI_PORT2_AS_HALL;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
+//					p_ifm_encoder_hall_select_ext_d4to5 <: SET_PORT1_AS_QEI_PORT2_AS_HALL;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
 #endif
 					run_hall(c_hall_p1, c_hall_p2, null, null, null, null, p_ifm_hall, hall_params); // channel priority 1,2..5
 
@@ -208,7 +207,7 @@ int main(void)
                 /* biss server */
                 {
                     biss_par biss_params;
-                    run_biss(i_biss, 2, p_ifm_biss_clk, p_ifm_encoder, clk_biss, biss_params, BISS_FRAME_BYTES);
+                    run_biss(i_biss, 2, p_ifm_encoder_hall_select_ext_d4to5, p_ifm_encoder, clk_biss, biss_params, BISS_FRAME_BYTES);
                 }
 #endif
 

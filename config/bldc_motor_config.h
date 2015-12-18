@@ -13,7 +13,7 @@
  * Define Motor Specific Constants (found in motor specification sheet)
  * Mandatory constants to be set
  */
-#define POLE_PAIRS                  3               // Number of pole pairs
+#define POLE_PAIRS                  10               // Number of pole pairs
 #define MAX_NOMINAL_SPEED           4000            // rpm
 #define MAX_NOMINAL_CURRENT         2               // A
 #define MOTOR_TORQUE_CONSTANT       72              // mNm/A
@@ -23,11 +23,11 @@
  * and any additional encoders attached specify encoder resolution here (Mandatory)
  */
 #define GEAR_RATIO                  1                    // if no gears are attached - set to gear ratio to 1
-#define ENCODER_RESOLUTION          4096               // 4 x Max count of Incremental Encoder (4X decoding - quadrature mode)
+#define ENCODER_RESOLUTION          262144               // 4 x Max count of Incremental Encoder (4X decoding - quadrature mode)
 
 /* Position Sensor Types (select your sensor type here)
  * (HALL/ QEI) */
-#define SENSOR_USED                 HALL
+#define SENSOR_USED                 BISS
 
 /* Define your Incremental Encoder type (QEI_INDEX/ QEI_WITH_NO_INDEX) */
 #define QEI_SENSOR_TYPE             QEI_WITH_INDEX
@@ -79,8 +79,8 @@
     #define MAX_POSITION_LIMIT      POLE_PAIRS*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO*10       // ticks (max range: 2^30, limited for safe operation) qei/hall/any position sensor
     #define MIN_POSITION_LIMIT      -POLE_PAIRS*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO*10      // ticks (min range: -2^30, limited for safe operation) qei/hall/any position sensor
 #else
-    #define MAX_POSITION_LIMIT      GEAR_RATIO*ENCODER_RESOLUTION*10    // ticks (max range: 2^30, limited for safe operation)
-    #define MIN_POSITION_LIMIT      -GEAR_RATIO*ENCODER_RESOLUTION*10   // ticks (min range: -2^30, limited for safe operation)
+    #define MAX_POSITION_LIMIT      GEAR_RATIO*ENCODER_RESOLUTION*8000    // ticks (max range: 2^30, limited for safe operation)
+    #define MIN_POSITION_LIMIT      -GEAR_RATIO*ENCODER_RESOLUTION*8000   // ticks (min range: -2^30, limited for safe operation)
 #endif
 
 /* Torque Control (Mandatory if Torque control used)

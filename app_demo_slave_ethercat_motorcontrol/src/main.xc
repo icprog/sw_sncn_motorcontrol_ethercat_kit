@@ -252,11 +252,16 @@ int main(void)
                     hall_par hall_params;
 #ifdef DC1K
                     //connector 1 is configured as hall
-                    p_ifm_encoder_hall_select_ext_d4to5 <: SET_PORT1_AS_QEI_PORT2_AS_HALL;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
+//                    p_ifm_encoder_hall_select_ext_d4to5 <: SET_PORT1_AS_QEI_PORT2_AS_HALL;//last two bits define the interface [con2, con1], 0 - hall, 1 - QEI.
 #endif
                     run_hall(c_hall_p1, c_hall_p2, c_hall_p3, c_hall_p4, c_hall_p5,\
                             c_hall_p6, p_ifm_hall, hall_params);    // channel priority 1,2..6
                 }
+
+
+                /* GPIO Digital Server */
+                gpio_digital_server(p_ifm_ext_d, c_gpio_p1, c_gpio_p2);
+
 
 #if (SENSOR_USED != BISS)
                 /* QEI Server */
@@ -265,15 +270,11 @@ int main(void)
                     run_qei(c_qei_p1, c_qei_p2, c_qei_p3, c_qei_p4, c_qei_p5, c_qei_p6,\
                             p_ifm_encoder, qei_params);             // channel priority 1,2..6
                 }
-
-                /* GPIO Digital Server */
-                gpio_digital_server(p_ifm_ext_d, c_gpio_p1, c_gpio_p2);
-
 #else
                 /* biss server */
                 {
                     biss_par biss_params;
-                    run_biss(i_biss, 5, p_ifm_ext_d[0], p_ifm_encoder, clk_biss, biss_params, BISS_FRAME_BYTES);
+                    run_biss(i_biss, 5, p_ifm_encoder_hall_select_ext_d4to5, p_ifm_encoder, clk_biss, biss_params, BISS_FRAME_BYTES);
                 }
 #endif
 

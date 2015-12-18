@@ -12,7 +12,7 @@
  * Define Motor Specific Constants (found in motor specification sheet)
  * Mandatory constants to be set
  */
-#define POLE_PAIRS_1  					3	 	// Number of pole pairs
+#define POLE_PAIRS_1  					10	 	// Number of pole pairs
 #define MAX_NOMINAL_SPEED_1  			4000	// rpm
 #define MAX_NOMINAL_CURRENT_1  			2		// A
 #define MOTOR_TORQUE_CONSTANT_1			72		// mNm/A
@@ -22,7 +22,7 @@
  * and any additional encoders attached specify encoder resolution here (Mandatory)
  */
 #define GEAR_RATIO_1 					1		// if no gears are attached - set to gear ratio to 1
-#define ENCODER_RESOLUTION_1 			16384	// 4 x Max count of Incremental Encoder (4X decoding - quadrature mode)
+#define ENCODER_RESOLUTION_1 			262144	// 4 x Max count of Incremental Encoder (4X decoding - quadrature mode)
 
 /* Somanet IFM Internal Configuration:  Specifies the current sensor resolution per Ampere
  *  (DC300_RESOLUTION / DC100_RESOLUTION / OLD_DC300_RESOLUTION) */
@@ -30,7 +30,7 @@
 
 /* Position Sensor Types (select your sensor type here)
  * (HALL/ QEI_INDEX/ QEI_NO_INDEX) */
-#define SENSOR_SELECTION_CODE_1         HALL
+#define SENSOR_SELECTION_CODE_1         BISS
 
 /* Polarity is used to keep all position sensors to count ticks in the same direction
  *  (QEI_POLARITY_NORMAL/QEI_POLARITY_INVERTED) */
@@ -99,14 +99,14 @@
 	#define MAX_POSITION_LIMIT_1 			POLE_PAIRS_1*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO_1 * 10		// ticks (max range: 2^30, limited for safe operation) qei/hall/any position sensor
 	#define MIN_POSITION_LIMIT_1			-POLE_PAIRS_1*HALL_POSITION_INTERPOLATED_RANGE*GEAR_RATIO_1 * 10	// ticks (min range: -2^30, limited for safe operation) qei/hall/any position sensor
 #else // PID gains for position control with other Encoders
-    #define POSITION_Kp_NUMERATOR_1         660
-    #define POSITION_Kp_DENOMINATOR_1       80
+    #define POSITION_Kp_NUMERATOR_1         100
+    #define POSITION_Kp_DENOMINATOR_1       1000
     #define POSITION_Ki_NUMERATOR_1         1
-    #define POSITION_Ki_DENOMINATOR_1       25384
+    #define POSITION_Ki_DENOMINATOR_1       1200
     #define POSITION_Kd_NUMERATOR_1         0
-    #define POSITION_Kd_DENOMINATOR_1       100
-    #define MAX_POSITION_LIMIT_1            GEAR_RATIO_1*ENCODER_RESOLUTION_1       // ticks (max range: 2^30, limited for safe operation)
-    #define MIN_POSITION_LIMIT_1            -GEAR_RATIO_1*ENCODER_RESOLUTION_1      // ticks (min range: -2^30, limited for safe operation)
+    #define POSITION_Kd_DENOMINATOR_1       1000
+    #define MAX_POSITION_LIMIT_1            GEAR_RATIO_1*ENCODER_RESOLUTION_1*8000       // ticks (max range: 2^30, limited for safe operation)
+    #define MIN_POSITION_LIMIT_1            -GEAR_RATIO_1*ENCODER_RESOLUTION_1*8000      // ticks (min range: -2^30, limited for safe operation)
 #endif
 
 #endif

@@ -19,7 +19,7 @@ enum {ECAT_SLAVE_0};
 
 int main() {
 
-    int target_position = 12288; // ticks
+    int target_position = ENCODER_RESOLUTION_1; // ticks
     int acceleration = 600; // rpm/s
     int deceleration = 600; // rpm/s
     int velocity = 350; // rpm
