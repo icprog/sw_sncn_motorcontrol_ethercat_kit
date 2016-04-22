@@ -10,7 +10,7 @@ LDFLAGS = -static -Wall -Wextra $(LIB_PATH) $(LIBRARY)
 
 SOURCES = main.c
 OBJECTS = $(SOURCES:.c=.o)
-TARGET = test_master
+TARGET = app_demo_master_pdo_rtt
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) -o $@ $<

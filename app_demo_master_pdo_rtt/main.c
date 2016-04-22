@@ -26,6 +26,13 @@
  *  industrial property and similar rights of Beckhoff Automation GmbH.
  *
  ****************************************************************************/
+
+/*****************************************************************************
+ * PDO RTT Measurement
+ * Measure the time from setting the PDO values until these exact same 
+ * values arevisible in the receiveing PDO.
+ ****************************************************************************/
+
 #include <errno.h>
 #include <signal.h>
 #include <stdio.h>
@@ -45,9 +52,12 @@
 /****************************************************************************/
 
 // Application parameters
-#define FREQUENCY 100
+#define CURRENT_VERSION "1.00"
 #define PRIORITY 1
 #define NSEC_PER_SEC (1000000000L)
+
+// Global variables
+static int global_freq = 10000;
 
 // Optional features
 #define CONFIGURE_PDOS  1
@@ -76,7 +86,7 @@ static uint8_t *domain1_pd = NULL;
 
 #define SomaSlavePos 0, 0
 #define SomaEtherCAT  0x000022d2, 0x00000201
-/* Send Data */
+// Send Data
 // 16 bit
 #define HEX88CC 0x88cc
 #define HEXCC88 0xcc88
@@ -92,7 +102,6 @@ static uint8_t *domain1_pd = NULL;
 // 32 bit
 #define HEX1D1D2E2E 0x1d1d2e2e
 #define HEX2E2E1D1D 0x2e2e1d1d
-#define DIFFMAX 20
 
 static unsigned int off_in_pdo1 = 0; /* 16 bit */
 static unsigned int off_in_pdo2 = 0; /* 8 bit */
@@ -122,8 +131,6 @@ const static ec_pdo_entry_reg_t domain1_regs[] = {
     {}
 };
 
-//static unsigned int counter = 0;
-//static unsigned int blink = 0;
 /*****************************************************************************/
 
 #if CONFIGURE_PDOS
@@ -239,71 +246,91 @@ void read_sdo(void)
 #endif
 
 /****************************************************************************/
+
 unsigned int out1_motor, out2_operation, out3_torque, out4_position, out5_velocity;
-bool recvFlag = false;
-bool changeDataFlag = false;
-bool initFlag = true;
-struct timespec tsSend;
-struct timespec tsRecv;
-long timeMin = LONG_MAX;
-long timeMax = LONG_MIN;
-long timeSum = 0;
+bool recv_flag = false; // flag for PDO receiving
+bool data_flag = false; // flag for changing test data
+bool init_flag = true; // flag for first fime sending
+struct timespec ts_send;
+struct timespec ts_recv;
+struct timespec ts_diff;
+long time_min = LONG_MAX;
+long time_max = LONG_MIN;
+long time_sum = 0;
 int counter = 0;
+
+struct timespec func_time_diff(struct timespec start, struct timespec end)
+{
+	struct timespec temp;
+	if((end.tv_nsec - start.tv_nsec) < 0)
+	{
+		temp.tv_sec = end.tv_sec - start.tv_sec - 1;
+		temp.tv_nsec = NSEC_PER_SEC + end.tv_nsec - start.tv_nsec;
+	}
+	else
+	{
+		temp.tv_sec = end.tv_sec - start.tv_sec;
+		temp.tv_nsec = end.tv_nsec - start.tv_nsec;
+	}
+	return temp;
+}
  
 void cyclic_task()
 {	
-	// receive process data
+    // receive process data
 	ecrt_master_receive(master);
 	ecrt_domain_process(domain1);
 	// check process data state (optional)
-	check_domain1_state();
-	// read process data
-	unsigned int in1_motor = EC_READ_U16(domain1_pd + off_in_pdo1); // motor
-	unsigned int in2_operation = EC_READ_U8(domain1_pd + off_in_pdo2);  // operation
-	unsigned int in3_position = EC_READ_U32(domain1_pd + off_in_pdo3); // position
-	unsigned int in4_velocity = EC_READ_U32(domain1_pd + off_in_pdo4); // velocity
-	unsigned int in5_torque = EC_READ_U16(domain1_pd + off_in_pdo5); // torque
-	if ((in1_motor == out1_motor) && (in2_operation == out2_operation) &&\
-		(in3_position == out4_position) && (in4_velocity == out5_velocity) &&\
-		(in5_torque == out3_torque))
+	// check_domain1_state();
+	if(init_flag || recv_flag)
 	{
-		clock_gettime(CLOCK_MONOTONIC, &tsRecv);
-		if((tsRecv.tv_sec - tsSend.tv_sec) <= DIFFMAX) {
-			long timeDiff = NSEC_PER_SEC * (tsRecv.tv_sec - tsSend.tv_sec) + 
-					(tsRecv.tv_nsec - tsSend.tv_nsec);
-			if(timeDiff < timeMin)
-				timeMin = timeDiff;
-			if(timeDiff > timeMax)
-				timeMax = timeDiff;
-			timeSum += timeDiff;
+		out1_motor = (unsigned int)(data_flag ? HEX88CC : HEXCC88);
+		out2_operation = (unsigned int)(data_flag ? HEXF1 : HEX1F);
+		out3_torque = (unsigned int)(data_flag ? HEX2244 : HEX4422);
+		out4_position = (unsigned int)(data_flag ? HEX4D4D5E5E : HEX5E5E4D4D);
+		out5_velocity = (unsigned int)(data_flag ? HEX1D1D2E2E : HEX2E2E1D1D);
+		EC_WRITE_U16(domain1_pd + off_out_pdo1, out1_motor);
+		EC_WRITE_U8(domain1_pd + off_out_pdo2, out2_operation);
+		EC_WRITE_U16(domain1_pd + off_out_pdo3, out3_torque);
+		EC_WRITE_U32(domain1_pd + off_out_pdo4, out4_position);
+		EC_WRITE_U32(domain1_pd + off_out_pdo5, out5_velocity);
+		// time to send pdo
+		clock_gettime(CLOCK_MONOTONIC, &ts_send);
+		init_flag = false;
+		recv_flag = false;
+	} 
+	else
+	{
+		// read process data
+		unsigned int in1_motor = EC_READ_U16(domain1_pd + off_in_pdo1);     // motor
+		unsigned int in2_operation = EC_READ_U8(domain1_pd + off_in_pdo2);  // operation
+		unsigned int in3_position = EC_READ_U32(domain1_pd + off_in_pdo3);  // position
+		unsigned int in4_velocity = EC_READ_U32(domain1_pd + off_in_pdo4);  // velocity
+		unsigned int in5_torque = EC_READ_U16(domain1_pd + off_in_pdo5);    // torque
+		if ((in1_motor == out1_motor) && (in2_operation == out2_operation) &&\
+			(in3_position == out4_position) && (in4_velocity == out5_velocity) &&\
+			(in5_torque == out3_torque))
+		{
+			// time to recv pdo
+			clock_gettime(CLOCK_MONOTONIC, &ts_recv);
+			if(counter != 0) {
+				ts_diff = func_time_diff(ts_send, ts_recv);
+				long time_diff = NSEC_PER_SEC * ts_diff.tv_sec + ts_diff.tv_nsec;				
+				if(time_diff < time_min)
+					time_min = time_diff;
+				if(time_diff > time_max)
+					time_max = time_diff;
+				time_sum += time_diff;
+				printf("%d Max: %ld, Min: %ld, Avg: %ld, Cur: %ld (ns)\n",
+					counter, time_max, time_min, (time_sum / counter), time_diff);
+			}
 			counter++;
-			printf("%d Max: %ld, Min: %ld (ns)\n", 
-				counter, timeMax, timeMin);
+			recv_flag = true;
+			data_flag = !data_flag;
 		}
-		recvFlag = true;
-		changeDataFlag = !changeDataFlag;
 	}
-	out1_motor = (unsigned int)(changeDataFlag ? HEX88CC : HEXCC88);
-	out2_operation = (unsigned int)(changeDataFlag ? HEXF1 : HEX1F);
-	out3_torque = (unsigned int)(changeDataFlag ? HEX2244 : HEX4422);
-	out4_position = (unsigned int)(changeDataFlag ? HEX4D4D5E5E : HEX5E5E4D4D);
-	out5_velocity = (unsigned int)(changeDataFlag ? HEX1D1D2E2E : HEX2E2E1D1D);
-	EC_WRITE_U16(domain1_pd + off_out_pdo1, (changeDataFlag ? HEX88CC : HEXCC88) & 0xffff);
-	EC_WRITE_U8(domain1_pd + off_out_pdo2, (changeDataFlag ? HEXF1 : HEX1F));
-	EC_WRITE_U16(domain1_pd + off_out_pdo3, (changeDataFlag ? HEX2244 : HEX4422) & 0xffff);
-	EC_WRITE_U32(domain1_pd + off_out_pdo4, (changeDataFlag ? HEX4D4D5E5E : HEX5E5E4D4D));
-	EC_WRITE_U32(domain1_pd + off_out_pdo5, (changeDataFlag ? HEX1D1D2E2E : HEX2E2E1D1D));
-	//printf("SEND: %u %u %u %u %u\n", out1_motor, out2_operation, out3_torque, out4_position, out5_velocity);
-	// send process data
 	ecrt_domain_queue(domain1);
 	ecrt_master_send(master);
-	if(recvFlag || initFlag)
-	{
-		// send time
-		clock_gettime(CLOCK_MONOTONIC, &tsSend);
-		recvFlag = false;
-		initFlag = false;
-	}
 }
 
 /****************************************************************************/
@@ -318,8 +345,52 @@ void signal_handler(int signum) {
 
 /****************************************************************************/
 
+static void print_help(const char *program)
+{
+	printf("Usage: %s [-h] [-v] [-f <frequency>]\n", program);
+	printf("\n");
+	printf(" -h print this help and exit\n");
+	printf(" -v print version and exit\n");
+	printf(" -f <frequency> default frequency 10000 (Hz) \n");
+	printf("\n");
+	printf("Measure the time from setting the PDO values until \nthese exact same values are visible in the receiveing PDO\n");
+}
+
+static void process_commands(int argc, char **argv)
+{
+    int c;
+	const char *options = "hvf:";
+
+	while ((c = getopt(argc, argv, options)) != -1) {
+		switch (c) {
+			case 'v':
+				printf("Current version %s\n", CURRENT_VERSION);
+				exit(1);
+				break;
+			case 'f':
+				global_freq = atoi(optarg);
+				if(global_freq <= 0)
+				{
+					fprintf(stderr, "Frequency cannot be negative\n");
+					exit(1);
+				}
+				else
+					printf("Frequency %d\n", global_freq);
+				break;
+			case 'h':
+			default:
+				print_help(argv[0]);
+				exit(1);
+				break;
+		}
+	}
+}
+
 int main(int argc, char **argv)
 {
+	// process commands
+	process_commands(argc, argv);
+	
     ec_slave_config_t *sc;
     struct sigaction sa;
     struct itimerval tv;
@@ -396,30 +467,23 @@ int main(int argc, char **argv)
 
     printf("Starting timer...\n");
     tv.it_interval.tv_sec = 0;
-    tv.it_interval.tv_usec = 1000000 / FREQUENCY;
+    tv.it_interval.tv_usec = 1000000 / (global_freq);
     tv.it_value.tv_sec = 0;
-    tv.it_value.tv_usec = 1000;
+    tv.it_value.tv_usec = 1000000 / (global_freq);
     if (setitimer(ITIMER_REAL, &tv, NULL)) {
         fprintf(stderr, "Failed to start timer: %s\n", strerror(errno));
         return 1;
     }
 
     printf("Started.\n");
+
     while (1) {
         pause();
-
-#if 0
-        struct timeval t;
-        gettimeofday(&t, NULL);
-        printf("%u.%06u\n", t.tv_sec, t.tv_usec);
-#endif
-
         while (sig_alarms != user_alarms) {
             cyclic_task();
             user_alarms++;
         }
     }
-
     return 0;
 }
 
